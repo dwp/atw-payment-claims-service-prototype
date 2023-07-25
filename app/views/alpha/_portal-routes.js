@@ -22,7 +22,6 @@ module.exports = function (folderForViews, urlPrefix, router) {
   })
 
   router.post('/populate-answers', function (req, res) {
-
     const journeytype = req.session.data['journeytype']
 
     if (journeytype === 'equipment-and-adaptations') {
