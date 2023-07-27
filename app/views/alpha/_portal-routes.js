@@ -225,6 +225,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           "account-number": "12555678",
           "roll-number": "",
         }
+        req.session.data['view-claim'] = 'open'
+
       }
       else if (claim == 2) {
         req.session.data =
@@ -270,6 +272,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           "account-number": "12345678",
           "roll-number": "",
         }
+        req.session.data['view-claim'] = 'open'
+
       }
       else if (claim == 3) {
         req.session.data = 
@@ -321,8 +325,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           "file-upload-remove": "Yes",
           "confirm-file-upload-remove": null,
         }
+        req.session.data['view-claim'] = 'paid'
+
       }
-      req.session.data['view-claim'] = true
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/check-your-answers`)
     }
 

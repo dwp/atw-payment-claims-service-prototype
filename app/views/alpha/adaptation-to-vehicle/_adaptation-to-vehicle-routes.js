@@ -22,6 +22,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
   router.get('/adaptation-to-vehicle/adaptation-description', function (req, res) {
 
     if (req.query['key']) {
+      req.session.data['next-adaptation'] = 'change'
+
       var match = req.session.data.adaptation.filter(obj => {
         return obj.key == req.query['key']
       })
@@ -166,12 +168,14 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const add_vehicle_adaptation = req.session.data['add-vehicle-adaptation']
 
     if (add_vehicle_adaptation == "Yes") {
+      req.session.data['next-adaptation'] = 'true'
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/adaptation-description`)
     }
     else if (add_vehicle_adaptation == "No") {
       if (req.session.data.adaptation === undefined || req.session.data.adaptation.length == 0) {
         res.redirect(`/${urlPrefix}/adaptation-to-vehicle/no-hours-entered`)
       } else if (checked) {
+        req.session.data['view-claim'] = ''
         res.redirect(`/${urlPrefix}/adaptation-to-vehicle/check-your-answers`)
       } else {
         res.redirect(`/${urlPrefix}/adaptation-to-vehicle/adaptation-cost`)
@@ -193,6 +197,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
     } else if (cost === '2500') {
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/too-much-claimed`)
     } else if (checked) {
+      req.session.data['view-claim'] = ''
+
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/check-your-answers`)
     } else {
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/providing-evidence`)
@@ -209,6 +215,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/receipt-upload`)
     } else if (checked) {
+      req.session.data['view-claim'] = ''
+
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/check-your-answers`)
     } else {
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/existing-payee-details`)
@@ -323,6 +331,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
       
       req.session.data["roll-number"] = ''
+      req.session.data['view-claim'] = ''
+
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/check-your-answers`)
     }
 

@@ -188,7 +188,11 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        {% if print != true %}
+        {% if (data['view-claim'] == 'open') %}
+        <h1 class="govuk-heading-xl">Your open claim</h1>
+        {% elseif (data['view-claim'] == 'paid') %}
+        <h1 class="govuk-heading-xl">Your paid claim</h1>
+        {% else %}
         <h1 class="govuk-heading-xl">Check your answers</h1>
         {% endif %}
 
@@ -243,8 +247,8 @@
 
                                 {{file['file']}} <br>
                                 {% endfor %} </td>
-                                {% if (data['view-claim']) %}
-                                {% else %}
+                            {% if (data['view-claim']) %}
+                            {% else %}
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="upload-summary">
                                     Change
@@ -462,13 +466,16 @@
         {% endif %} -->
 
         {% if print != true %}
-        {% if (data['view-claim']) %}
-
+        {% if (data['view-claim'] == 'open') %}
         <a href="/alpha/portal-screens/open-claims" class="govuk-button govuk-!-display-none-print"
             data-module="govuk-button">
             Return to your claims
         </a>
-
+        {% elseif (data['view-claim'] == 'paid') %}
+        <a href="/alpha/portal-screens/claims-history" class="govuk-button govuk-!-display-none-print"
+            data-module="govuk-button">
+            Return to paid claims
+        </a>
         {% else %}
         <form action="declaration" method="post" novalidate>
 

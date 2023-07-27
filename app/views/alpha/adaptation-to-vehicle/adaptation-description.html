@@ -11,8 +11,13 @@ Claim money back from Access to Work
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <form id="form" method="post" action="#">
-          <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Your first vehicle adaptation</h1>
+          {% if (data['next-adaptation'] == 'true') %}
           <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Your next vehicle adaptation</h1>
+          {% elseif (data['next-adaptation'] == 'change') %}
+          <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Your vehicle adaptation</h1>
+          {% else %}
+          <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Your first vehicle adaptation</h1>
+          {% endif %}
           <div data-module="moj-add-another">
             <!-- START HERE -->
             <fieldset class="govuk-fieldset moj-add-another__item">
