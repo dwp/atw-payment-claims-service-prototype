@@ -1,0 +1,419 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "alpha"
+},
+html: 'This is a new service – your <a class="govuk-link" href="/alpha/feedback-page">feedback</a> will help us to
+improve it.'
+}) }}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../portal.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="reviewed-claims.html">Reviewed claims</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .govuk-summary-card {
+    margin-bottom: 20px;
+    border: 1px solid #b1b4b6
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card {
+      margin-bottom: 30px
+    }
+  }
+
+  .govuk-summary-card__title-wrapper {
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    background-color: #f3f2f1
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__title-wrapper {
+      display: -ms-flexbox;
+      display: -webkit-box;
+      display: flex;
+      -ms-flex-pack: justify;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      padding: 15px 20px
+    }
+  }
+
+  .govuk-summary-card__title {
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+    margin: 5px 20px 10px 0
+  }
+
+  @media print {
+    .govuk-summary-card__title {
+      font-family: sans-serif
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__title {
+      font-size: 19px;
+      font-size: 1.1875rem;
+      line-height: 1.3157894737
+    }
+  }
+
+  @media print {
+    .govuk-summary-card__title {
+      font-size: 14pt;
+      line-height: 1.15
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__title {
+      margin-bottom: 5px
+    }
+  }
+
+  .govuk-summary-card__actions {
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    margin: 5px 0;
+    padding: 0;
+    list-style: none
+  }
+
+  @media print {
+    .govuk-summary-card__actions {
+      font-family: sans-serif
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__actions {
+      font-size: 19px;
+      font-size: 1.1875rem;
+      line-height: 1.3157894737
+    }
+  }
+
+  @media print {
+    .govuk-summary-card__actions {
+      font-size: 14pt;
+      line-height: 1.15
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__actions {
+      -ms-flex-pack: right;
+      -webkit-box-pack: right;
+      justify-content: right;
+      text-align: right
+    }
+  }
+
+  .govuk-summary-card__action {
+    display: inline;
+    margin: 0 10px 0 0;
+    padding-right: 10px;
+    border-right: 1px solid #b1b4b6
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__action {
+      margin-right: 0
+    }
+  }
+
+  @media screen and (-ms-high-contrast: active),
+  (-ms-high-contrast: none) {
+    .govuk-summary-card__action {
+      margin-bottom: 5px
+    }
+  }
+
+  .govuk-summary-card__action:last-child {
+    margin: 0;
+    padding-right: 0;
+    border-right: none
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__action:last-child {
+      padding-left: 10px
+    }
+  }
+
+  @media screen and (-ms-high-contrast: active),
+  (-ms-high-contrast: none) {
+    .govuk-summary-card__action:last-child {
+      margin-bottom: 0
+    }
+  }
+
+  .govuk-summary-card__content {
+    padding: 15px 15px 0
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__content {
+      padding: 15px 20px
+    }
+  }
+
+  .govuk-summary-card__content .govuk-summary-list {
+    margin-bottom: 0
+  }
+
+  .govuk-summary-card__content .govuk-summary-list__row:last-of-type {
+    margin-bottom: 0;
+    border-bottom: none
+  }
+
+
+  th,
+  td {
+    border-bottom: none !important
+  }
+</style>
+
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-full">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="claims-history-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Reviewed claims
+          </h1>
+        </legend>
+
+        <p>
+          Claims you've reviewed.
+        </p>
+
+      </fieldset>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Support worker claims</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+
+        <table class="govuk-summary-list govuk-!-margin-bottom-0">
+          <tbody class="govuk-summary-list">
+            <tr class="govuk-summary-list__row">
+              <th scope="col" class="govuk-summary-list__key">
+                Date submitted
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Support worker or agency name
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Person or company paid
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Cost
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+
+              </th>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                3 July 2023
+              </th>
+              <td class="govuk-summary-list__value">
+                John Smith
+              </td>
+              <td class="govuk-summary-list__value">
+                Agency
+              </td>
+              <td class="govuk-summary-list__value">
+                £400
+              </td>
+              <td class="govuk-summary-list__actions">
+                <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
+                  View claim<span class="govuk-visually-hidden"> for 3 July 2023</span>
+                </a>
+              </td>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                2 July 2023
+              </th>
+              <td class="govuk-summary-list__value">
+                Jane Smith
+              </td>
+              <td class="govuk-summary-list__value">
+                Agency
+              </td>
+              <td class="govuk-summary-list__value">
+                £350
+              </td>
+              <td class="govuk-summary-list__actions">
+                <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=2">
+                  View claim<span class="govuk-visually-hidden"> for 2 July 2023</span>
+                </a>
+              </td>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                4 June 2023
+              </th>
+              <td class="govuk-summary-list__value">
+                Jane Smith
+              </td>
+              <td class="govuk-summary-list__value">
+                Agency
+              </td>
+              <td class="govuk-summary-list__value">
+                £300
+              </td>
+              <td class="govuk-summary-list__actions">
+                <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=3">
+                  View claim<span class="govuk-visually-hidden"> for 4 June 2023</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Travel to work claims</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+
+        <table class="govuk-summary-list govuk-!-margin-bottom-0">
+          <tbody class="govuk-summary-list">
+            <tr class="govuk-summary-list__row">
+              <th scope="col" class="govuk-summary-list__key">
+                Date submitted
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Type of travel
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Person or company paid
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Cost
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+
+              </th>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                3 July 2023
+              </th>
+              <td class="govuk-summary-list__value">
+                Taxi
+              </td>
+              <td class="govuk-summary-list__value">
+                Taxi co 1
+              </td>
+              <td class="govuk-summary-list__value">
+                £100
+              </td>
+              <td class="govuk-summary-list__actions">
+                <a id="{{item.day}}-change" class="govuk-link"
+                  href="hours-for-day-change?month={{month_data.month}}&year={{month_data.year}}">
+                  View claim
+                </a>
+              </td>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                2 July 2023
+              </th>
+              <td class="govuk-summary-list__value">
+                Lift
+              </td>
+              <td class="govuk-summary-list__value">
+                Jane Doe
+              </td>
+              <td class="govuk-summary-list__value">
+                £100
+              </td>
+              <td class="govuk-summary-list__actions">
+                <a id="{{item.day}}-change" class="govuk-link"
+                  href="hours-for-day-change?month={{month_data.month}}&year={{month_data.year}}">
+                  View claim
+                </a>
+              </td>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                4 June 2023
+              </th>
+              <td class="govuk-summary-list__value">
+                Taxi
+              </td>
+              <td class="govuk-summary-list__value">
+                Taxi co 1
+              </td>
+              <td class="govuk-summary-list__value">
+                £100
+              </td>
+              <td class="govuk-summary-list__actions">
+                <a id="{{item.day}}-change" class="govuk-link"
+                  href="hours-for-day-change?month={{month_data.month}}&year={{month_data.year}}">
+                  View claim
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock %}

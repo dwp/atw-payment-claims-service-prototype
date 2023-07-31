@@ -12,18 +12,18 @@ Account home – Claim money back from Access to Work – GOV.UK
 tag: {
 text: "alpha"
 },
-html: 'This is a new service – your <a class="govuk-link"
-                                       href="./feedback-page">feedback</a> will help us to improve it.'
+html: 'This is a new service – your <a class="govuk-link" href="./feedback-page">feedback</a> will help us to improve
+it.'
 }) }}
 
 
 <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="portal">Home</a>
-        </li>
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="portal">Home</a>
+    </li>
 
-    </ol>
+  </ol>
 </div>
 
 
@@ -31,9 +31,9 @@ html: 'This is a new service – your <a class="govuk-link"
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-full">
 
-        <!-- <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+    <!-- <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
           <div class="govuk-notification-banner__header">
             <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
               Important
@@ -53,207 +53,245 @@ html: 'This is a new service – your <a class="govuk-link"
           </div>
         </div> -->
 
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
 
-                <span class="govuk-caption-xl">Joe Bloggs</span>
-                <h1 class="govuk-heading-xl">Account home</h1>
+        <span class="govuk-caption-xl">Joe Bloggs</span>
+        <h1 class="govuk-heading-xl">Account home</h1>
 
-                {%if (data['journey-type'] == "traveltowork-ammendment") and (data['claim-incorrect'] =="true") and
-                (data['citizen-delared'] !=="true")%}
-               
-                <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-                    <div class="govuk-notification-banner__header">
-                      <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                        Important
-                      </h2>
-                    </div>
-                    <div class="govuk-notification-banner__content">
-                      <h3 class="govuk-notification-banner__heading">
-                        1 claim has not been confirmed
-                      </h3>
-                      <p class="govuk-body">
-                        You need to correct and resubmit the following claims:</br>
-                        <a class="govuk-notification-banner__link" href="./portal-screens/claims-history">Support worker claim for £350</a>.
-                      </p>
-                    </div>
-                  </div>
-                
-                {% endif %}
+        {%if (data['journey-type'] == "traveltowork-ammendment") and (data['claim-incorrect'] =="true") and
+        (data['citizen-delared'] !=="true")%}
 
-            </div>
+        <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
+          data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <h3 class="govuk-notification-banner__heading">
+              1 claim has not been confirmed
+            </h3>
+            <p class="govuk-body">
+              You need to correct and resubmit the following claims:</br>
+              <a class="govuk-notification-banner__link" href="./portal-screens/claims-history">Support worker claim for
+                £350</a>.
+            </p>
+          </div>
         </div>
 
+        {% endif %}
 
-        <hr class="govuk-section-break govuk-section-break--s govuk-section-break">
-
-
-        <div class="govuk-grid-row">
-
-            <ul class="nhsuk-grid-row nhsuk-card-group">
-
-
-                <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
-
-                    {% if ((data['journey-type'] == "multipleawards")) %}
-                    {% set sendClaimLink %}./multiple-award-elements/start-a-claim{% endset %}
-
-                    {% elseif (data['journey-type'] == "multipleemployers") %}
-                    {% set sendClaimLink %}./multiple-employers/start-a-claim{% endset %}
-
-                    {% elseif (data['journey-type'] == "multipleawardsandemployers") %}
-                    {% set sendClaimLink %}./multiple-awards-and-employers/start-a-claim{% endset %}
-
-                    {% elseif (data['journey-type'] == "specialaidsandequipment") %}
-                    {% set sendClaimLink %}./equipment-and-adaptations/special-aids-and-equipment{% endset %}
-                    {% elseif (data['journey-type'] == "specialaidsandequipmentpb") %}
-                    {% set sendClaimLink %}./equipment-and-adaptations-pb/special-aids-and-equipment{% endset %}
-                    {% elseif (data['journey-type'] == "specialaidsandequipmentdev") %}
-                    {% set sendClaimLink %}./equipment-and-adaptations-dev/special-aids-and-equipment{% endset %}
-
-                    {% elseif (data['journey-type'] == "supportworker") %}
-                    {% set sendClaimLink %}./support-worker/support-for-workplace{% endset %}
-
-                    {% elseif (data['journey-type'] == "supportworkerpb") %}
-                    {% set sendClaimLink %}./support-worker-pb/support-for-workplace{% endset %}
-
-                    {% elseif (data['journey-type'] == "mobilenumber") %}
-                    {% set sendClaimLink %}./mobile-number/smobile-number{% endset %}
-
-                    {% elseif (data['journey-type'] == "supportworkerdev") %}
-                    {% set sendClaimLink %}./support-worker-dev/support-for-workplace{% endset %}
-
-                    {% elseif (data['journey-type'] == "traveltowork") %}
-                    {% set sendClaimLink %}./travel-to-work/travel-to-work{% endset %}
-
-                    {% elseif (data['journey-type'] == "adaptations") %}
-                    {% set sendClaimLink %}./adaptation-to-vehicle/adaptation-to-vehicle{% endset %}
-
-                    {% elseif (data['journey-type'] == "traveltoworkpb") %}
-                    {% set sendClaimLink %}./travel-to-work-pb/travel-to-work{% endset %}
-
-                    {% elseif (data['journey-type'] == "traveltoworkdev") %}
-                    {% set sendClaimLink %}./travel-to-work-dev/travel-to-work{% endset %}
-
-                    {% elseif (data['journey-type'] == "travelinwork") %}
-                    {% set sendClaimLink %}./travel-in-work/travel-to-work{% endset %}
-
-                    {% elseif (data['journey-type'] == "travelinworkpb") %}
-                    {% set sendClaimLink %}./travel-in-work-pb/travel-to-work{% endset %}
-
-                    {% elseif (data['journey-type'] == "travelinworkdev") %}
-                    {% set sendClaimLink %}./travel-in-work-dev/travel-to-work{% endset %}
-
-                    {% elseif (data['journey-type'] == "travelinworkdevv2") %}
-                    {% set sendClaimLink %}./travel-in-work-devv2/travel-to-work{% endset %}
-
-                    {% elseif (data['journey-type'] == "traveltoworkold") %}
-                    {% set sendClaimLink %}./travel-to-work-old/start-a-claim{% endset %}
-
-                    {% elseif (data['journey-type'] == "specialaidsandequipmentvi") %}
-                    {% set sendClaimLink %}./equipment-and-adaptations-vi/start-a-claim{% endset %}
-
-                    {% elseif (data['journey-type'] == "supportworkerold") %}
-                    {% set sendClaimLink %}./support-worker-old/start-a-claim{% endset %}
-
-                    {% elseif (data['journey-type'] == "supportworkeroldv2") %}
-                    {% set sendClaimLink %}./support-worker-old-two/start-a-claim{% endset %}
-
-                    {% elseif (data['journey-type'] == "notvalid") %}
-                    {% set sendClaimLink %}./portal-screens/grant-not-valid{% endset %}
-
-                    {% else %}
-                    {% set sendClaimLink %}#{% endset %}
-                    {% endif %}
-
-
-                    {{ card({
-                    "href": sendClaimLink | safe,
-                    "clickable": "true",
-                    "heading": "Start a claim",
-                    "headingClasses": "govuk-heading-m",
-                    "description": "Claim money back from your grant."
-                    }) }}
-                </li>
-
-
-                <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
-                    {% if ((data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true")) and
-                    (data['multiple-employers'] !== "true") %}
-                        {% set claimHistoryLink %}./portal-screens/multiple-claims-history{% endset %}
-                    {% elseif (data['journey-type'] == "multipleemployers") or (data['multiple-employers'] == "true") %}
-                        {% set claimHistoryLink %}./portal-screens/multiple-employer-history{% endset %}
-                    {% else %}
-                        {% set claimHistoryLink %}./portal-screens/claims-history{% endset %}
-                    {% endif %}
-                    
-                        {% set claimHistoryTitle %}Your claims{% endset %}
-
-                    {{ card({
-                    "href": claimHistoryLink | safe,
-                    "clickable": "true",
-                    "heading": claimHistoryTitle | safe,
-                    "headingClasses": "govuk-heading-m",
-                    "description": "Check what stage a claim is at and view previous claims we’ve paid."
-                    }) }}
-                </li>
-
-                <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
-                    {% set title %}
-                    Personal details
-                    {% endset %}
-
-
-                    {{ card({
-                    "href": "./portal-screens/personal-information",
-                    "clickable": "true",
-                    "heading": title | safe,
-                    "headingClasses": "govuk-heading-m",
-                    "description": "View and update your details."
-                    }) }}
-                </li>
-
-                <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
-                    {{ card({
-                    "href": "./portal-screens/claim-via-post",
-                    "clickable": "true",
-                    "heading": "How to claim by post",
-                    "headingClasses": "govuk-heading-m",
-                    "description": "Get a claim form and send it by post if you cannot claim online."
-                    }) }}
-                </li>
-                <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
-                    {% if (data['journey-type'] == "multipleawards") %}
-                      {% set grantSummaryLink %}./multiple-award-elements/grant-summary-support-type{% endset %}
-                    {% elseif ((data['journey-type'] == "multipleawardsandemployers")) %}
-                      {% set grantSummaryLink %}./multiple-awards-and-employers/grant-summary-support-type{% endset %}
-                    {% elseif ((data['journey-type'] == "multipleemployers")) %}
-                      {% set grantSummaryLink %}./multiple-employers/employers-grant-information{% endset %}
-                    {% else %}
-                        {% set grantSummaryLink %}./portal-screens/grant-information {% endset %}
-                    {% endif %}
-
-                    {{ card({
-                    "href": grantSummaryLink | safe,
-                    "clickable": "true",
-                    "heading": "Grant summary",
-                    "headingClasses": "govuk-heading-m",
-                    "description": "Your grant total, how much you have left and when you'll need to renew."
-                    }) }}
-                </li>
-                <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
-                    {{ card({
-                    "href": "./portal-screens/contact-atw",
-                    "clickable": "true",
-                    "heading": "Get help",
-                    "headingClasses": "govuk-heading-m",
-                    "description": "Contact us if you need help with a claim."
-                    }) }}
-                </li>
-            </ul>
-        </div>
+      </div>
     </div>
+
+
+    <hr class="govuk-section-break govuk-section-break--s govuk-section-break">
+
+
+    <div class="govuk-grid-row">
+
+      <ul class="nhsuk-grid-row nhsuk-card-group">
+
+        {% if (data['countersign-journey'] == "true") %}
+
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+          {{ card({
+          "href": "./employer-countersign/enter-citizen-urn",
+          "clickable": "true",
+          "heading": "Approve a claim",
+          "headingClasses": "govuk-heading-m",
+          "description": "Review claims to be countersigned."
+          }) }}
+
+        </li>
+
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+          {{ card({
+          "href": "./employer-countersign/reviewed-claims",
+          "clickable": "true",
+          "heading": "Reviewed claims",
+          "headingClasses": "govuk-heading-m",
+          "description": "View previously reviewed claims."
+          }) }}
+        </li>
+
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+          {{ card({
+          "href": "./portal-screens/personal-information",
+          "clickable": "true",
+          "heading": "Personal details",
+          "headingClasses": "govuk-heading-m",
+          "description": "View and update your details."
+          }) }}
+        </li>
+
+        {% else %}
+
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+
+          {% if ((data['journey-type'] == "multipleawards")) %}
+          {% set sendClaimLink %}./multiple-award-elements/start-a-claim{% endset %}
+
+          {% elseif (data['journey-type'] == "multipleemployers") %}
+          {% set sendClaimLink %}./multiple-employers/start-a-claim{% endset %}
+
+          {% elseif (data['journey-type'] == "multipleawardsandemployers") %}
+          {% set sendClaimLink %}./multiple-awards-and-employers/start-a-claim{% endset %}
+
+          {% elseif (data['journey-type'] == "specialaidsandequipment") %}
+          {% set sendClaimLink %}./equipment-and-adaptations/special-aids-and-equipment{% endset %}
+          {% elseif (data['journey-type'] == "specialaidsandequipmentpb") %}
+          {% set sendClaimLink %}./equipment-and-adaptations-pb/special-aids-and-equipment{% endset %}
+          {% elseif (data['journey-type'] == "specialaidsandequipmentdev") %}
+          {% set sendClaimLink %}./equipment-and-adaptations-dev/special-aids-and-equipment{% endset %}
+
+          {% elseif (data['journey-type'] == "supportworker") %}
+          {% set sendClaimLink %}./support-worker/support-for-workplace{% endset %}
+
+          {% elseif (data['journey-type'] == "supportworkerpb") %}
+          {% set sendClaimLink %}./support-worker-pb/support-for-workplace{% endset %}
+
+          {% elseif (data['journey-type'] == "mobilenumber") %}
+          {% set sendClaimLink %}./mobile-number/smobile-number{% endset %}
+
+          {% elseif (data['journey-type'] == "supportworkerdev") %}
+          {% set sendClaimLink %}./support-worker-dev/support-for-workplace{% endset %}
+
+          {% elseif (data['journey-type'] == "traveltowork") %}
+          {% set sendClaimLink %}./travel-to-work/travel-to-work{% endset %}
+
+          {% elseif (data['journey-type'] == "adaptations") %}
+          {% set sendClaimLink %}./adaptation-to-vehicle/adaptation-to-vehicle{% endset %}
+
+          {% elseif (data['journey-type'] == "traveltoworkpb") %}
+          {% set sendClaimLink %}./travel-to-work-pb/travel-to-work{% endset %}
+
+          {% elseif (data['journey-type'] == "traveltoworkdev") %}
+          {% set sendClaimLink %}./travel-to-work-dev/travel-to-work{% endset %}
+
+          {% elseif (data['journey-type'] == "travelinwork") %}
+          {% set sendClaimLink %}./travel-in-work/travel-to-work{% endset %}
+
+          {% elseif (data['journey-type'] == "travelinworkpb") %}
+          {% set sendClaimLink %}./travel-in-work-pb/travel-to-work{% endset %}
+
+          {% elseif (data['journey-type'] == "travelinworkdev") %}
+          {% set sendClaimLink %}./travel-in-work-dev/travel-to-work{% endset %}
+
+          {% elseif (data['journey-type'] == "travelinworkdevv2") %}
+          {% set sendClaimLink %}./travel-in-work-devv2/travel-to-work{% endset %}
+
+          {% elseif (data['journey-type'] == "traveltoworkold") %}
+          {% set sendClaimLink %}./travel-to-work-old/start-a-claim{% endset %}
+
+          {% elseif (data['journey-type'] == "specialaidsandequipmentvi") %}
+          {% set sendClaimLink %}./equipment-and-adaptations-vi/start-a-claim{% endset %}
+
+          {% elseif (data['journey-type'] == "supportworkerold") %}
+          {% set sendClaimLink %}./support-worker-old/start-a-claim{% endset %}
+
+          {% elseif (data['journey-type'] == "supportworkeroldv2") %}
+          {% set sendClaimLink %}./support-worker-old-two/start-a-claim{% endset %}
+
+          {% elseif (data['journey-type'] == "notvalid") %}
+          {% set sendClaimLink %}./portal-screens/grant-not-valid{% endset %}
+
+          {% else %}
+          {% set sendClaimLink %}#{% endset %}
+          {% endif %}
+
+
+          {{ card({
+          "href": sendClaimLink | safe,
+          "clickable": "true",
+          "heading": "Start a claim",
+          "headingClasses": "govuk-heading-m",
+          "description": "Claim money back from your grant."
+          }) }}
+        </li>
+
+
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+          {% if ((data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true")) and
+          (data['multiple-employers'] !== "true") %}
+          {% set claimHistoryLink %}./portal-screens/multiple-claims-history{% endset %}
+          {% elseif (data['journey-type'] == "multipleemployers") or (data['multiple-employers'] == "true") %}
+          {% set claimHistoryLink %}./portal-screens/multiple-employer-history{% endset %}
+          {% else %}
+          {% set claimHistoryLink %}./portal-screens/claims-history{% endset %}
+          {% endif %}
+
+          {% set claimHistoryTitle %}Your claims{% endset %}
+
+          {{ card({
+          "href": claimHistoryLink | safe,
+          "clickable": "true",
+          "heading": claimHistoryTitle | safe,
+          "headingClasses": "govuk-heading-m",
+          "description": "Check what stage a claim is at and view previous claims we’ve paid."
+          }) }}
+        </li>
+
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+          {% set title %}
+          Personal details
+          {% endset %}
+
+
+          {{ card({
+          "href": "./portal-screens/personal-information",
+          "clickable": "true",
+          "heading": title | safe,
+          "headingClasses": "govuk-heading-m",
+          "description": "View and update your details."
+          }) }}
+        </li>
+
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+          {{ card({
+          "href": "./portal-screens/claim-via-post",
+          "clickable": "true",
+          "heading": "How to claim by post",
+          "headingClasses": "govuk-heading-m",
+          "description": "Get a claim form and send it by post if you cannot claim online."
+          }) }}
+        </li>
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+          {% if (data['journey-type'] == "multipleawards") %}
+          {% set grantSummaryLink %}./multiple-award-elements/grant-summary-support-type{% endset %}
+          {% elseif ((data['journey-type'] == "multipleawardsandemployers")) %}
+          {% set grantSummaryLink %}./multiple-awards-and-employers/grant-summary-support-type{% endset %}
+          {% elseif ((data['journey-type'] == "multipleemployers")) %}
+          {% set grantSummaryLink %}./multiple-employers/employers-grant-information{% endset %}
+          {% else %}
+          {% set grantSummaryLink %}./portal-screens/grant-information {% endset %}
+          {% endif %}
+
+          {{ card({
+          "href": grantSummaryLink | safe,
+          "clickable": "true",
+          "heading": "Grant summary",
+          "headingClasses": "govuk-heading-m",
+          "description": "Your grant total, how much you have left and when you'll need to renew."
+          }) }}
+        </li>
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+          {{ card({
+          "href": "./portal-screens/contact-atw",
+          "clickable": "true",
+          "heading": "Get help",
+          "headingClasses": "govuk-heading-m",
+          "description": "Contact us if you need help with a claim."
+          }) }}
+        </li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

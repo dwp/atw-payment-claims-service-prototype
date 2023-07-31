@@ -44,4 +44,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
   })
 
 
+  router.post('/employer-countersign/countersign-portal', function (req, res) {
+    res.redirect(`/${urlPrefix}/portal`)
+  })
+
 }
