@@ -38,7 +38,7 @@ Claim money back from Access to Work
             <div data-module="moj-add-another">
                 
                 {% if repeatsupportLength > 0 %}
-                {% for item in data.repeatsupport %}
+                {% for item in data.repeatsupport | sortBy('day') %}
                 {% if item.day >= 0 %}
                 <!-- START HERE -->
                 <fieldset class="govuk-fieldset moj-add-another__item">

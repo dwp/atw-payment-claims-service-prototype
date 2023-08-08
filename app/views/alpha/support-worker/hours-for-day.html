@@ -40,7 +40,7 @@ Claim money back from Access to Work
 
             <div data-module="moj-add-another">
                 {% if supportLength > 0 %}
-                {% for item in data.support %}
+                {% for item in data.support | sortBy('day') %}
                 {% if item.day != '_unchecked' %}
 
                 <!-- START HERE -->
