@@ -252,7 +252,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
       req.session.data['support'].forEach(existingDay => {
         var checkedDay = support.find((day) => day.day === existingDay.day);
         if (!checkedDay){
-          req.session.data['support'].pop(existingDay)
+          const index = req.session.data['support'].indexOf(existingDay);
+          req.session.data['support'].splice(index, 1);
         }
       });
     }
@@ -456,7 +457,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
       req.session.data['repeatsupport'].forEach(existingDay => {
         var checkedDay = support.find((day) => day.day === existingDay.day);
         if (!checkedDay){
-          req.session.data['repeatsupport'].pop(existingDay)
+          const index = req.session.data['repeatsupport'].indexOf(existingDay);
+          req.session.data['repeatsupport'].splice(index, 1);
         }
       });   
     }
@@ -1061,6 +1063,59 @@ module.exports = function (folderForViews, urlPrefix, router) {
   router.post('/support-worker/cya-version', function (req, res) {
 
     res.redirect(`/${urlPrefix}/support-worker/check-your-answers`)
+  })
+
+  router.get('/support-worker/remove-month', function (req, res) {
+    req.session.data["support-month"] = req.query.month
+    req.session.data["support-year"] = req.query.year
+    res.redirect(`/${urlPrefix}/support-worker/remove-month-confirmation`)
+  })
+
+  router.post('/support-worker/remove-month-confirmation', function (req, res) {
+
+    if (req.session.data['month-list']) {
+      var month_to_delete = req.session.data['month-list'].find((month) => month.month === req.session.data["support-month"] && month.year === req.session.data["support-year"]);
+
+      if (month_to_delete) {
+        const index = req.session.data['month-list'].indexOf(month_to_delete);
+        req.session.data['month-list'].splice(index, 1);
+      }
+    }
+
+    var minuteTotal = 0
+    var hourTotal = 0
+
+    var monthList = req.session.data['month-list']
+    if (monthList) {
+      monthList.forEach(function (month) {
+        if (month.support) {
+          month.support.forEach(function (day) {
+            if (day.support_minutes) {
+              minuteTotal = minuteTotal + parseInt(day.support_minutes)
+            }
+            if (day.support_hours) {
+              hourTotal = hourTotal + parseInt(day.support_hours)
+            }
+            if (day.repeatsupport_minutes) {
+              minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
+            }
+            if (day.repeatsupport_hours) {
+              hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
+            }
+          });
+        }
+      });
+    }
+
+    while (minuteTotal >= 60) {
+      hourTotal += 1
+      minuteTotal -= 60
+    }
+
+    req.session.data["hour-total"] = hourTotal
+    req.session.data["minute-total"] = minuteTotal
+
+    res.redirect(`/${urlPrefix}/support-worker/hours-for-day-summary`)
   })
 
 }
