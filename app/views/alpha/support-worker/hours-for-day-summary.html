@@ -240,11 +240,24 @@ Claim money back from Access to Work
 
       <div class="govuk-form-group">
 
-        <h1 class="govuk-heading-l">You’ve told us you want to claim for {{data['hour-total']}}
-          {% if data.hour-total == 1 %} hour {% else %} hours {% endif %}
-          {% if data.minute-total == 0 %}
-          and {{data['minute-total']}}
-          {% if data.minute-total == 1 %} minute {% else %} minutes {% endif %}
+        <h1 class="govuk-heading-l">
+          You’ve told us you want to claim for 
+          {{data['hour-total']}}
+
+          {% if data['hour-total'] == 1 %} 
+            hour 
+          {% else %} 
+            hours 
+          {% endif %}
+
+          {% if data['minute-total'] > 0 %}
+            and 
+            {{data['minute-total']}}
+            {% if data['minute-total'] == 1 %} 
+              minute 
+            {% else %} 
+              minutes 
+            {% endif %}
           {% endif %}
           of support
 
