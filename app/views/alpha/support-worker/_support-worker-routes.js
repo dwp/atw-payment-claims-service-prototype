@@ -1073,6 +1073,10 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
   router.post('/support-worker/remove-month-confirmation', function (req, res) {
 
+    if (req.session.data['remove-month'] == 'No'){
+      res.redirect(`/${urlPrefix}/support-worker/hours-for-day-summary`)
+    }
+
     if (req.session.data['month-list']) {
       var month_to_delete = req.session.data['month-list'].find((month) => month.month === req.session.data["support-month"] && month.year === req.session.data["support-year"]);
 
