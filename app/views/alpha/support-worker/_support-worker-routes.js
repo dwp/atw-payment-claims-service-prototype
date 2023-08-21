@@ -1,4 +1,4 @@
-const { indexOf } = require("lodash")
+const { indexOf, forEach } = require("lodash")
 
 module.exports = function (folderForViews, urlPrefix, router) {
   router.get('/support-worker/start-a-claim', function (req, res) {
@@ -106,9 +106,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
     req.session.data["month-list"] = monthList
 
-    if (req.session.data.support === undefined || req.session.data.support.length == 0) {
-      res.redirect(`/${urlPrefix}/support-worker/no-hours-entered`)
-    } else if (month === 'yes') {
+    if (month === 'yes') {
+      req.session.data['support'] = []
       res.redirect(`/${urlPrefix}/support-worker/claiming-for-month-repeat`)
     } else if (month === 'no' && journeytype === 'traveltowork-ammendment') {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
@@ -188,6 +187,19 @@ module.exports = function (folderForViews, urlPrefix, router) {
     var month = req.session.data["support-month"]
     var year = req.session.data["support-year"]
 
+    var month_list = req.session.data['month-list']
+    if (month_list) {
+      var month_data = month_list.find((month) => month.month === req.session.data["support-month"] && month.year === req.session.data["support-year"]);
+
+      if (month_data) {
+        res.redirect(`/${urlPrefix}/support-worker/days-for-month-change?month=` + month + `&year=` + year)
+      }
+      else{
+        req.session.data.checked = []
+        req.session.data['support'] = []
+      }
+    }
+
     const getDays = (year, month) => {
       return new Date(year, month, 0).getDate();
     };
@@ -211,7 +223,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
       currentWeek.days.push(currentDay)
 
-      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length-1)) {
+      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
         weeksList.push(currentWeek)
         var newWeekNumber = currentWeek.weekNumber + 1
         currentWeek = { weekNumber: newWeekNumber, days: [] }
@@ -230,7 +242,24 @@ module.exports = function (folderForViews, urlPrefix, router) {
     selectedDays.forEach(supportDay => {
       support.push({ day: supportDay })
     });
-    req.session.data['support'] = support
+    if (req.session.data['support']){
+      support.forEach(checkedDay => {
+        var existingDay = req.session.data['support'].find((day) => day.day === checkedDay.day);
+        if (!existingDay){
+          req.session.data['support'].push(checkedDay)
+        }
+      });
+      req.session.data['support'].forEach(existingDay => {
+        var checkedDay = support.find((day) => day.day === existingDay.day);
+        if (!checkedDay){
+          const index = req.session.data['support'].indexOf(existingDay);
+          req.session.data['support'].splice(index, 1);
+        }
+      });
+    }
+    else{
+      req.session.data['support'] = support
+    }
     req.session.data["support-worker-errors"] = []
 
     res.redirect(`/${urlPrefix}/support-worker/hours-for-day`)
@@ -277,7 +306,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
       currentWeek.days.push(currentDay)
 
-      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length-1)) {
+      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
         weeksList.push(currentWeek)
         var newWeekNumber = currentWeek.weekNumber + 1
         currentWeek = { weekNumber: newWeekNumber, days: [] }
@@ -332,7 +361,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
       currentWeek.days.push(currentDay)
 
-      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length-1)) {
+      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
         weeksList.push(currentWeek)
         var newWeekNumber = currentWeek.weekNumber + 1
         currentWeek = { weekNumber: newWeekNumber, days: [] }
@@ -363,6 +392,19 @@ module.exports = function (folderForViews, urlPrefix, router) {
     var month = req.session.data["repeatsupport-month"]
     var year = req.session.data["repeatsupport-year"]
 
+    var month_list = req.session.data['month-list']
+    if (month_list) {
+      var month_data = month_list.find((month) => month.month === req.session.data["repeatsupport-month"] && month.year === req.session.data["repeatsupport-year"]);
+
+      if (month_data) {
+        res.redirect(`/${urlPrefix}/support-worker/days-for-month-change?month=` + month + `&year=` + year)
+      }
+      else{
+        req.session.data.checked = []
+        req.session.data['support'] = []
+      }
+    }
+
     const getDays = (year, month) => {
       return new Date(year, month, 0).getDate();
     };
@@ -386,7 +428,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
       currentWeek.days.push(currentDay)
 
-      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length-1)) {
+      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
         weeksList.push(currentWeek)
         var newWeekNumber = currentWeek.weekNumber + 1
         currentWeek = { weekNumber: newWeekNumber, days: [] }
@@ -405,7 +447,25 @@ module.exports = function (folderForViews, urlPrefix, router) {
     selectedDays.forEach(supportDay => {
       support.push({ day: supportDay })
     });
-    req.session.data['repeatsupport'] = support
+    if (req.session.data['repeatsupport']){
+      support.forEach(checkedDay => {
+        var existingDay = req.session.data['repeatsupport'].find((day) => day.day === checkedDay.day);
+        if (!existingDay){
+          req.session.data['repeatsupport'].push(checkedDay)
+        }
+      });
+      req.session.data['repeatsupport'].forEach(existingDay => {
+        var checkedDay = support.find((day) => day.day === existingDay.day);
+        if (!checkedDay){
+          const index = req.session.data['repeatsupport'].indexOf(existingDay);
+          req.session.data['repeatsupport'].splice(index, 1);
+        }
+      });   
+    }
+    else{
+      req.session.data['repeatsupport'] = support
+    }
+     
     req.session.data["support-worker-errors"] = []
     res.redirect(`/${urlPrefix}/support-worker/hours-for-day-repeat`)
   })
@@ -694,6 +754,87 @@ module.exports = function (folderForViews, urlPrefix, router) {
   })
 
   // Get
+  router.get('/support-worker/days-for-month-change', function (req, res) {
+    if (req.query.month) {
+      var days = new Array(7);
+      days[0] = "Sunday";
+      days[1] = "Monday";
+      days[2] = "Tuesday";
+      days[3] = "Wednesday";
+      days[4] = "Thursday";
+      days[5] = "Friday";
+      days[6] = "Saturday";
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      var month = req.query.month
+      var year = req.query.year
+
+      const getDays = (year, month) => {
+        return new Date(year, month, 0).getDate();
+      };
+
+      var monthLength = getDays(year, month);
+      var monthDayList = []
+
+      for (let i = 1; i <= monthLength; i++) {
+        var a = new Date(year, month - 1, i);
+        var r = days[a.getDay()];
+        var monthDay = { value: i, text: r + " " + i + " " + monthNames[a.getMonth()] }
+        monthDayList.push(monthDay)
+      }
+
+      var i = 0
+      var weeksList = []
+      var currentWeek = { weekNumber: 1, days: [] }
+
+      while (i < monthDayList.length) {
+        var currentDay = monthDayList[i]
+
+        currentWeek.days.push(currentDay)
+
+        if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
+          weeksList.push(currentWeek)
+          var newWeekNumber = currentWeek.weekNumber + 1
+          currentWeek = { weekNumber: newWeekNumber, days: [] }
+        }
+
+        i++
+      }
+
+      req.session.data.dataList = weeksList
+      var month_list = req.session.data['month-list']
+      var month_data = month_list.find((month) => month.month === req.query.month && month.year === req.query.year);
+
+      req.session.data.checked = []
+
+      if (month_data.support[0]["repeatsupport_hours"]) {
+        req.session.data["repeatsupport-month"] = req.query.month
+        req.session.data["repeatsupport-year"] = req.query.year
+        req.session.data["repeatsupport"] = month_data.support
+        month_data.support.forEach(supportDay => {
+          req.session.data.checked[supportDay.day] = true
+        });
+        res.redirect(`/${urlPrefix}/support-worker/days-for-month-repeat`)
+      }
+      else {
+        req.session.data["support-month"] = req.query.month
+        req.session.data["support-year"] = req.query.year
+        req.session.data["support"] = month_data.support
+        month_data.support.forEach(supportDay => {
+          req.session.data.checked[supportDay.day] = true
+        });
+        res.redirect(`/${urlPrefix}/support-worker/days-for-month`)
+      }
+    }
+    else {
+      res.redirect(`/${urlPrefix}/support-worker/days-for-month`)
+    }
+  })
+
   router.get('/support-worker/hours-for-day-change', function (req, res) {
     if (req.query.month) {
       var days = new Array(7);
@@ -733,36 +874,45 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
       while (i < monthDayList.length) {
         var currentDay = monthDayList[i]
-  
+
         currentWeek.days.push(currentDay)
-  
-        if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length-1)) {
+
+        if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
           weeksList.push(currentWeek)
           var newWeekNumber = currentWeek.weekNumber + 1
           currentWeek = { weekNumber: newWeekNumber, days: [] }
         }
-  
+
         i++
       }
 
       req.session.data.dataList = weeksList
       var month_list = req.session.data['month-list']
       var month_data = month_list.find((month) => month.month === req.query.month && month.year === req.query.year);
+
+      req.session.data.checked = []
+
       if (month_data.support[0]["repeatsupport_hours"]) {
         req.session.data["repeatsupport-month"] = req.query.month
         req.session.data["repeatsupport-year"] = req.query.year
         req.session.data["repeatsupport"] = month_data.support
-        res.redirect(`/${urlPrefix}/support-worker/days-for-month-repeat`)
+        month_data.support.forEach(supportDay => {
+          req.session.data.checked[supportDay.day] = true
+        });
+        res.redirect(`/${urlPrefix}/support-worker/hours-for-day-repeat`)
       }
       else {
         req.session.data["support-month"] = req.query.month
         req.session.data["support-year"] = req.query.year
         req.session.data["support"] = month_data.support
-        res.redirect(`/${urlPrefix}/support-worker/days-for-month`)
+        month_data.support.forEach(supportDay => {
+          req.session.data.checked[supportDay.day] = true
+        });
+        res.redirect(`/${urlPrefix}/support-worker/hours-for-day`)
       }
     }
     else {
-      res.redirect(`/${urlPrefix}/support-worker/days-for-month`)
+      res.redirect(`/${urlPrefix}/support-worker/hours-for-day`)
     }
   })
 
@@ -930,6 +1080,63 @@ module.exports = function (folderForViews, urlPrefix, router) {
   router.post('/support-worker/cya-version', function (req, res) {
 
     res.redirect(`/${urlPrefix}/support-worker/check-your-answers`)
+  })
+
+  router.get('/support-worker/remove-month', function (req, res) {
+    req.session.data["support-month"] = req.query.month
+    req.session.data["support-year"] = req.query.year
+    res.redirect(`/${urlPrefix}/support-worker/remove-month-confirmation`)
+  })
+
+  router.post('/support-worker/remove-month-confirmation', function (req, res) {
+
+    if (req.session.data['remove-month'] == 'No'){
+      res.redirect(`/${urlPrefix}/support-worker/hours-for-day-summary`)
+    }
+
+    if (req.session.data['month-list']) {
+      var month_to_delete = req.session.data['month-list'].find((month) => month.month === req.session.data["support-month"] && month.year === req.session.data["support-year"]);
+
+      if (month_to_delete) {
+        const index = req.session.data['month-list'].indexOf(month_to_delete);
+        req.session.data['month-list'].splice(index, 1);
+      }
+    }
+
+    var minuteTotal = 0
+    var hourTotal = 0
+
+    var monthList = req.session.data['month-list']
+    if (monthList) {
+      monthList.forEach(function (month) {
+        if (month.support) {
+          month.support.forEach(function (day) {
+            if (day.support_minutes) {
+              minuteTotal = minuteTotal + parseInt(day.support_minutes)
+            }
+            if (day.support_hours) {
+              hourTotal = hourTotal + parseInt(day.support_hours)
+            }
+            if (day.repeatsupport_minutes) {
+              minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
+            }
+            if (day.repeatsupport_hours) {
+              hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
+            }
+          });
+        }
+      });
+    }
+
+    while (minuteTotal >= 60) {
+      hourTotal += 1
+      minuteTotal -= 60
+    }
+
+    req.session.data["hour-total"] = hourTotal
+    req.session.data["minute-total"] = minuteTotal
+
+    res.redirect(`/${urlPrefix}/support-worker/hours-for-day-summary`)
   })
 
 }

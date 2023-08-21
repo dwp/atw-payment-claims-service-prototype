@@ -45,8 +45,15 @@ Claim money back from Access to Work
                     {% for day in week.days %}
         
                     <div class="govuk-checkboxes__item">
+
+                      {% if (data.checked[day.value]) %}
+                      <input class="govuk-checkboxes__input" id="support-{{day.value}}" name="repeatsupport-days" type="checkbox"
+                        value={{day.value}} checked>
+                      {% else %}
                       <input class="govuk-checkboxes__input" id="support-{{day.value}}" name="repeatsupport-days" type="checkbox"
                         value={{day.value}}>
+                      {% endif %}
+
                       <label class="govuk-label govuk-checkboxes__label" for="organisation">
                         {{day.text}}
                       </label>
