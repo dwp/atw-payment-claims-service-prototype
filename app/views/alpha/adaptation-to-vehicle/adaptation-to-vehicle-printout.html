@@ -1,0 +1,137 @@
+{% extends "layout_no_contact.html" %}
+
+{% block pageTitle %}
+Check your answers
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+    th,
+    td {
+        border-bottom: 1px solid #b1b4b6 !important
+    }
+</style>
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-quarter">
+                <img src="/public/images/Department_for_Work_and_Pensions_logo.png" alt="Department for Work and Pensions logo" height="80">
+        
+            </div>
+            <div class="govuk-grid-column-three-quarter">
+                <h1 class="govuk-heading-m govuk-!-text-align-right">Access to Work<br />Claim for adaptation to vehicle costs
+                </h1>
+            </div>
+            <hr/>
+        
+        </div>
+
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Claimant’s details</caption>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Full name</th>
+                    <td class="govuk-table__cell">Jane Doe</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Access to Work number</th>
+                    <td class="govuk-table__cell">ATW1234567895</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Email address</th>
+                    <td class="govuk-table__cell">jane.doe@email.com</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Claim type</th>
+                    <td class="govuk-table__cell">Adaptation to vehicle</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Company or organisation name</th>
+                    <td class="govuk-table__cell">JaneDoeCo.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Claim information</caption>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Vehicle adaptations description</th>
+                    <td class="govuk-table__cell">
+                        22 January 2023<br />
+                        Conversion<br />
+                        22 January 2023<br />
+                        Controls<br />
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Total cost of vehicle adaptations</th>
+                    <td class="govuk-table__cell">£1400</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Receipt attached</th>
+                    <td class="govuk-table__cell">Yes</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Payee details</caption>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Full name</th>
+                    <td class="govuk-table__cell">Joe Bloggs</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Email address</th>
+                    <td class="govuk-table__cell">joe.bloggs@email.com</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Address</th>
+                    <td class="govuk-table__cell">
+                        THE COTTAGE<br />
+                        ST. MARYS ISLAND<br />
+                        WHITLEY BAY<br />
+                        WHITLEY BAY<br />
+                        NE26 4RS
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Name on bank account</th>
+                    <td class="govuk-table__cell">Joe Bloggs</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Sort code</th>
+                    <td class="govuk-table__cell">012345</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Account number</th>
+                    <td class="govuk-table__cell">12345678</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Claim declaration</caption>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Claimant declaration</th>
+                    <td class="govuk-table__cell">Yes</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Claim submission date</th>
+                    <td class="govuk-table__cell">4 February 2023</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
