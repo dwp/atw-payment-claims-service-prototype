@@ -670,5 +670,95 @@ module.exports = function (folderForViews, urlPrefix, router) {
     }
   })
 
+  router.post('/travel-to-work/claiming-for-month', function (req, res) {
+    var days = new Array(7);
+    days[0] = "Sunday";
+    days[1] = "Monday";
+    days[2] = "Tuesday";
+    days[3] = "Wednesday";
+    days[4] = "Thursday";
+    days[5] = "Friday";
+    days[6] = "Saturday";
+
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    var month = req.session.data["travel-to-work-date-month"]
+    var year = req.session.data["travel-to-work-date-year"]
+
+    const getDays = (year, month) => {
+      return new Date(year, month, 0).getDate();
+    };
+
+    var monthLength = getDays(year, month);
+    var monthDayList = []
+    var dayList = []
+
+    for (let i = 1; i <= monthLength; i++) {
+      dayList.push({day: i, journeys: ''})
+      var a = new Date(year, month - 1, i);
+      var r = days[a.getDay()];
+      var monthDay = { value: i, text: r + " " + i + " " + monthNames[a.getMonth()], input: '' }
+      monthDayList.push(monthDay)
+    }
+
+    req.session.data['tiw-days'] = dayList
+
+    var i = 0
+    var weeksList = []
+    var currentWeek = { weekNumber: 1, days: [] }
+
+    while (i < monthDayList.length) {
+      var currentDay = monthDayList[i]
+
+      currentWeek.days.push(currentDay)
+
+      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length-1)) {
+        weeksList.push(currentWeek)
+        var newWeekNumber = currentWeek.weekNumber + 1
+        currentWeek = { weekNumber: newWeekNumber, days: [] }
+      }
+
+      i++
+    }
+
+    req.session.data.dataList = weeksList
+
+    const aids = req.session.data['transport-option']
+    const claiming = req.session.data['way-of-claiming']
+
+    if (aids === 'taxi' || aids === 'taxi-during-work') {
+      res.redirect(`/${urlPrefix}/travel-to-work/days-for-month`)
+    //  res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+    } else if (aids === 'lift' && claiming === 'mileage') {
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day`)
+    } else if (aids === 'lift' && claiming === 'journeys') {
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+    } else if (aids === 'lift-during-work') {
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day`)
+    }
+
+  })
+
+
+
+  router.post('/travel-to-work/days-for-month', function (req, res) {
+    var allDays = req.session.data['ttw-days']
+    var dataList = req.session.data['dataList']
+    var selectedDays = []
+
+    for (let i = 0; i < allDays.length; i++){
+      if (allDays[i] != ''){
+        selectedDays.push({day: i+1, journeys: Array.from(Array(parseInt(allDays[i])).keys()), postcodeFrom: '', postcodeTo: '', cost: ''})
+      }
+    }
+    
+    req.session.data['travel-to-work'] = selectedDays
+    req.session.data["travel-to-work-errors"] = []
+
+    res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+  })
 
 }
