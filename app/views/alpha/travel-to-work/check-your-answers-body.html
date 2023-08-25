@@ -377,7 +377,13 @@
 
                         <dd class="govuk-summary-list__value">
                             {% for file in data['uploads'] %}
-                                {{file['file']}} <br>
+                                {% if (data['ttw-declaration']) %}
+                                    <a href="/public/images/taxi-receipt.jpg" class="govuk-link">
+                                        {{file['file']}} <br>
+                                    </a>
+                                {% else %}
+                                    {{file['file']}} <br>
+                                {% endif %}
                             {% endfor %}
                         </dd>
                         {% if print != true %}
