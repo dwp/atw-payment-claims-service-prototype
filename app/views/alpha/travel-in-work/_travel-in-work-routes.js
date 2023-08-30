@@ -327,33 +327,33 @@ module.exports = function (folderForViews, urlPrefix, router) {
   router.post('/travel-in-work/taxi-journeys-for-day', function (req, res) {
     id = 0
 
-    travel_day = req.session.data['travel-day']
-    travel_from = req.session.data['travel-from']
-    travel_to = req.session.data['travel-to']
-    travel_cost = req.session.data['travel-cost']
-
-    travel_id = req.query.id
-
-    if (travel_id) {
-      id = travel_id
+    journeys = req.session.data['travel-in-work']
+    month = req.session.data['travel-in-work-date-month']
+    year = req.session.data['travel-in-work-date-year']
+    
+    month_data = {
+      month: month,
+      year: year,
+      journeys: journeys
     }
-    else if (!req.session.data.travelinwork) {
+
+    if (!req.session.data.travelinwork) {
       req.session.data.travelinwork = []
-      id = 1
-    }
-    else {
-      id = req.session.data.travelinwork[req.session.data.travelinwork.length - 1].id + 1
     }
 
-    travel = {
-      id: id,
-      day: travel_day,
-      from: travel_from,
-      to: travel_to,
-      cost: travel_cost
-    }
+    req.session.data.travelinwork.push(month_data)
 
-    req.session.data.travelinwork.push(travel)
+    total_cost = 0
+
+    req.session.data['travelinwork'].forEach(month => {
+      month.journeys.forEach(day => {
+        day.forEach(journey => {
+          total_cost = total_cost + +journey.cost
+        });
+      });
+    });
+
+    req.session.data['total-cost'] = total_cost
 
     res.redirect(`/${urlPrefix}/travel-in-work/taxi-journeys-for-day-summary`)
   })
@@ -368,7 +368,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const incorrect = req.session.data['claim-incorrect']
 
 
-    if (req.session.data.travel === undefined || req.session.data.travel.length == 0) {
+    if (req.session.data['travel-in-work'] === undefined || req.session.data['travel-in-work'].length == 0) {
       res.redirect(`/${urlPrefix}/travel-in-work/no-hours-entered`)
     } else if (addmonth === 'no' && journeytype === 'traveltowork-ammendment' && incorrect) {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
@@ -377,7 +377,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     } else if (addmonth === 'no' && journeytype === 'travelinwork') {
       res.redirect(`/${urlPrefix}/travel-in-work/providing-evidence`)
     } else if (addmonth === 'yes') {
-      res.redirect(`/${urlPrefix}/travel-in-work/claiming-for-month-repeat`)
+      res.redirect(`/${urlPrefix}/travel-in-work/claiming-for-month`)
     }
   })
 

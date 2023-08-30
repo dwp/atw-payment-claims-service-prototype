@@ -6,6 +6,195 @@ Claim money back from Access to Work
 
 {% block content %}
 
+<style>
+  .govuk-summary-card {
+    margin-bottom: 20px;
+    border: 1px solid #b1b4b6
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card {
+      margin-bottom: 30px
+    }
+  }
+
+  .govuk-summary-card__title-wrapper {
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    background-color: #f3f2f1
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__title-wrapper {
+      display: -ms-flexbox;
+      display: -webkit-box;
+      display: flex;
+      -ms-flex-pack: justify;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      padding: 15px 20px
+    }
+  }
+
+  .govuk-summary-card__title {
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+    margin: 5px 20px 10px 0
+  }
+
+  @media print {
+    .govuk-summary-card__title {
+      font-family: sans-serif
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__title {
+      font-size: 19px;
+      font-size: 1.1875rem;
+      line-height: 1.3157894737
+    }
+  }
+
+  @media print {
+    .govuk-summary-card__title {
+      font-size: 14pt;
+      line-height: 1.15
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__title {
+      margin-bottom: 5px
+    }
+  }
+
+  .govuk-summary-card__actions {
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    margin: 5px 0;
+    padding: 0;
+    list-style: none
+  }
+
+  @media print {
+    .govuk-summary-card__actions {
+      font-family: sans-serif
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__actions {
+      font-size: 19px;
+      font-size: 1.1875rem;
+      line-height: 1.3157894737
+    }
+  }
+
+  @media print {
+    .govuk-summary-card__actions {
+      font-size: 14pt;
+      line-height: 1.15
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__actions {
+      -ms-flex-pack: right;
+      -webkit-box-pack: right;
+      justify-content: right;
+      text-align: right
+    }
+  }
+
+  .govuk-summary-card__action {
+    display: inline;
+    margin: 0 10px 0 0;
+    padding-right: 10px;
+    border-right: 1px solid #b1b4b6
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__action {
+      margin-right: 0
+    }
+  }
+
+  @media screen and (-ms-high-contrast: active),
+  (-ms-high-contrast: none) {
+    .govuk-summary-card__action {
+      margin-bottom: 5px
+    }
+  }
+
+  .govuk-summary-card__action:last-child {
+    margin: 0;
+    padding-right: 0;
+    border-right: none
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__action:last-child {
+      padding-left: 10px
+    }
+  }
+
+  @media screen and (-ms-high-contrast: active),
+  (-ms-high-contrast: none) {
+    .govuk-summary-card__action:last-child {
+      margin-bottom: 0
+    }
+  }
+
+  .govuk-summary-card__content {
+    padding: 15px 15px 0
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-card__content {
+      padding: 15px 20px
+    }
+  }
+
+  .govuk-summary-card__content .govuk-summary-list {
+    margin-bottom: 0
+  }
+
+  .govuk-summary-card__content .govuk-summary-list__row:last-of-type {
+    margin-bottom: 0;
+    border-bottom: none
+  }
+
+
+  th, td {
+    border-bottom: none !important
+  }
+
+  @media (min-width: 40.0625em) {
+    .govuk-summary-list__key {
+      width: 40%;
+    }
+  }
+</style>
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
@@ -16,79 +205,76 @@ Claim money back from Access to Work
       <div class="govuk-form-group">
 
 
-        <h1 class="govuk-heading-l">You’ve told us you want to claim for 
+        <h1 class="govuk-heading-l">
+          You’ve told us you want to claim for 
+          £{{data['total-cost']}}
+          of travel
+        </h1>
 
-        {% if taxiinworkTotal + repeattaxiinworkTotal === 100 %}
+        {% if data['total-cost'] > 100 %}
         <p>The amount we’ll pay back will be less than the total cost of the journeys. This is because we’ll deduct the
           amount you or your employer have agreed to pay.</p>
         {% else %}
         <p>This is the cost of all the taxi journeys during work you’ve told us you want to claim for.</p>
         {% endif %}
 
-        <h3 class="govuk-heading-s">Taxi journeys in {{data["travel-in-work-date-month"] | numberMonth}}</h3>
 
-        {% for item in data['travel-in-work'] %}
-        
-        <dl class="govuk-summary-list">
-          {% for journey in item %}
 
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              {{journey.day}} {{data["travel-in-work-date-month"] | numberMonth}} {{data["travel-in-work-date-year"]}}
-            </dt>
-            <dd class="govuk-summary-list__value">
-              From {{journey.postcodeFrom}}<br>
-              To {{journey.postcodeTo}}<br>
-              £{{journey.cost}}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a id="{{item.day}}-change" class="govuk-link" href="taxi-journeys-for-day">
-                Change<span class="govuk-visually-hidden"> Change {{item.day}} {{data["travel-in-work-date-month"] |
-                  numberMonth}} {{data["travel-in-work-date-year"]}}</span>
-              </a>
-            </dd>
+        {% for month_data in data['travelinwork'] %}
+
+
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              Taxi journeys in {{month_data.month | numberMonth}} {{month_data.year}}
+            </h2>
+            <ul class="govuk-summary-card__actions">
+              {% if (data['month-list'].length > 1) %}
+              <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">
+                  Delete month<span class="govuk-visually-hidden"> of {{month_data.month | numberMonth}} {{month_data.year}}</span>
+                </a>
+              </li>
+              {% endif %}
+              <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> of {{month_data.month | numberMonth}} {{month_data.year}}</span>
+                </a>
+              </li>
+            </ul>
           </div>
-          {% endfor %}
-        </dl>
-        {% endfor %}
+          <div class="govuk-summary-card__content">
 
-      </div>
+            <table class="govuk-summary-list govuk-!-margin-bottom-0">
+              <tbody class="govuk-summary-list">
+                {% for day_data in month_data.journeys %}
+                {% for journey_data in day_data %}
 
-      {% if data['travel-to-work-date-month-repeat'] %}
+                <tr class="govuk-summary-list__row">
+                  <th scope="row" class="govuk-summary-list__key">
+                    {{journey_data.day | weekDay(month_data.month, month_data.year) }} {{month_data.month | numberMonth}}
+                  </th>
+                  <td class="govuk-summary-list__value">
+                    From {{journey_data.postcodeFrom}}<br />
+                    To {{journey_data.postcodeTo}}<br />
+                    £{{journey_data.cost}}
+                  </td>
+                </tr>
 
-      <div class="govuk-form-group">
+                {% else %}
+                <div class="govuk-inset-text">
+                  Tell us about the support you received to continue.
+                </div>
+                {% endfor %}
+                {% endfor %}
+              </tbody>
+            </table>
 
-        <h2 class="govuk-heading-s">Taxi journeys in {{data["travel-to-work-date-month-repeat"] | numberMonth}}</h2>
-
-        {% for item in data['repeattravel'] | sortBy('day') %}
-        <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              {{item.day}} {{data["travel-to-work-date-month-repeat"] | numberMonth}}
-              {{data["travel-to-work-date-year-repeat"]}}
-            </dt>
-            <dd class="govuk-summary-list__value">
-              From {{item.repeattravel_from}} <br>
-              To {{item.repeattravel_to}} <br>
-              £{{item.repeattravel_cost}}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a id="{{item.day}}-change" class="govuk-link" href="taxi-journeys-for-day-repeat">
-                Change<span class="govuk-visually-hidden"> Change {{item.day}}
-                  {{data["travel-to-work-date-month-repeat"] | numberMonth}}
-                  {{data["travel-to-work-date-year-repeat"]}}</span>
-              </a>
-            </dd>
+            
           </div>
-        </dl>
-        {% else %}
-        <div class="govuk-inset-text">
-          Tell us about the journeys you have taken during work to continue.
         </div>
-        {% endfor %}
-      </div>
 
-      {% endif %}
+        {% endfor %}
+
+      </div>
 
 
       <div class="govuk-form-group">
