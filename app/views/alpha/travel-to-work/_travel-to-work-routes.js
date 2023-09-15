@@ -160,8 +160,13 @@ module.exports = function (folderForViews, urlPrefix, router) {
     var totalJourneys = 0
 
     req.session.data['month-list'].forEach(month => {
+      var monthlyTotal = 0
       month.days.forEach(day => {
         totalJourneys = totalJourneys + parseInt(day.journeys)
+        monthlyTotal = monthlyTotal + parseInt(day.journeys)
+
+        const monthIndex = req.session.data['month-list'].indexOf(month);
+        req.session.data['month-list'][monthIndex].monthTotal = monthlyTotal
       });
     });
 
@@ -188,7 +193,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
     } else if (checked && addmonth === 'no') {
       res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
-    } else if (addmonth === 'no' && journeytype === 'traveltowork' && lift === 'journeys') {
+    } else if (addmonth === 'no' && journeytype === 'traveltowork' && aids === 'lift') {
       res.redirect(`/${urlPrefix}/travel-to-work/mileage-amount-paid`)
     } else if (addmonth === 'no' && journeytype === 'traveltowork') {
       res.redirect(`/${urlPrefix}/travel-to-work/taxi-cost`)
@@ -221,8 +226,13 @@ module.exports = function (folderForViews, urlPrefix, router) {
     var totalJourneys = 0
 
     req.session.data['month-list'].forEach(month => {
+      var monthlyTotal = 0
       month.days.forEach(day => {
         totalJourneys = totalJourneys + parseInt(day.journeys)
+        monthlyTotal = monthlyTotal + parseInt(day.journeys)
+
+        const monthIndex = req.session.data['month-list'].indexOf(month);
+        req.session.data['month-list'][monthIndex].monthTotal = monthlyTotal
       });
     });
 

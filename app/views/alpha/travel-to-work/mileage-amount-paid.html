@@ -57,12 +57,12 @@ Claim money back from Access to Work
 
       {%if (data["way-of-claiming"]=="journeys")%}
 
-      <h1 class="govuk-heading-l">Total number of journeys: {{taxiTotal}}</h1>
+      <h1 class="govuk-heading-l">Total number of journeys: {{data['total-journeys']}} </h1>
 
 
       {% else %}
 
-      <h1 class="govuk-heading-l">Total miles: {{mileageTotal}}</h1>
+      <h1 class="govuk-heading-l">Total miles: {{data['total-journeys']}} </h1>
 
       {% endif %}
 
