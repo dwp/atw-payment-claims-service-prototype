@@ -35,7 +35,7 @@ Claim money back from Access to Work
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
             <h1 class="govuk-fieldset__heading">
               <!-- Week starting on {{week.days[0].text}} -->
-              Week beginning {{week.days[0].value}} {{data["travel-in-work-date-month"] | numberMonth}}
+              Week beginning {{week.days[0].value}} {{data["travel-to-work-date-month"] | numberMonth}}
             </h1>
           </legend>
           {% endif %}
@@ -48,7 +48,7 @@ Claim money back from Access to Work
             </label>
             {% if data['transport-option'] == "taxi"%}
             <input class="govuk-input govuk-input--width-2" id="ttw-{{day.value}}"
-              name="ttw-days[{{day.value}}].journeys" type="number" value={{day.input}}>
+              name="ttw-days[{{day.value}}].journeys" type="number" value={{data['ttw-days'][day.value-1]}}>
             {% else %}
               {% if data['way-of-claiming'] == "mileage"%}
               <input class="govuk-input govuk-input--width-4" id="ttw-{{day.value}}"

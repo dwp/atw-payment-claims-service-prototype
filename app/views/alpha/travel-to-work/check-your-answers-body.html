@@ -267,7 +267,7 @@
                         </dt>
                         <dd class="govuk-summary-list__value">
                             {% if (data['transport-option'] == "taxi") or (data['way-of-claiming']) %}
-                                {% for item in month_data.travel | sortBy('day') %}
+                                {% for item in month_data.days | sortBy('day') %}
                                     {{item.day}} {{month_data.month | numberMonth}}
                                     {{month_data.year}} <br>
                                     {% if item.travel_journeys %}
@@ -296,12 +296,12 @@
                         {% if print != true %}
                             <dd class="govuk-summary-list__actions govuk-!-display-none-print">
                                 {%if (data['journey-type'] == "traveltowork-ammendment") or (data['ttw-declaration']) %}
-                                    <a href="../travel-to-work/taxi-journeys-for-day-summary">
+                                    <a href="../travel-to-work/journey-summary">
                                         Change
                                         <span class="govuk-visually-hidden"> Total number of journeys</span>
                                     </a>
                                 {% else %}
-                                    <a href="taxi-journeys-for-day-summary">
+                                    <a href="journey-summary">
                                         Change
                                         <span class="govuk-visually-hidden"> Total number of journeys</span>
                                     </a>
@@ -325,12 +325,12 @@
                     {% if print != true %}
                         <dd class="govuk-summary-list__actions govuk-!-display-none-print">
                             {%if (data['journey-type'] == "traveltowork-ammendment") or (data['ttw-declaration']) %}
-                                <a href="../travel-to-work/taxi-journeys-for-day-summary">
+                                <a href="../travel-to-work/journey-summary">
                                     Change
                                     <span class="govuk-visually-hidden"> Total number of journeys</span>
                                 </a>
                             {% else %}
-                                <a href="taxi-journeys-for-day-summary">
+                                <a href="journey-summary">
                                     Change
                                     <span class="govuk-visually-hidden"> Total number of journeys</span>
                                 </a>
