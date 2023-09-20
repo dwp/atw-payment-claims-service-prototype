@@ -16,12 +16,17 @@ Claim money back from Access to Work
       <div class="govuk-form-group">
 
         {% if data['transport-option'] == "taxi"%}
-        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Your taxi travel in
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Number of taxi journeys on each day in
+          {{data["travel-to-work-date-month"] | numberMonth}}
+          {{data["travel-to-work-date-year"]}}
+        </h1>
+        {% elseif data['way-of-claiming'] == "mileage"%}
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Number of miles on each day in
           {{data["travel-to-work-date-month"] | numberMonth}}
           {{data["travel-to-work-date-year"]}}
         </h1>
         {% else %}
-        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Lifts you had in
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Number of lifts on each day in
           {{data["travel-to-work-date-month"] | numberMonth}}
           {{data["travel-to-work-date-year"]}}
         </h1>
