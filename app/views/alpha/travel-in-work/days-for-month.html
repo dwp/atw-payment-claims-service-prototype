@@ -38,7 +38,7 @@ Claim money back from Access to Work
                 {{day.text}}
               </label>
               <input class="govuk-input govuk-input--width-2" id="tiw-{{day.value}}" name="tiw-days[{{day.value}}].journeys" type="number"
-              value={{day.input}}>
+              value={{data['tiw-days'][day.value-1]}}>
             </div>
 
             {% endfor %}

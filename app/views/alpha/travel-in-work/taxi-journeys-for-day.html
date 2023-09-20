@@ -4,24 +4,6 @@
 Claim money back from Access to Work
 {% endblock %}
 
-{% set travelLength %}
-{{ data.travel | length }}
-{% endset %}
-
-{% set taxiTotal = 0 %}
-{% for day in data.travel %}
-{% set taxiTotal = taxiTotal | float + day.travel_journeys | float %}
-{% else %}
-{% set taxiTotal = 0 | float %}
-{% endfor %}
-
-{% set taxiTotal = 0 %}
-{% for day in data.travel %}
-{% set taxiTotal = taxiTotal | float + day.travel_cost | float %}
-{% else %}
-{% set taxiTotal = 0 | float %}
-{% endfor %}
-
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -31,48 +13,49 @@ Claim money back from Access to Work
       <!-- START HERE -->
 
         {% for day in data["travel-in-work"] %}
+        <input type="hidden" id="{{day.index}}-index" name="travel-in-work[{{day.index}}][index]" value="{{day.index}}">
+        <input type="hidden" id="{{day.index}}-day" name="travel-in-work[{{day.index}}][day]" value="{{day.day}}">
+
         <fieldset class="govuk-fieldset" >
           
           {% if data["travel-in-work-date-month"] % 2 == 0 %}
 
           {% for journey in day.journeys %}
-          
+          <input type="hidden" id="{{day.index}}-{{journey.index}}-index" name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][index]" value="{{journey.index}}">
+
           <hr />
 
-          <input type="hidden" id="{{day.day}}-{{journey}}-day" name="travel-in-work[{{day.day-1}}][{{journey}}][day]" value="{{day.day}}">
-
-          
           <div class="govuk-date-input" id="postcodes-for-journey">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s" >
               <h1 class="govuk-fieldset__heading">
-                {{((journey+1) | stringifyNumber) | capitalizeFirstLetter}}
+                {{(((journey.index | int) +1) | stringifyNumber) | capitalizeFirstLetter }}
                 journey  on {{day.day}} {{data["travel-in-work-date-month"] | numberMonth}} {{data["travel-in-work-date-year"]}}
               </h1>
             </legend>
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="{{day.day}}-{{journey}}-postcode-from">
+                <label class="govuk-label govuk-date-input__label" for="{{day.index}}-{{journey.index}}-postcode-from">
                   Start postcode
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-10" id="{{day.day}}-{{journey}}-postcode-from" name="travel-in-work[{{day.day-1}}][{{journey}}][postcodeFrom]" type="text" value="{{day.postcodeFrom}}">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-10" id="{{day.index}}-{{journey.index}}-postcode-from" name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeFrom]" type="text" value={{journey.postcodeFrom}}>
               </div>
             </div>
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="{{day.day}}-{{journey}}-postcode-to">
+                <label class="govuk-label govuk-date-input__label" for="{{day.day}}-{{journey.index}}-postcode-to">
                   End postcode
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-10" id="{{day.day}}-{{journey}}-postcode-to" name="travel-in-work[{{day.day-1}}][{{journey}}][postcodeTo]" type="text" value="{{day.postcodeTo}}">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-10" id="{{day.day}}-{{journey.index}}-postcode-to" name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeTo]" type="text" value="{{journey.postcodeTo}}">
               </div>
             </div>
           </div>
           <div class="govuk-form-group">
-            <label class="govuk-label" for="{{day.cost}}">
+            <label class="govuk-label" for="{{day.index}}-{{journey.index}}-cost">
               Total cost of this journey in pounds
             </label>
             <div class="govuk-input__wrapper">
               <div class="govuk-input__prefix" aria-hidden="true">£</div>
-              <input class="govuk-input govuk-input--width-3" id="{{day.day}}-{{journey}}-cost" name="travel-in-work[{{day.day-1}}][{{journey}}][cost]" type="text" value="{{day.cost}}">
+              <input class="govuk-input govuk-input--width-3" id="{{day.index}}-{{journey.index}}-cost" name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][cost]" type="text" value="{{journey.cost}}">
             </div>
           </div>
           {% endfor %}
@@ -86,7 +69,7 @@ Claim money back from Access to Work
 
           {% for journey in day.journeys %}
 
-          <input type="hidden" id="{{day.day}}-{{journey}}-day" name="travel-in-work[{{day.day-1}}][{{journey}}][day]" value="{{day.day}}">
+          <input type="hidden" id="{{day.day}}-{{journey.index}}-day" name="travel-in-work[{{day.day-1}}][{{journey.index}}][day]" value="{{day.day}}">
 
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--s" >
             <h1 class="govuk-fieldset__heading">
@@ -97,13 +80,13 @@ Claim money back from Access to Work
             <label class="govuk-label" for="{{day.postcodeFrom}}">
               Postcode of place where journey started
             </label>
-            <input class="govuk-input govuk-input--width-10" id="{{day.day}}-{{journey}}-postcode-from" name="travel-in-work[{{day.day-1}}][{{journey}}][postcodeFrom]" type="text" value="{{day.postcodeFrom}}">
+            <input class="govuk-input govuk-input--width-10" id="{{day.day}}-{{journey.index}}-postcode-from" name="travel-in-work[{{day.day-1}}][{{journey.index}}][postcodeFrom]" type="text" value="{{day.postcodeFrom}}">
           </div>
           <div class="govuk-form-group">
             <label class="govuk-label" for="{{day.postcodeTo}}">
               Postcode of place where journey ended
             </label>
-            <input class="govuk-input govuk-input--width-10" id="{{day.day}}-{{journey}}-postcode-to" name="travel-in-work[{{day.day-1}}][{{journey}}][postcodeTo]" type="text" value="{{day.postcodeTo}}">
+            <input class="govuk-input govuk-input--width-10" id="{{day.day}}-{{journey.index}}-postcode-to" name="travel-in-work[{{day.day-1}}][{{journey.index}}][postcodeTo]" type="text" value="{{day.postcodeTo}}">
           </div>
           <div class="govuk-form-group">
             <label class="govuk-label" for="{{day.day}}-{{journey}}-cost">
@@ -111,7 +94,7 @@ Claim money back from Access to Work
             </label>
             <div class="govuk-input__wrapper">
               <div class="govuk-input__prefix" aria-hidden="true">£</div>
-              <input class="govuk-input govuk-input--width-3" id="{{day.day}}-{{journey}}-cost" name="travel-in-work[{{day.day-1}}][{{journey}}][cost]" type="text" value="{{day.cost}}">
+              <input class="govuk-input govuk-input--width-3" id="{{day.day}}-{{journey.index}}-cost" name="travel-in-work[{{day.day-1}}][{{journey.index}}][cost]" type="text" value="{{day.cost}}">
             </div>
           </div>
           {% endfor %}
