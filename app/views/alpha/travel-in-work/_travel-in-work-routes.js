@@ -408,6 +408,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     }
 
     total_cost = 0
+    total_journeys = 0
 
     req.session.data['travelinwork'].forEach(month => {
       var monthTotalCost = 0
@@ -415,6 +416,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
       month.days.forEach(day => {
         monthTotalJourneys = monthTotalJourneys + day.journeys.length
+
         day.journeys.forEach(journey => {
           total_cost = total_cost + parseInt(journey.cost)
           monthTotalCost = monthTotalCost + parseInt(journey.cost)
@@ -422,9 +424,12 @@ module.exports = function (folderForViews, urlPrefix, router) {
       });
       month.totalMonthCost = monthTotalCost
       month.totalMonthJourneys = monthTotalJourneys
+      total_journeys = total_journeys + monthTotalJourneys
+
     });
 
     req.session.data['total-cost'] = total_cost
+    req.session.data['total-journeys'] = total_journeys
 
     res.redirect(`/${urlPrefix}/travel-in-work/taxi-journeys-for-day-summary`)
   })
