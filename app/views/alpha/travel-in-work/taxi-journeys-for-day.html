@@ -18,7 +18,7 @@ Claim money back from Access to Work
 
         <fieldset class="govuk-fieldset" >
           
-          {% if data["travel-in-work-date-month"] % 2 == 0 %}
+          {% if data["travel-in-work-date-month"] %}
 
           {% for journey in day.journeys %}
           <input type="hidden" id="{{day.index}}-{{journey.index}}-index" name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][index]" value="{{journey.index}}">
