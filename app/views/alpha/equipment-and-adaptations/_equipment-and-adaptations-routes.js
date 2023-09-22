@@ -239,10 +239,44 @@ module.exports = function (folderForViews, urlPrefix, router) {
       res.redirect(`/${urlPrefix}/equipment-and-adaptations/employer-contribution`)
     } else if (cost === '2500') {
       res.redirect(`/${urlPrefix}/equipment-and-adaptations/too-much-claimed`)
-    } else if (checked){
+    } else if (checked) {
       res.redirect(`/${urlPrefix}/equipment-and-adaptations/check-your-answers`)
     } else {
       res.redirect(`/${urlPrefix}/equipment-and-adaptations/providing-evidence`)
+    }
+  })
+
+  router.post('/equipment-and-adaptations/grant-information', function (req, res) {
+    res.redirect(`/${urlPrefix}/equipment-and-adaptations/claiming-for-pro-forma`)
+  })
+
+  router.post('/equipment-and-adaptations/claiming-for-pro-forma', function (req, res) {
+    const proForma = req.session.data['proForma']
+
+    if (proForma == 'yes') {
+      res.redirect(`/${urlPrefix}/equipment-and-adaptations/pro-forma-confirmation`)
+    } else {
+      res.redirect(`/${urlPrefix}/equipment-and-adaptations/single-payee-confirmation`)
+    }
+  })
+
+  router.post('/equipment-and-adaptations/pro-forma-confirmation', function (req, res) {
+    const proFormaConfirmation = req.session.data['proFormaConfirmation']
+
+    if (proFormaConfirmation == 'yes') {
+      res.redirect(`/${urlPrefix}/equipment-and-adaptations/before-you-continue`)
+    } else {
+      res.redirect(`/${urlPrefix}/equipment-and-adaptations/single-payee-confirmation`)
+    }
+  })
+
+  router.post('/equipment-and-adaptations/single-payee-confirmation', function (req, res) {
+    const singlePayeeConfirmation = req.session.data['singlePayeeConfirmation']
+
+    if (singlePayeeConfirmation == 'yes') {
+      res.redirect(`/${urlPrefix}/equipment-and-adaptations/before-you-continue`)
+    } else {
+      res.redirect(`/${urlPrefix}/portal-screens/contact-atw`)
     }
   })
 }
