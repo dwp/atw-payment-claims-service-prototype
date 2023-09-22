@@ -216,20 +216,6 @@
             <div class="govuk-summary-card__content">
                 <table class="govuk-summary-list govuk-!-margin-bottom-0">
                     <tbody class="govuk-summary-list">
-                        <tr class="govuk-summary-list__row">
-                            <th scope="row" class="govuk-summary-list__key">
-                                Type of travel
-                            </th>
-                            <td class="govuk-summary-list__value">
-                                {% if (data["transport-option"]=="taxi") or
-                                (data["transport-option"]=="taxi-during-work")%}
-                                Taxi
-                                {% elif (data["transport-option"]=="lift") or
-                                (data["transport-option"]=="lift-during-work")%}
-                                Lift from a friend, colleague or relative
-                                {% endif %}
-                            </td>
-                        </tr>
 
                         {% for month_data in data['month-list'] %}
 
@@ -273,7 +259,7 @@
 
         <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
-                <h2 class="govuk-summary-card__title">Total travel</h2>
+                <h2 class="govuk-summary-card__title">Travel summary</h2>
             </div>
             <div class="govuk-summary-card__content">
                 <table class="govuk-summary-list govuk-!-margin-bottom-0">
@@ -308,11 +294,7 @@
                             </th>
                             <td class="govuk-summary-list__value">
                                 {{data['total-journeys']}}
-                                {% if data['way-of-claiming'] == "mileage" %}
-                                {% if month_data['monthTotal'] === 1 %} mile {% else %} miles {% endif %}
-                                {% else %}
-                                {% if month_data['monthTotal'] === 1 %} journey {% else %} journeys {% endif %}
-                                {% endif %}
+                                
                             </td>
                             {% if print != true %}
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
