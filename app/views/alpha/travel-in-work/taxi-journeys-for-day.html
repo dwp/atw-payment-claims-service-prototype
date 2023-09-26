@@ -36,6 +36,11 @@ Claim money back from Access to Work
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-date-input__label" for="{{day.index}}-{{journey.index}}-postcode-from">
                   Start postcode
+                  <span class="govuk-visually-hidden">
+                    for
+                    {{(((journey.index | int) +1) | stringifyNumber) | capitalizeFirstLetter }}
+                journey  on {{day.day}} {{data["travel-in-work-date-month"] | numberMonth}} {{data["travel-in-work-date-year"]}} 
+                  </span>
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-10" id="{{day.index}}-{{journey.index}}-postcode-from" name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeFrom]" type="text" value={{journey.postcodeFrom}}>
               </div>
@@ -44,6 +49,11 @@ Claim money back from Access to Work
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-date-input__label" for="{{day.day}}-{{journey.index}}-postcode-to">
                   End postcode
+                  <span class="govuk-visually-hidden">
+                    for
+                    {{(((journey.index | int) +1) | stringifyNumber) | capitalizeFirstLetter }}
+                journey  on {{day.day}} {{data["travel-in-work-date-month"] | numberMonth}} {{data["travel-in-work-date-year"]}} 
+                  </span>
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-10" id="{{day.day}}-{{journey.index}}-postcode-to" name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeTo]" type="text" value="{{journey.postcodeTo}}">
               </div>
@@ -52,6 +62,11 @@ Claim money back from Access to Work
           <div class="govuk-form-group">
             <label class="govuk-label" for="{{day.index}}-{{journey.index}}-cost">
               Total cost of this journey in pounds
+              <span class="govuk-visually-hidden">
+                for
+                {{(((journey.index | int) +1) | stringifyNumber) | capitalizeFirstLetter }}
+            journey  on {{day.day}} {{data["travel-in-work-date-month"] | numberMonth}} {{data["travel-in-work-date-year"]}} 
+              </span>
             </label>
             <div class="govuk-input__wrapper">
               <div class="govuk-input__prefix" aria-hidden="true">£</div>

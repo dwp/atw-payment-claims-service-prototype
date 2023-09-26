@@ -24,10 +24,10 @@ Claim money back from Access to Work
 
           {% if week.days.length == 7 or week.days[0].value != 1 %}
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            <h1 class="govuk-fieldset__heading">
+            <h2 class="govuk-fieldset__heading">
               <!-- Week starting on {{week.days[0].text}} -->
               Week beginning {{week.days[0].value}} {{data["travel-in-work-date-month"] | numberMonth}}
-            </h1>
+            </h2>
           </legend>
           {% endif %}
 
