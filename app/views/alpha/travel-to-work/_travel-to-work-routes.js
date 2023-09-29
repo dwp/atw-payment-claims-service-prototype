@@ -399,11 +399,429 @@ module.exports = function (folderForViews, urlPrefix, router) {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
     } else if (checked) {
       res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
-    } else if (anotherReceipt === 'No' && journeytype === 'traveltowork') {
+    } else if (anotherReceipt === 'No' && (journeytype === 'traveltowork' || journeytype === 'travel-to-work')) {
       res.redirect(`/${urlPrefix}/travel-to-work/new-payee-name`)
     }
   })
 
+  // post - Submit for mileage
+  router.post('/travel-to-work/mileage-for-day-add', function (req, res) {
+    let allDays = req.session.data.mileages // This is the running list of days with mileage
+
+    const submittedDay = req.session.data['mileage-of-day-date-day']
+    const submittedMileage = req.session.data['mileage-of-day-distance']
+
+    // Stop null pointer
+    if (allDays == null) {
+      allDays = []
+    }
+
+    allDays.push({
+      day: submittedDay,
+      mileage: submittedMileage
+    })
+
+    req.session.data.mileages = allDays
+    res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-summary`)
+  })
+
+  // post - Add more hours
+  router.post('/travel-to-work/mileage-for-day-more', function (req, res) {
+    const addAnotherDay = req.session.data['add-more-mileage']
+    if (addAnotherDay === 'Yes') {
+      // Reset to stop pre-population of previous visit to page
+      req.session.data['mileage-of-day-date-day'] = null
+      req.session.data['mileage-of-day-distance'] = null
+
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day`)
+    } else {
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-confirmation`)
+    }
+  })
+
+  // Get
+  router.get('/travel-to-work/remove-day-mileage', function (req, res) {
+    req.session.data['mileage-hours-to-remove'] = req.query.removeId
+    res.render(`./${folderForViews}/travel-to-work/remove-day-mileage`)
+  })
+
+  // post - Remove receipt confirmation
+  router.post('/travel-to-work/remove-day-mileage', function (req, res) {
+    const allUploads = req.session.data.mileages
+    const mileageToRemove = req.session.data['day-mileage-to-remove']
+    const confirmationToRemove = req.session.data['day-mileage-remove-confirmation']
+
+    if (confirmationToRemove === 'Yes') {
+      allUploads.splice(mileageToRemove, 1)
+    }
+    req.session.data.mileages = allUploads
+    req.session.data['mileage-hours-to-remove'] = null
+    req.session.data['day-mileage-remove-confirmation'] = null
+    res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-summary`)
+  })
+
+  // post - Submit for taxi
+  router.post('/travel-to-work/taxi-journeys-for-day-add', function (req, res) {
+    let allDays = req.session.data.journeys // This is the running list of days with mileage
+
+    const submittedDay = req.session.data['taxi-journeys-for-day-date-day']
+    const submittedCost = req.session.data['taxi-journeys-for-day-journeys']
+
+    // Stop null pointer
+    if (allDays == null) {
+      allDays = []
+    }
+
+    allDays.push({
+      day: submittedDay,
+      journeys: submittedCost
+    })
+
+    req.session.data.journeys = allDays
+    res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day-summary`)
+  })
+
+  // post - Add more hours
+  router.post('/travel-to-work/taxi-journeys-for-day-more', function (req, res) {
+    const addAnotherDay = req.session.data['add-more-taxi-journeys']
+
+    if (addAnotherDay === 'Yes') {
+      // Reset to stop pre-population of previous visit to page
+      req.session.data['taxi-journeys-for-day-date-day'] = null
+      req.session.data['taxi-journeys-for-day-journeys'] = null
+
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+    } else if (addAnotherDay === 'No' && (req.session.data.journeys === undefined || req.session.data.journeys.length == 0)) {
+      res.redirect(`/${urlPrefix}/travel-to-work/no-hours-entered`)
+    } else {
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-confirmation`)
+    }
+  })
+
+  // Get
+  router.get('/travel-to-work/remove-day-journeys', function (req, res) {
+    req.session.data['day-to-remove'] = req.query.removeId
+    res.render(`./${folderForViews}/travel-to-work/remove-day-journeys`)
+  })
+
+  // post - Remove receipt confirmation
+  router.post('/travel-to-work/remove-day-journeys', function (req, res) {
+    const all = req.session.data.journeys
+    const toRemove = req.session.data['day-to-remove']
+    const confirmationToRemove = req.session.data['day-to-remove-confirmation']
+
+    if (confirmationToRemove === 'Yes') {
+      all.splice(toRemove, 1)
+    }
+    req.session.data.journeys = all
+    req.session.data['day-to-remove'] = null
+    req.session.data['day-to-remove-confirmation'] = null
+    res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day-summary`)
+  })
+
+  router.post('/travel-to-work/taxi-confirmation-answers', function (req, res) {
+    const confirm = req.session.data['taxi-confirmation']
+    if (confirm === 'Yes') {
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-cost`)
+    } else {
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day-summary`)
+    }
+  })
+
+  router.post('/travel-to-work/mileage-confirmation-answers', function (req, res) {
+    const confirm = req.session.data['mileage-confirmation']
+    if (confirm === 'Yes') {
+      res.redirect(`/${urlPrefix}/travel-to-work/new-payee-name`)
+    } else {
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-summary`)
+    }
+  })
+
+
+
+  // new journey stuff - taxis
+
+  // Get
+  router.get('/travel-to-work/taxi-journeys-for-day-change', function (req, res) {
+    if (req.query.month){
+      var month_list = req.session.data['month-list']
+      var month_data = month_list.find((month) => month.month === req.query.month && month.year === req.query.year);
+      if (month_data.travel[0]["repeattravel_journeys"]){
+        req.session.data["travel-to-work-date-month-repeat"] = req.query.month
+        req.session.data["travel-to-work-date-year-repeat"] = req.query.year
+        req.session.data["repeattravel"] = month_data.travel
+        res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day-repeat`)
+      }
+      else {
+        req.session.data["travel-to-work-date-month"] = req.query.month
+        req.session.data["travel-to-work-date-year"] = req.query.year
+        req.session.data["travel"] = month_data.travel
+        res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+      }
+    }
+    else{
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+    }
+  })
+
+  // Get
+  router.get('/travel-to-work/mileage-for-day-change', function (req, res) {
+    if (req.query.month){
+      var month_list = req.session.data['month-list']
+      var month_data = month_list.find((month) => month.month === req.query.month && month.year === req.query.year);
+      if (month_data.milage[0]["repeatmilage_total"]){
+        req.session.data["travel-to-work-date-month-repeat"] = req.query.month
+        req.session.data["travel-to-work-date-year-repeat"] = req.query.year
+        req.session.data["repeatmilage"] = month_data.milage
+        res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-repeat`)
+      }
+      else {
+        req.session.data["travel-to-work-date-month"] = req.query.month
+        req.session.data["travel-to-work-date-year"] = req.query.year
+        req.session.data["milage"] = month_data.milage
+        res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day`)
+      }
+    }
+    else{
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day`)
+    }
+  })
+
+  router.post('/travel-to-work/taxi-journeys-for-day', function (req, res) {
+    console.log(req.session.data.support)
+    if (req.session.data.remove !== undefined) {
+      console.log('Remove')
+      req.session.data.remove = undefined
+      req.session.data.support.splice(req.session.data.remove, 1)
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+    } else {
+      if (req.session.data.action === 'add') {
+        console.log('Add')
+        console.log(req.session.data)
+        req.session.data.support = [...req.session.data.support, {
+          support_hours: '',
+          day: '',
+          month: '',
+          year: ''
+        }]
+        res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+      } else {
+        console.log('Continue')
+        var month = req.session.data['travel-to-work-date-month']
+        var year = req.session.data['travel-to-work-date-year']
+        var month_travel = req.session.data.travel
+        console.log(month)
+        console.log(year)
+        console.log(month_travel)
+        var list = [
+          { month: month, year: year, travel: month_travel }
+        ];
+        if (req.session.data['month-list']){
+          var month_index = req.session.data['month-list'].findIndex((el) => el.month === month && el.year === year);
+          if (month_index != -1){
+            req.session.data['month-list'][month_index] = list[0]
+          }
+          else{
+            req.session.data['month-list'].push(list[0]);
+          }
+        }
+        else{
+          req.session.data['month-list'] = list
+        }
+        console.log(req.session.data['month-list'])
+        res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day-summary`)
+      }
+    }
+  })
+
+  router.post('/travel-to-work/taxi-journeys-for-day-repeat', function (req, res) {
+    console.log(req.session.data.support)
+    if (req.session.data.remove !== undefined) {
+      console.log('Remove')
+      req.session.data.remove = undefined
+      req.session.data.support.splice(req.session.data.remove, 1)
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day-repeat`)
+    } else {
+      if (req.session.data.action === 'add') {
+        console.log('Add')
+        console.log(req.session.data)
+        req.session.data.support = [...req.session.data.support, {
+          support_hours: '',
+          day: '',
+          month: '',
+          year: ''
+        }]
+        res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+      } else {
+        console.log('Continue')
+        var month = req.session.data['travel-to-work-date-month-repeat']
+        var year = req.session.data['travel-to-work-date-year-repeat']
+        var month_travel = req.session.data.repeattravel
+        req.session.data.repeattravel = null
+        console.log(month)
+        console.log(year)
+        console.log(month_travel)
+        var list = [
+          { month: month, year: year, travel: month_travel }
+        ];
+        if (req.session.data['month-list']){
+          var month_index = req.session.data['month-list'].findIndex((el) => el.month === month && el.year === year);
+          if (month_index != -1){
+            req.session.data['month-list'][month_index] = list[0]
+          }
+          else{
+            req.session.data['month-list'].push(list[0]);
+          }
+        }
+        else{
+          req.session.data['month-list'] = list
+        }
+        console.log(req.session.data['month-list'])
+        res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day-summary`)
+      }
+    }
+  })
+
+  // post - for next screen
+  router.post('/travel-to-work/taxi-journeys-for-day-summary', function (req, res) {
+    console.log(req.session.data.support)
+    const addmonth = req.session.data['new-month']
+    const journeytype = req.session.data['journey-type']
+    const checked = req.session.data['contact-confirmed']
+    const aids = req.session.data['transport-option']
+    const lift = req.session.data['way-of-claiming']
+
+
+
+
+    if (req.session.data.travel === undefined || req.session.data.travel.length == 0) {
+      res.redirect(`/${urlPrefix}/travel-to-work/no-hours-entered`)
+    } else if (addmonth === 'no' && journeytype === 'traveltowork-ammendment' && aids === 'taxi') {
+      res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
+    } else if (addmonth === 'no' && journeytype === 'traveltowork-ammendment' && aids === 'lift') {
+      res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
+    } else if (addmonth === 'no' && journeytype === 'traveltowork-ammendment' && aids === 'taxi-during-work') {
+      res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
+    } else if (checked && addmonth === 'no') {
+      res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
+    } else if (addmonth === 'no' && (journeytype === 'traveltowork' || journeytype === 'travel-to-work') && lift === 'journeys') {
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-amount-paid`)
+    } else if (addmonth === 'no' && (journeytype === 'traveltowork' || journeytype === 'travel-to-work')) {
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-cost`)
+    } else if (addmonth === 'yes') {
+      res.redirect(`/${urlPrefix}/travel-to-work/claiming-for-month-repeat`)
+    }
+  })
+
+
+  // new journey stuff - milage
+  router.post('/travel-to-work/mileage-for-day', function (req, res) {
+    console.log(req.session.data.support)
+    if (req.session.data.remove !== undefined) {
+      console.log('Remove')
+      req.session.data.remove = undefined
+      req.session.data.support.splice(req.session.data.remove, 1)
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day`)
+    } else {
+      if (req.session.data.action === 'add') {
+        console.log('Add')
+        console.log(req.session.data)
+        req.session.data.support = [...req.session.data.support, {
+          support_hours: '',
+          day: '',
+          month: '',
+          year: ''
+        }]
+        res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day`)
+      } else {
+        console.log('Continue')
+        var month = req.session.data['travel-to-work-date-month']
+        var year = req.session.data['travel-to-work-date-year']
+        var month_milage = req.session.data.milage
+        console.log(month)
+        console.log(year)
+        console.log(month_milage)
+        var list = [
+          { month: month, year: year, milage: month_milage }
+        ];
+        if (req.session.data['month-list']){
+          var month_index = req.session.data['month-list'].findIndex((el) => el.month === month && el.year === year);
+          if (month_index != -1){
+            req.session.data['month-list'][month_index] = list[0]
+          }
+          else{
+            req.session.data['month-list'].push(list[0]);
+          }
+        }
+        else{
+          req.session.data['month-list'] = list
+        }
+        console.log(req.session.data['month-list'])
+        res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-summary`)
+      }
+    }
+  })
+
+  router.post('/travel-to-work/mileage-for-day-repeat', function (req, res) {
+    console.log(req.session.data.support)
+    if (req.session.data.remove !== undefined) {
+      console.log('Remove')
+      req.session.data.remove = undefined
+      req.session.data.support.splice(req.session.data.remove, 1)
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-repeat`)
+    } else {
+      if (req.session.data.action === 'add') {
+        console.log('Add')
+        console.log(req.session.data)
+        req.session.data.support = [...req.session.data.support, {
+          support_hours: '',
+          day: '',
+          month: '',
+          year: ''
+        }]
+        res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-repeat`)
+      } else {
+        console.log('Continue')
+        var month = req.session.data['travel-to-work-date-month-repeat']
+        var year = req.session.data['travel-to-work-date-year-repeat']
+        var month_milage = req.session.data.repeatmilage
+        req.session.data.repeatmilage = null
+        console.log(month)
+        console.log(year)
+        console.log(month_milage)
+        var list = [
+          { month: month, year: year, milage: month_milage }
+        ];
+        if (req.session.data['month-list']){
+          var month_index = req.session.data['month-list'].findIndex((el) => el.month === month && el.year === year);
+          if (month_index != -1){
+            req.session.data['month-list'][month_index] = list[0]
+          }
+          else{
+            req.session.data['month-list'].push(list[0]);
+          }
+        }
+        else{
+          req.session.data['month-list'] = list
+        }
+        console.log(req.session.data['month-list'])
+        res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-summary`)
+      }
+    }
+  })
+
+  // post - Add more support hours
+  router.post('/travel-to-work/mileage-for-day-summary', function (req, res) {
+    const addmonth = req.session.data['new-month']
+
+
+
+    if (addmonth === "yes") {
+      res.redirect(`/${urlPrefix}/travel-to-work/claiming-for-month-repeat`)
+    } else if (addmonth === "no") {
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-amount-paid`)
+    }
+  })
 
   // employer contribution answer
 
@@ -420,9 +838,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
       res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
     } else if (transport === 'taxi-during-work' && checked) {
       res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
-    } else if (transport === 'taxi' && journeytype === 'traveltowork') {
+    } else if (transport === 'taxi' && (journeytype === 'traveltowork' || journeytype === 'travel-to-work')) {
       res.redirect(`/${urlPrefix}/travel-to-work/providing-evidence`)
-    } else if (transport === 'taxi-during-work' && journeytype === 'traveltowork') {
+    } else if (transport === 'taxi-during-work' && (journeytype === 'traveltowork' || journeytype === 'travel-to-work')) {
       res.redirect(`/${urlPrefix}/travel-to-work/providing-evidence`)
     } else if (transport === 'lift' && journeytype === 'traveltowork-ammendment') {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
@@ -432,9 +850,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
       res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
     } else if (transport === 'lift-during-work' && checked) {
       res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
-    } else if (transport === 'lift' && journeytype === 'traveltowork') {
+    } else if (transport === 'lift' && (journeytype === 'traveltowork' || journeytype === 'travel-to-work')) {
       res.redirect(`/${urlPrefix}/travel-to-work/new-payee-name`)
-    } else if (transport === 'lift-during-work' && journeytype === 'traveltowork') {
+    } else if (transport === 'lift-during-work' && (journeytype === 'traveltowork' || journeytype === 'travel-to-work')) {
       res.redirect(`/${urlPrefix}/travel-to-work/new-payee-name`)
     }
   })
@@ -449,7 +867,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
     } else if (checked === 'true') {
       res.redirect(`/${urlPrefix}/portal-screens/citizen-new-declaration-pre-confirm`)
-    } else if (journeytype === 'traveltowork') {
+    } else if ((journeytype === 'traveltowork' || journeytype === 'travel-to-work')) {
       res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
     }
   })
