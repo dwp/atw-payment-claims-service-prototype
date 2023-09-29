@@ -98,6 +98,28 @@
 
                         <tr class="govuk-summary-list__row">
                             <th scope="row" class="govuk-summary-list__key">
+                                Support worker or agency name
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                {{data['providor']}} 
+                            </td>
+                            {% if print != true %}
+
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                {% if (data['view-claim']) %}
+                                {% else %}
+                                <a href="support-worker-agency-name">
+                                    Change
+                                    <span class="govuk-visually-hidden"> support worker or agency name</span>
+                                </a>
+                                {% endif %}
+                            </td>
+                            {% endif %}
+
+                        </tr>
+
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
                                 Total support
                             </th>
                             <td class="govuk-summary-list__value">
@@ -123,7 +145,7 @@
 
                         <tr class="govuk-summary-list__row">
                             <th scope="row" class="govuk-summary-list__key">
-                                Total cost of support workers
+                                Total cost of support worker
                             </th>
                             <td class="govuk-summary-list__value">
                                 £{{data['cost-of-support']}}

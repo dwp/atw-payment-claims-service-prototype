@@ -166,7 +166,13 @@ module.exports = function (folderForViews, urlPrefix, router) {
   })
 
   router.post('/support-worker/support-worker-agency-name', function (req, res) {
-    res.redirect(`/${urlPrefix}/support-worker/claiming-for-month`)
+    if (req.session.data['journey-type'] === 'traveltowork-ammendment') {
+      res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
+    } else if (req.session.data['journey-type'] === 'supportworker' && req.session.data['contact-confirmed']) {
+      res.redirect(`/${urlPrefix}/support-worker/check-your-answers`)
+    } else if (req.session.data['journey-type'] === 'supportworker') {
+      res.redirect(`/${urlPrefix}/support-worker/claiming-for-month`)
+    }
   })
 
   router.post('/support-worker/month-claim-answer', function (req, res) {

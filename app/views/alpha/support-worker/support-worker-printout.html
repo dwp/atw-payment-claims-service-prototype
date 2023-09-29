@@ -1,0 +1,184 @@
+{% extends "layout_no_contact.html" %}
+
+{% block pageTitle %}
+Check your answers
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+    th,
+    td {
+        border-bottom: 1px solid #b1b4b6 !important
+    }
+</style>
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-quarter">
+                <img src="/public/images/Department_for_Work_and_Pensions_logo.png" alt="Department for Work and Pensions logo" height="80">
+        
+            </div>
+            <div class="govuk-grid-column-three-quarter">
+                <h1 class="govuk-heading-m govuk-!-text-align-right">Access to Work<br />Claim for support worker costs
+                </h1>
+            </div>
+            <hr/>
+        
+        </div>
+
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Claimant’s details</caption>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Full name</th>
+                    <td class="govuk-table__cell">Jane Doe</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Access to Work number</th>
+                    <td class="govuk-table__cell">ATW1234567895</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Email address</th>
+                    <td class="govuk-table__cell">jane.doe@email.com</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Claim type</th>
+                    <td class="govuk-table__cell">Support worker</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Company or organisation name</th>
+                    <td class="govuk-table__cell">JaneDoeCo.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Claim information</caption>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Support worker or agency name</th>
+                    <td class="govuk-table__cell">
+                        SupportCompanyCo
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Month support was received</th>
+                    <td class="govuk-table__cell">
+                        January 2023
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Days support was received in January</th>
+                    <td class="govuk-table__cell">
+                        1 January<br/>
+                        2.0 Hours<br/>
+                        2 January<br/>
+                        3.0 Hours
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Month support was received</th>
+                    <td class="govuk-table__cell">
+                        February 2023
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Days support was received in February</th>
+                    <td class="govuk-table__cell">
+                        1 February<br/>
+                        1.0 Hours<br/>
+                        2 February<br/>
+                        3.0 Hours
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Total support received</th>
+                    <td class="govuk-table__cell">9.0 Hours</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Total cost of support worker</th>
+                    <td class="govuk-table__cell">£55</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Receipt attached</th>
+                    <td class="govuk-table__cell">Yes</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Details of person or company being paid</caption>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Full name</th>
+                    <td class="govuk-table__cell">Joe Bloggs</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Email address</th>
+                    <td class="govuk-table__cell">joe.bloggs@email.com</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Details of the person or company who can confirm the support costs</caption>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Full name</th>
+                    <td class="govuk-table__cell">Jane Smith</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Email address</th>
+                    <td class="govuk-table__cell">jane.smith@email.com</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Name of company or organisation</th>
+                    <td class="govuk-table__cell">ACompany</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Organisation address</th>
+                    <td class="govuk-table__cell">
+                        12 Three Rd<br />
+                        Fourtown<br />
+                        FS78 9TN
+                    </td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Job title</th>
+                    <td class="govuk-table__cell">QA Engineer</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Claim declaration</caption>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Claimant declaration</th>
+                    <td class="govuk-table__cell">Yes</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Claim submission date</th>
+                    <td class="govuk-table__cell">4 March 2023</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Workplace contact declaration</th>
+                    <td class="govuk-table__cell">Yes</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Claim submission date</th>
+                    <td class="govuk-table__cell">6 March 2023</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
