@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout_no_back.html" %}
 
 {% block pageTitle %}
 Claim money back from Access to Work
@@ -201,7 +201,7 @@ Claim money back from Access to Work
 </style>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column">
+  <div class="govuk-grid-column-full">
     {% if adaptationLength|int === 1 %}
     <h1 class="govuk-heading-l">You’ve told us you want to claim for {{adaptationLength}} adaptation</h1>
     {% else %}

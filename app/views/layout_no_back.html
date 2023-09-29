@@ -1,0 +1,395 @@
+{#- We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework. -#}
+{%- set assetPath = '/govuk/assets' -%}
+
+{% extends "govuk/template.njk" %}
+
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/error-message/macro.njk" import govukErrorMessage %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/skip-link/macro.njk" import govukSkipLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "hmrc/components/header/macro.njk" import hmrcHeader %}
+{% from "card/macro.njk" import card %}
+
+
+
+{% block head %}
+{% include "includes/head.html" %}
+{% if ((data['analytics-cookies'] == "show")) %}
+
+<div class="govuk-cookie-banner " data-nosnippet="" role="region" aria-label="Cookies on GOV.UK Design System"
+  data-module="govuk-cookie-banner">
+  <div class="govuk-cookie-banner__message govuk-width-container app-width-container js-cookie-banner-message">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on Claim money back from Access to Work</h2>
+
+        <div class="govuk-cookie-banner__content">
+          <p class="govuk-body">
+            We use some essential cookies to make this service work. We’d also like to use analytics cookies so we can
+            understand how you use the service and make improvements.
+          </p>
+          <p class="govuk-body">
+            You can
+            <a class="govuk-link" href="/alpha/portal-screens/cookie-policy">
+              read more about cookies on this service
+            </a>
+             before you decide.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-button-group">
+      <button type="button" class="govuk-button js-cookie-banner-accept" data-module="govuk-button">
+        Accept analytics cookies
+      </button>
+      <button type="button" class="govuk-button js-cookie-banner-reject" data-module="govuk-button">
+        Reject analytics cookies
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="govuk-cookie-banner__message govuk-width-container js-cookie-banner-confirmation-accept app-width-container"
+    role="alert" hidden="">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-cookie-banner__content">
+          <p class="govuk-body">You’ve accepted analytics cookies. You can <a class="govuk-link"
+              href="/alpha/portal-screens/cookie-policy">change
+              your cookie settings</a> at any time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-button-group">
+      <button class="govuk-button js-cookie-banner-hide js-cookie-banner-hide--accept" data-module="govuk-button">
+        Hide cookie message
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="govuk-cookie-banner__message govuk-width-container js-cookie-banner-confirmation-reject app-width-container"
+    role="alert" hidden="">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-cookie-banner__content">
+          <p class="govuk-body">You’ve rejected analytics cookies. You can <a class="govuk-link"
+              href="/alpha/portal-screens/cookie-policy">change
+              your cookie settings</a> at any time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-button-group">
+      <button class="govuk-button js-cookie-banner-hide js-cookie-banner-hide--reject" data-module="govuk-button">
+        Hide cookie message
+      </button>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{# Set serviceName in config.js. #}
+
+
+
+{{ hmrcHeader({
+"serviceName": serviceName,
+"serviceUrl" : "/",
+"phaseBanner" : false,
+"signOutHref" : "/alpha/sign-out",
+"classes" : "govuk-!-display-none-print"
+}) }}
+
+
+<!-- //change the above line when ive built the login screens to sign out correctly -->
+
+
+
+{% endblock %}
+
+{% block beforeContent %}
+
+<style>
+  .govuk-summary-card {
+      margin-bottom: 20px;
+      border: 1px solid #b1b4b6
+  }
+
+  @media (min-width: 40.0625em) {
+      .govuk-summary-card {
+          margin-bottom: 30px
+      }
+  }
+
+  .govuk-summary-card__title-wrapper {
+      padding: 15px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0);
+      background-color: #f3f2f1
+  }
+
+  @media (min-width: 40.0625em) {
+      .govuk-summary-card__title-wrapper {
+          display: -ms-flexbox;
+          display: -webkit-box;
+          display: flex;
+          -ms-flex-pack: justify;
+          -webkit-box-pack: justify;
+          justify-content: space-between;
+          -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+          padding: 15px 20px
+      }
+  }
+
+  .govuk-summary-card__title {
+      font-family: "GDS Transport", arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 700;
+      font-size: 16px;
+      font-size: 1rem;
+      line-height: 1.25;
+      margin: 5px 20px 10px 0
+  }
+
+  @media print {
+      .govuk-summary-card__title {
+          font-family: sans-serif
+      }
+  }
+
+  @media (min-width: 40.0625em) {
+      .govuk-summary-card__title {
+          font-size: 19px;
+          font-size: 1.1875rem;
+          line-height: 1.3157894737
+      }
+  }
+
+  @media print {
+      .govuk-summary-card__title {
+          font-size: 14pt;
+          line-height: 1.15
+      }
+  }
+
+  @media (min-width: 40.0625em) {
+      .govuk-summary-card__title {
+          margin-bottom: 5px
+      }
+  }
+
+  .govuk-summary-card__actions {
+      font-family: "GDS Transport", arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: 700;
+      font-size: 16px;
+      font-size: 1rem;
+      line-height: 1.25;
+      display: -ms-flexbox;
+      display: -webkit-box;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      row-gap: 10px;
+      margin: 5px 0;
+      padding: 0;
+      list-style: none
+  }
+
+  @media print {
+      .govuk-summary-card__actions {
+          font-family: sans-serif
+      }
+  }
+
+  @media (min-width: 40.0625em) {
+      .govuk-summary-card__actions {
+          font-size: 19px;
+          font-size: 1.1875rem;
+          line-height: 1.3157894737
+      }
+  }
+
+  @media print {
+      .govuk-summary-card__actions {
+          font-size: 14pt;
+          line-height: 1.15
+      }
+  }
+
+  @media (min-width: 40.0625em) {
+      .govuk-summary-card__actions {
+          -ms-flex-pack: right;
+          -webkit-box-pack: right;
+          justify-content: right;
+          text-align: right
+      }
+  }
+
+  .govuk-summary-card__action {
+      display: inline;
+      margin: 0 10px 0 0;
+      padding-right: 10px;
+      border-right: 1px solid #b1b4b6
+  }
+
+  @media (min-width: 40.0625em) {
+      .govuk-summary-card__action {
+          margin-right: 0
+      }
+  }
+
+  @media screen and (-ms-high-contrast: active),
+  (-ms-high-contrast: none) {
+      .govuk-summary-card__action {
+          margin-bottom: 5px
+      }
+  }
+
+  .govuk-summary-card__action:last-child {
+      margin: 0;
+      padding-right: 0;
+      border-right: none
+  }
+
+  @media (min-width: 40.0625em) {
+      .govuk-summary-card__action:last-child {
+          padding-left: 10px
+      }
+  }
+
+  @media screen and (-ms-high-contrast: active),
+  (-ms-high-contrast: none) {
+      .govuk-summary-card__action:last-child {
+          margin-bottom: 0
+      }
+  }
+
+  .govuk-summary-card__content {
+      padding: 15px 15px 0
+  }
+
+  @media (min-width: 40.0625em) {
+      .govuk-summary-card__content {
+          padding: 15px 20px
+      }
+  }
+
+  .govuk-summary-card__content .govuk-summary-list {
+      margin-bottom: 0
+  }
+
+  .govuk-summary-card__content .govuk-summary-list__row:last-of-type {
+      margin-bottom: 0;
+      border-bottom: none
+  }
+
+
+  th,
+  td {
+      border-bottom: none !important
+  }
+</style>
+
+{{ govukPhaseBanner({
+tag: {
+text: "alpha"
+},
+classes: "govuk-!-display-none-print",
+html: 'This is a new service – your <a class="govuk-link" href="/alpha/feedback-page">feedback</a> will help us to
+improve it.'
+}) }}
+
+{% endblock %}
+
+{% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
+
+{% if useAutoStoreData %}
+
+{% block footer %}
+<hr class="govuk-section-break govuk-section-break--visible govuk-!-display-none-print" aria-hidden="true">
+<section class="govuk-width-container govuk-!-margin-top-7 govuk-!-margin-bottom-7 govuk-!-display-none-print">
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-full">
+    <h2 class="govuk-heading-m">
+        Get help
+    </h2>
+    <p>
+        You can contact us for free by:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li> Telephone: 0800 121 7479</li>
+        <li> Textphone: 0800 121 7579</li>
+        <li> <a class="govuk-link" href="https://www.relayuk.bt.com/">Relay UK</a>, if you cannot hear or speak on the phone: 18001 then 0800 121 7479 </li>
+        <li> <a class="govuk-link" href="https://connect.interpreterslive.co.uk/vrs?ilc=DWP/">Video Relay Service</a> for British Sign Language – <a class="govuk-link" href="https://www.dalanguages.co.uk/dwp-bsl/">find out how to use the service</a> </li>
+    </ul>
+</div>
+</div>
+</section> 
+
+  {{ govukFooter({
+    classes: "govuk-!-display-none-print",
+    meta: {
+      items: [
+        {
+          href: "/prototype-admin/clear-data",
+          text: "Clear data"
+        },
+        {
+          href: "/accessibility-statement",
+          text: "Accessibility statement"
+        }
+      ]
+    }
+  }) }}
+{% endblock %}
+
+{% endif %}
+
+{% block bodyEnd %}
+{% block scripts %}
+{% include "includes/scripts.html" %}
+{% block pageScripts %}{% endblock %}
+{% endblock %}
+<!-- GOV.UK Prototype Kit {{releaseVersion}} -->
+{% endblock %}
