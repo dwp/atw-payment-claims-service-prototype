@@ -1,11 +1,17 @@
 {% extends "layout.html" %}
 {% from "card/macro.njk" import card %}
+{% from "components/card-summary/macro.njk" import govukSummaryCardTable with context %}
+<link href="/app/assets/sass/summaryCard.scss" rel="stylesheet">
+
+
 
 {% block pageTitle %}
 
 Account home – Claim money back from Access to Work – GOV.UK
 
 {% endblock %}
+
+
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -32,6 +38,48 @@ html: 'This is a new service – your <a class="govuk-link"
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+
+
+      {{ govukSummaryCardTable({
+        card: {
+          title: {
+            text: "University of Gloucestershire"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Delete choice",
+                visuallyHiddenText: "of University of Gloucestershire"
+              },
+              {
+                href: "#",
+                text: "Withdraw",
+                visuallyHiddenText: "from University of Gloucestershire"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: "English (3DMD)<br>PGCE with QTS full time"
+            }
+          },
+          {
+            key: {
+              text: "Location"
+            },
+            value: {
+              html: "School name<br>Road, City, SW1 1AA"
+            }
+          }
+        ]
+      }) }}
+      
 
         <!-- <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
           <div class="govuk-notification-banner__header">
