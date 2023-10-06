@@ -204,12 +204,14 @@ Claim money back from Access to Work
   <div class="govuk-grid-column-full">
     {% if adaptationLength|int === 1 %}
     <h1 class="govuk-heading-l">You’ve told us you want to claim for {{adaptationLength}} adaptation</h1>
+    {% elseif adaptationLength|int === 0 %}
+    <h1 class="govuk-heading-l">You've removed all the adaptations from this claim</h1>
     {% else %}
     <h1 class="govuk-heading-l">You’ve told us you want to claim for {{adaptationLength}} adaptations</h1>
     {% endif %}<div class="govuk-form-group">
 
 
-      {% if data['adaptation'] %}
+      {% if ((data['adaptation']) and (adaptationLength|int != 0)) %}
 
       <div class="govuk-summary-card">
 
@@ -231,13 +233,13 @@ Claim money back from Access to Work
                     <li class="govuk-summary-list__actions-list-item">
                       <a class="govuk-link" href="adaptation-description?key={{item.key}}">
                         <span>Change</span>
-                        <span class="govuk-visually-hidden">{{item.adaptation_name}}</span>
+                        <span class="govuk-visually-hidden">details for {{item.adaptation_name}}</span>
                       </a>
                     </li>
                     <li class="govuk-summary-list__actions-list-item">
                       <a class="govuk-link" href="adaptation-remove?key={{item.key}}">
                         <span>Remove</span>
-                        <span class="govuk-visually-hidden">{{item.adaptation_name}} from the list</span>
+                        <span class="govuk-visually-hidden">{{item.adaptation_name}} from the claim</span>
                       </a>
                     </li>
                   </ul>
@@ -255,9 +257,9 @@ Claim money back from Access to Work
       </div>
 
       {% else %}
-      <div class="govuk-inset-text">
-        Tell us about the vehicle adaptation you received to continue.
-      </div>
+      <p class="govuk-body">
+        If you still want to make a claim, you'll need to add at least one adaptation.
+      </p>
       {% endif %}
 
     </div>
@@ -265,7 +267,11 @@ Claim money back from Access to Work
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="add-vehicle-adaptation-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--m">
-            Do you need to claim for another vehicle adaptation?
+            {% if (adaptationLength|int < 1) %} 
+              Do you want to add a vehicle adaptation to this claim?
+            {% else %}
+              Do you want to add another vehicle adaptation to this claim?
+            {% endif %}
           </legend>
           <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
             <div class="govuk-radios__item">
@@ -279,7 +285,11 @@ Claim money back from Access to Work
               <input class="govuk-radios__input" id="add-vehicle-adaptation-no" name="add-vehicle-adaptation"
                 type="radio" value="No">
               <label class="govuk-label govuk-radios__label" for="add-vehicle-adaptation-no">
+                {% if (adaptationLength|int < 1) %}
+                No, return to account home 
+              {% else %}
                 No
+              {% endif %}
               </label>
             </div>
           </div>

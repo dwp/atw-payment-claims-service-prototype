@@ -185,6 +185,10 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const aids = req.session.data['transport-option']
     const lift = req.session.data['way-of-claiming']
 
+    if (req.session.data['month-list'].length < 1 && addmonth === 'no') {
+      res.redirect(`/${urlPrefix}/portal`)
+    }
+
     if (addmonth === 'no' && journeytype === 'traveltowork-ammendment' && aids === 'taxi') {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
     } else if (addmonth === 'no' && journeytype === 'traveltowork-ammendment' && aids === 'lift') {

@@ -443,6 +443,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const checked = req.session.data['contact-confirmed']
     const incorrect = req.session.data['claim-incorrect']
 
+    if (req.session.data['travelinwork'].length < 1 && addmonth === 'no') {
+      res.redirect(`/${urlPrefix}/portal`)
+    }
 
     if (req.session.data['travel-in-work'] === undefined || req.session.data['travel-in-work'].length == 0) {
       res.redirect(`/${urlPrefix}/travel-in-work/no-hours-entered`)
@@ -458,7 +461,6 @@ module.exports = function (folderForViews, urlPrefix, router) {
       res.redirect(`/${urlPrefix}/travel-in-work/claiming-for-month`)
     }
   })
-
 
   // new journey stuff - milage
   router.post('/travel-in-work/mileage-for-day', function (req, res) {
@@ -510,20 +512,6 @@ module.exports = function (folderForViews, urlPrefix, router) {
       }
     }
   })
-
-  // post - Add more support hours
-  router.post('/travel-in-work/mileage-for-day-summary', function (req, res) {
-    const addmonth = req.session.data['new-month']
-
-
-
-    if (addmonth === "yes") {
-      res.redirect(`/${urlPrefix}/travel-in-work/claiming-for-month-repeat`)
-    } else if (addmonth === "no") {
-      res.redirect(`/${urlPrefix}/travel-in-work/employer-contribution`)
-    }
-  })
-
 
 
   // employer contribution answer

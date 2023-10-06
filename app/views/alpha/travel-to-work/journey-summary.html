@@ -251,6 +251,13 @@ Claim money back from Access to Work
     <form method="post" action="#">
       <div class="govuk-form-group">
 
+        {% if (data['total-journeys'] < 1) %} 
+        <h1 class="govuk-heading-l">
+          You've removed all the months from this claim
+        </h1>
+
+        {% else %}
+
         {% if (data['transport-option'] == "taxi") %}
         <h1 class="govuk-heading-l">You’ve told us you want to claim for {{data['total-journeys']}}
           {% if data['total-journeys'] === 1 %}
@@ -259,6 +266,7 @@ Claim money back from Access to Work
           taxi journeys
           {% endif %}
         </h1>
+
 
         {% elseif (data['way-of-claiming'] == "journeys") %}
         <h1 class="govuk-heading-l">You’ve told us you want to claim for {{data['total-journeys']}}
@@ -278,6 +286,8 @@ Claim money back from Access to Work
           {% endif %}
         </h1>
         {% endif %}
+        {% endif %}
+
 
         {% for month_data in data['month-list'] | sortBy('month') | sortBy('year') %}
 
@@ -295,15 +305,23 @@ Claim money back from Access to Work
             </h2>
             <ul class="govuk-summary-card__actions">
               <li class="govuk-summary-card__action"> <a class="govuk-link"
-                  href="remove-month?month={{month_data.month}}&year={{month_data.year}}">
-                  Delete month<span class="govuk-visually-hidden"> of {{month_data.month | numberMonth}}
+                  href="days-for-month-change?month={{month_data.month}}&year={{month_data.year}}">
+                  {% if data['transport-option'] == "taxi" %}
+                    Change journeys
+                  {% elseif data['way-of-claiming'] == "mileage" %}
+                    Change miles
+                  {% else %}
+                    Change journeys
+                  {% endif %}
+                  <span class="govuk-visually-hidden"> in {{month_data.month | numberMonth}}
                     {{month_data.year}}</span>
                 </a>
               </li>
               <li class="govuk-summary-card__action"> <a class="govuk-link"
-                  href="days-for-month-change?month={{month_data.month}}&year={{month_data.year}}">
-                  Change<span class="govuk-visually-hidden"> journeys in {{month_data.month | numberMonth}}
-                    {{month_data.year}}</span>
+                href="remove-month?month={{month_data.month}}&year={{month_data.year}}">
+                Remove month
+                <span class="govuk-visually-hidden"> of {{month_data.month | numberMonth}}
+                  {{month_data.year}}</span>
                 </a>
               </li>
             </ul>
@@ -334,9 +352,11 @@ Claim money back from Access to Work
         {% endfor %}
 
         {% if (data['month-list'].length < 1) %}
-        <h2 class="govuk-heading-m">
-          You will need to add at least one month of journeys to this claim.
-        </h2>
+        <p class="govuk-body">
+          If you still want to make a claim, you'll need to add 
+          {% if data['way-of-claiming'] == "mileage" %} miles {% else %} journeys {% endif %}
+          for at least one month.
+        </p>
         {% endif %}
 
       </div>
@@ -345,7 +365,11 @@ Claim money back from Access to Work
         <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
             <h2 class="govuk-fieldset__heading">
-              Do you want to add another month to this claim?
+              {% if (data['month-list'].length < 1) %} 
+              Do you want to add a month to this claim? 
+              {% else %}
+                Do you want to add another month to this claim?
+              {% endif %}
             </h2>
           </legend>
           <div class="govuk-radios govuk-radios--inline">
@@ -358,7 +382,11 @@ Claim money back from Access to Work
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="new-month-2" name="new-month" type="radio" value="no">
               <label class="govuk-label govuk-radios__label" for="new-month-2">
+                {% if (data['month-list'].length < 1) %}
+                No, return to account home 
+              {% else %}
                 No
+              {% endif %}
               </label>
             </div>
           </div>

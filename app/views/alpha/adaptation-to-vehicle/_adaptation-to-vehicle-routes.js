@@ -167,6 +167,10 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const checked = req.session.data['contact-confirmed']
     const add_vehicle_adaptation = req.session.data['add-vehicle-adaptation']
 
+    if (req.session.data['adaptation'].length < 1 && add_vehicle_adaptation == "No") {
+      res.redirect(`/${urlPrefix}/portal`)
+    }
+
     if (add_vehicle_adaptation == "Yes") {
       req.session.data['next-adaptation'] = 'true'
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/adaptation-description`)
@@ -184,7 +188,6 @@ module.exports = function (folderForViews, urlPrefix, router) {
     else {
       res.redirect(`/${urlPrefix}/adaptation-to-vehicle/adaptation-summary`)
     }
-
 
   })
 
