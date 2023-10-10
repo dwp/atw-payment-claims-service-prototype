@@ -11,9 +11,19 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const aids = req.session.data['support-for-workplace']
 
     if (aids === 'Yes') {
-      res.redirect(`/${urlPrefix}/support-worker/grant-information`)
+      res.redirect(`/${urlPrefix}/support-worker/support-worker-type`)
     } else if (aids === 'No') {
       res.redirect(`/${urlPrefix}/support-worker/contact-dwp`)
+    }
+  })
+
+  router.post('/support-worker/support-worker-type', function (req, res) {
+    const type = req.session.data['supportWorkerType']
+
+    if (type === 'Other') {
+      res.redirect(`/${urlPrefix}/support-worker/contact-dwp`)
+    } else {
+      res.redirect(`/${urlPrefix}/support-worker/grant-information`)
     }
   })
 

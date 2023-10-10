@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form action="#" method="post" class="form">
+
+            {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  name: "supportWorkerType",
+  fieldset: {
+    legend: {
+      text: "Which support worker type are you claiming for?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "BSL Interpreter",
+      text: "BSL Interpreter"
+    },
+    {
+      value: "Driver",
+      text: "Driver"
+    }
+  ]
+}) }}
+
+<button type="submit" class="govuk-button" data-module="govuk-button">
+    Continue
+</button>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
