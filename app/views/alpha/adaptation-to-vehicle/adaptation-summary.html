@@ -1,5 +1,9 @@
 {% extends "layout_no_back.html" %}
 
+{% from "card/macro.njk" import card %}
+{% from "components/card-summary/macro.njk" import govukSummaryCardTable with context %}
+<link href="/app/assets/sass/summaryCard.scss" rel="stylesheet">
+
 {% block pageTitle %}
 Claim money back from Access to Work
 {% endblock %}
@@ -208,6 +212,46 @@ Claim money back from Access to Work
     <h1 class="govuk-heading-l">You’ve told us you want to claim for {{adaptationLength}} adaptations</h1>
     {% endif %}<div class="govuk-form-group">
 
+
+      {{ govukSummaryCardTable({
+        card: {
+          title: {
+            text: "University of Gloucestershire"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Delete choice",
+                visuallyHiddenText: "of University of Gloucestershire"
+              },
+              {
+                href: "#",
+                text: "Withdraw",
+                visuallyHiddenText: "from University of Gloucestershire"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Course"
+            },
+            value: {
+              html: "English (3DMD)<br>PGCE with QTS full time"
+            }
+          },
+          {
+            key: {
+              text: "Location"
+            },
+            value: {
+              html: "School name<br>Road, City, SW1 1AA"
+            }
+          }
+        ]
+      }) }}
 
       {% if data['adaptation'] %}
 
