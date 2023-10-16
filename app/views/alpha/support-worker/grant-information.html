@@ -26,7 +26,12 @@ Claim money back from Access to Work
                       Support worker type
                     </dt>
                     <dd class="govuk-summary-list__value">
+                      {% if data['supportWorkerType'] == 'other' %}
+                      {{data['typeNotShown']}}
+                      {% else %}
                       {{data['supportWorkerType']}}
+                      {% endif %}
+
                     </dd>
                   </div>
                   <div class="govuk-summary-list__row">
