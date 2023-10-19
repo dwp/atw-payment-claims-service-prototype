@@ -83,7 +83,7 @@ Claim money back from Access to Work
 
         </h1>
 
-        {% for month_data in data['month-list'] %}
+        {% for month_data in data['month-list'] | sortBy('month') | sortBy('year') %}
 
 
         <div class="govuk-summary-card">
