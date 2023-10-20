@@ -37,21 +37,25 @@ Claim money back from Access to Work
                                    value="one">
                             <label class="govuk-label govuk-radios__label" for="existing-account-one">
                                 Lloyds Bank</br>
-                                Account number ****4567</br>
-                                Sort code ****34</br>
-                                Added 3/10/23
+                                Account number ending in 4567</br>
+                                Sort code ending in 34</br>
                             </label>
+                            <div id="existing-account-one-hint" class="govuk-hint govuk-radios__hint">
+                                Added 3/10/23
+                            </div>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="existing-account-two" name="existing-account"
                                    type="radio"
                                    value="two">
-                            <label class="govuk-label govuk-radios__label" for="existing-account-two">
-                                Halifax</br>
-                                Account number ****5432</br>
-                                Sort code ****12</br>
-                                Added 1/9/17
-                            </label>
+                                <label class="govuk-label govuk-radios__label" for="existing-account-one">
+                                    Halifax</br>
+                                    Account number ending in 1234</br>
+                                    Sort code ending in 21</br>
+                                </label>
+                                <div id="existing-account-two-hint" class="govuk-hint govuk-radios__hint">
+                                    Added 1/11/21
+                                </div>
                         </div>
                         {% elseif (data['existing-payee'] == 'two') %}
 
@@ -60,13 +64,12 @@ Claim money back from Access to Work
                                    type="radio"
                                    value="three">
                             <label class="govuk-label govuk-radios__label" for="existing-account-three">
-                                Lloyds Bank</br>
-                                Account number ****1133</br>
-                                Sort code ****11</br>
-                                Added 20/9/22
+                                Nat West</br>
+                                Account number ending in 1133</br>
+                                Sort code ending in 11</br>
                             </label>
-                            <div id="existing-payee-one-hint" class="govuk-hint govuk-radios__hint">
-                              jane.green@bsl-interpreters.com
+                            <div id="existing-account-three-hint" class="govuk-hint govuk-radios__hint">
+                                Added 20/9/22
                             </div>
                         </div>
 
@@ -77,10 +80,12 @@ Claim money back from Access to Work
                                    value="four">
                             <label class="govuk-label govuk-radios__label" for="existing-account-four">
                                 Nationwide</br>
-                                Account number ****5054</br>
-                                Sort code ****21</br>
-                                Added 2/3/20
+                                Account number ending in 5054</br>
+                                Sort code ending in 21</br>
                             </label>
+                            <div id="existing-account-four-hint" class="govuk-hint govuk-radios__hint">
+                                Added 2/3/20
+                            </div>
                         </div>
                         {% endif %}
 
