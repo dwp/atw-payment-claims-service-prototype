@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form id="form" method="post" action="#">
+
+      {% set dataList = data['dataList'] %}
+
+      <div class="govuk-form-group">
+
+        {% if data['transport-option'] == "taxi"%}
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Number of taxi journeys on each day in
+          {{data["travel-to-work-date-month"] | numberMonth}}
+          {{data["travel-to-work-date-year"]}}
+        </h1>
+        {% elseif data['way-of-claiming'] == "mileage"%}
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Number of miles on each day in
+          {{data["travel-to-work-date-month"] | numberMonth}}
+          {{data["travel-to-work-date-year"]}}
+        </h1>
+        {% else %}
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Number of journeys on each day in
+          {{data["travel-to-work-date-month"] | numberMonth}}
+          {{data["travel-to-work-date-year"]}}
+        </h1>
+        {% endif %}
+
+        {% for week in dataList %}
+
+        <fieldset class="govuk-fieldset govuk-!-margin-bottom-4">
+
+          {% if week.days.length == 7 or week.days[0].value != 1 %}
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              <!-- Week starting on {{week.days[0].text}} -->
+              Week beginning {{week.days[0].value}} {{data["travel-to-work-date-month"] | numberMonth}}
+            </h2>
+          </legend>
+          {% endif %}
+
+          {% for day in week.days %}
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="ttw-{{day.value}}">
+              {{day.text}}
+            </label>
+            {% if data['transport-option'] == "taxi"%}
+            <input class="govuk-input govuk-input--width-2" id="ttw-{{day.value}}"
+              name="ttw-days[{{day.value}}].journeys" type="number" value={{data['ttw-days'][day.value-1]}}>
+            {% else %}
+              {% if data['way-of-claiming'] == "mileage"%}
+              <input class="govuk-input govuk-input--width-4" id="ttw-{{day.value}}"
+              name="ttw-days[{{day.value}}].journeys" type="number" value={{day.input}}>
+              {% else %}
+              <input class="govuk-input govuk-input--width-2" id="ttw-{{day.value}}"
+              name="ttw-days[{{day.value}}].journeys" type="number" value={{day.input}}>
+              {% endif %}
+            {% endif %}
+
+          </div>
+
+          {% endfor %}
+
+        </fieldset>
+        {% endfor %}
+
+      </div>
+
+
+      <div class="moj-button-action">
+        <button class="govuk-button" data-module="govuk-button" name="action" value="continue">
+          Continue
+        </button>
+      </div>
+    </form>
+  </div>
+  {# /govuk-grid-column-two-thirds #}
+</div>{# /govuk-grid-row #}
+{% endblock %}

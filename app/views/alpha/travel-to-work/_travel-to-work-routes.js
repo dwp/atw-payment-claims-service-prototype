@@ -1,4 +1,7 @@
 module.exports = function (folderForViews, urlPrefix, router) {
+
+//////Information pages
+
   router.get('/travel-to-work/start-a-claim', function (req, res) {
     res.render(`./${folderForViews}/travel-to-work/start-a-claim`)
   })
@@ -13,36 +16,307 @@ module.exports = function (folderForViews, urlPrefix, router) {
     }
   })
 
-  router.post('/travel-to-work/transport-option-answers', function (req, res) {
+  router.post('/travel-to-work/transport-option-answer-preview', function (req, res) {
+    const transport = req.session.data['transport-option']
+
+    if (transport === 'taxi') {
+      res.redirect(`/${urlPrefix}/travel-to-work/claiming-for-month`)
+    } else if (transport === 'lift') {
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-or-journey`)
+    }
+  })
+
+  router.post('/travel-to-work/mileage-or-journey', function (req, res) {
+    const transport = req.session.data['transport-option']
+    const claiming = req.session.data['way-of-claiming']
+
+    if (transport === 'taxi') {
+      res.redirect(`/${urlPrefix}/travel-to-work/claiming-for-month`)
+    } else if (transport === 'lift' && claiming === 'journeys') {
+      res.redirect(`/${urlPrefix}/travel-to-work/claiming-for-month`)
+    } else if (transport === 'lift' && claiming === 'mileage') {
+      res.redirect(`/${urlPrefix}/travel-to-work/claiming-for-month`)
+    }
+  })
+
+  //////Data entry pages
+
+  router.post('/travel-to-work/claiming-for-month', function (req, res) {
+    var days = new Array(7);
+    days[0] = "Sunday";
+    days[1] = "Monday";
+    days[2] = "Tuesday";
+    days[3] = "Wednesday";
+    days[4] = "Thursday";
+    days[5] = "Friday";
+    days[6] = "Saturday";
+
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    var month = req.session.data["travel-to-work-date-month"]
+    var year = req.session.data["travel-to-work-date-year"]
+
+    const getDays = (year, month) => {
+      return new Date(year, month, 0).getDate();
+    };
+
+    var monthLength = getDays(year, month);
+    var monthDayList = []
+    var dayList = []
+
+    for (let i = 1; i <= monthLength; i++) {
+      dayList.push({ day: i, journeys: '' })
+      var a = new Date(year, month - 1, i);
+      var r = days[a.getDay()];
+      var monthDay = { value: i, text: r + " " + i + " " + monthNames[a.getMonth()], input: '' }
+      monthDayList.push(monthDay)
+    }
+
+    req.session.data['tiw-days'] = dayList
+
+    var i = 0
+    var weeksList = []
+    var currentWeek = { weekNumber: 1, days: [] }
+
+    while (i < monthDayList.length) {
+      var currentDay = monthDayList[i]
+
+      currentWeek.days.push(currentDay)
+
+      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
+        weeksList.push(currentWeek)
+        var newWeekNumber = currentWeek.weekNumber + 1
+        currentWeek = { weekNumber: newWeekNumber, days: [] }
+      }
+
+      i++
+    }
+
+    req.session.data.dataList = weeksList
+
+    if (req.session.data['month-list']){
+      req.session.data['month-list'].forEach(existingMonth => {
+        if (existingMonth.month == month && existingMonth.year == year){
+          res.redirect(`/${urlPrefix}/travel-to-work/days-for-month-change?month=`+month+`&year=`+year)
+        }
+       });
+    }
+
     const aids = req.session.data['transport-option']
     const claiming = req.session.data['way-of-claiming']
 
     if (aids === 'taxi' || aids === 'taxi-during-work') {
-      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+      res.redirect(`/${urlPrefix}/travel-to-work/days-for-month`)
+      //  res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
     } else if (aids === 'lift' && claiming === 'mileage') {
-      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day`)
+      res.redirect(`/${urlPrefix}/travel-to-work/days-for-month`)
     } else if (aids === 'lift' && claiming === 'journeys') {
-      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
+      res.redirect(`/${urlPrefix}/travel-to-work/days-for-month`)
     } else if (aids === 'lift-during-work') {
       res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day`)
     }
+
   })
 
-  router.post('/travel-to-work/transport-option-answers-repeat', function (req, res) {
+  router.post('/travel-to-work/days-for-month', function (req, res) {
+    var allDays = req.session.data['ttw-days']
+    var dataList = req.session.data['dataList']
+    var month = req.session.data['travel-to-work-date-month']
+    var year = req.session.data['travel-to-work-date-year']
+    var monthList = req.session.data['month-list']
+
+    req.session.data["ttw-days"] = []
+
+    var selectedDays = []
+
+    for (let i = 0; i < allDays.length; i++) {
+      if (allDays[i] != '') {
+        selectedDays.push({ day: i + 1, journeys: parseInt(allDays[i]) })
+      }
+    }
+
+    if (!(req.session.data['month-list'])) {
+      req.session.data['month-list'] = []
+    }
+
+    var monthData = {
+      month: month,
+      year: year,
+      days: selectedDays
+    }
+
+    req.session.data['month-list'].forEach(existingMonth => {
+     if (existingMonth.month == month && existingMonth.year == year){
+      const index = req.session.data['month-list'].indexOf(existingMonth);
+      req.session.data['month-list'].splice(index, 1);
+     }
+    });
+
+    req.session.data['month-list'].push(monthData)
+
+    var totalJourneys = 0
+
+    req.session.data['month-list'].forEach(month => {
+      var monthlyTotal = 0
+      month.days.forEach(day => {
+        totalJourneys = totalJourneys + parseInt(day.journeys)
+        monthlyTotal = monthlyTotal + parseInt(day.journeys)
+
+        const monthIndex = req.session.data['month-list'].indexOf(month);
+        req.session.data['month-list'][monthIndex].monthTotal = monthlyTotal
+      });
+    });
+
+    req.session.data["total-journeys"] = totalJourneys
+
+    req.session.data["travel-to-work-errors"] = []
+
+    res.redirect(`/${urlPrefix}/travel-to-work/journey-summary`)
+  })
+
+  router.post('/travel-to-work/journey-summary', function (req, res) {
+    console.log(req.session.data.support)
+    const addmonth = req.session.data['new-month']
+    const journeytype = req.session.data['journey-type']
+    const checked = req.session.data['contact-confirmed']
     const aids = req.session.data['transport-option']
-    const claiming = req.session.data['way-of-claiming']
+    const lift = req.session.data['way-of-claiming']
 
-    if (aids === 'taxi' || aids === 'taxi-during-work') {
-      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day-repeat`)
-    } else if (aids === 'lift' && claiming === 'mileage') {
-      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-repeat`)
-    } else if (aids === 'lift' && claiming === 'journeys') {
-      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day-repeat`)
-    } else if (aids === 'lift-during-work') {
-      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-repeat`)
+    if (req.session.data['month-list'].length < 1 && addmonth === 'no') {
+      res.redirect(`/${urlPrefix}/portal`)
+    }
+
+    if (addmonth === 'no' && journeytype === 'traveltowork-ammendment' && aids === 'taxi') {
+      res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
+    } else if (addmonth === 'no' && journeytype === 'traveltowork-ammendment' && aids === 'lift') {
+      res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
+    } else if (addmonth === 'no' && journeytype === 'traveltowork-ammendment' && aids === 'taxi-during-work') {
+      res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
+    } else if (checked && addmonth === 'no') {
+      res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
+    } else if (addmonth === 'no' && journeytype === 'traveltowork' && aids === 'lift') {
+      res.redirect(`/${urlPrefix}/travel-to-work/mileage-amount-paid`)
+    } else if (addmonth === 'no' && journeytype === 'traveltowork') {
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-cost`)
+    } else if (addmonth === 'yes') {
+      res.redirect(`/${urlPrefix}/travel-to-work/claiming-for-month`)
     }
   })
 
+  router.get('/travel-to-work/remove-month', function (req, res) {
+    req.session.data["travel-to-work-date-month"] = req.query.month
+    req.session.data["travel-to-work-date-year"] = req.query.year
+    res.redirect(`/${urlPrefix}/travel-to-work/remove-month-confirmation`)
+  })
+
+  router.post('/travel-to-work/remove-month-confirmation', function (req, res) {
+
+    if (req.session.data['remove-month'] == 'No'){
+      res.redirect(`/${urlPrefix}/travel-to-work/journey-summary`)
+    }
+
+    if (req.session.data['month-list']) {
+      var month_to_delete = req.session.data['month-list'].find((month) => month.month === req.session.data["travel-to-work-date-month"] && month.year === req.session.data["travel-to-work-date-year"]);
+
+      if (month_to_delete) {
+        const index = req.session.data['month-list'].indexOf(month_to_delete);
+        req.session.data['month-list'].splice(index, 1);
+      }
+    }
+
+    var totalJourneys = 0
+
+    req.session.data['month-list'].forEach(month => {
+      var monthlyTotal = 0
+      month.days.forEach(day => {
+        totalJourneys = totalJourneys + parseInt(day.journeys)
+        monthlyTotal = monthlyTotal + parseInt(day.journeys)
+
+        const monthIndex = req.session.data['month-list'].indexOf(month);
+        req.session.data['month-list'][monthIndex].monthTotal = monthlyTotal
+      });
+    });
+
+    req.session.data["total-journeys"] = totalJourneys
+
+    res.redirect(`/${urlPrefix}/travel-to-work/journey-summary`)
+  })
+
+  router.get('/travel-to-work/days-for-month-change', function (req, res) {
+    if (req.query.month) {
+      var days = new Array(7);
+      days[0] = "Sunday";
+      days[1] = "Monday";
+      days[2] = "Tuesday";
+      days[3] = "Wednesday";
+      days[4] = "Thursday";
+      days[5] = "Friday";
+      days[6] = "Saturday";
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      var month = req.query.month
+      var year = req.query.year
+
+      const getDays = (year, month) => {
+        return new Date(year, month, 0).getDate();
+      };
+
+      var monthLength = getDays(year, month);
+      var monthDayList = []
+
+      for (let i = 1; i <= monthLength; i++) {
+        var a = new Date(year, month - 1, i);
+        var r = days[a.getDay()];
+        var monthDay = { value: i, text: r + " " + i + " " + monthNames[a.getMonth()] }
+        monthDayList.push(monthDay)
+      }
+
+      var i = 0
+      var weeksList = []
+      var currentWeek = { weekNumber: 1, days: [] }
+
+      while (i < monthDayList.length) {
+        var currentDay = monthDayList[i]
+
+        currentWeek.days.push(currentDay)
+
+        if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
+          weeksList.push(currentWeek)
+          var newWeekNumber = currentWeek.weekNumber + 1
+          currentWeek = { weekNumber: newWeekNumber, days: [] }
+        }
+
+        i++
+      }
+
+      req.session.data.dataList = weeksList
+      var month_list = req.session.data['month-list']
+      var month_data = month_list.find((month) => month.month === req.query.month && month.year === req.query.year);
+
+      req.session.data.checked = []
+
+      req.session.data["travel-to-work-date-month"] = req.query.month
+      req.session.data["travel-to-work-date-year"] = req.query.year
+      req.session.data["ttw-days"] = Array(31)
+
+      month_data.days.forEach(day => {
+        req.session.data["ttw-days"][(day.day-1)] = day.journeys.toString()
+      });
+      res.redirect(`/${urlPrefix}/travel-to-work/days-for-month`)
+    }
+    else {
+      res.redirect(`/${urlPrefix}/travel-to-work/days-for-month`)
+    }
+  })
+
+  ///////Further data pages
 
   router.post('/travel-to-work/taxi-cost-answer', function (req, res) {
     const cost = req.session.data['cost-of-taxi']
@@ -74,26 +348,6 @@ module.exports = function (folderForViews, urlPrefix, router) {
     }
   })
 
-  // router.post('/travel-to-work/agreed-monthly-taxi-answers', function (req, res) {
-  //   const aids = req.session.data['agreed-monthly-taxi']
-  //
-  //   if (aids === 'Yes') {
-  //     res.redirect(`/${urlPrefix}/travel-to-work/exceed-agreed-monthly-taxi`)
-  //   } else if (aids === 'No') {
-  //     res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
-  //   }
-  // })
-  // router.post('/travel-to-work/exceed-agreed-monthly-taxi-answers', function (req, res) {
-  //   const aids = req.session.data['exceed-agreed-monthly-taxi']
-  //
-  //   if (aids === 'Yes') {
-  //     res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day`)
-  //   } else if (aids === 'No') {
-  //     res.redirect(`/${urlPrefix}/travel-to-work/agreed-monthly-taxi-cost`)
-  //   }
-  // })
-
-  // post - Submit for upload
   router.post('/travel-to-work/receipt-upload-add', function (req, res) {
     let allUploads = req.session.data.uploads // This is the running list of files
 
@@ -573,8 +827,6 @@ module.exports = function (folderForViews, urlPrefix, router) {
     }
   })
 
-
-
   // employer contribution answer
 
   router.post('/travel-to-work/employer-contribution-answer', function (req, res) {
@@ -637,38 +889,10 @@ module.exports = function (folderForViews, urlPrefix, router) {
     }
   })
 
-  router.post('/travel-to-work/transport-option-answer-preview', function (req, res) {
-    const transport = req.session.data['transport-option']
 
-    if (transport === 'taxi') {
-      res.redirect(`/${urlPrefix}/travel-to-work/claiming-for-month`)
-    } else if (transport === 'lift') {
-      res.redirect(`/${urlPrefix}/travel-to-work/mileage-or-journey`)
-    }
-  })
 
-  // Get
-  router.get('/travel-to-work/remove-month-travel', function (req, res) {
-    req.session.data['month-index-to-remove'] = req.query.monthIndex
-    req.session.data['travel-type'] = req.query.travelType
-    res.render(`./${folderForViews}/travel-to-work/remove-month-travel`)
-  })
+    
 
-  // post - Remove phone number confirmation
-  router.post('/travel-to-work/remove-month-travel', function (req, res) {
-    const monthNumber = req.session.data['month-index-to-remove']
-    const removeMonth = req.session.data['remove-month-travel']
-
-    if (removeMonth === 'Yes') {
-      req.session.data['month-list'].splice(monthNumber, 1);
-    }
-    if (req.session.data["travel-type"] == 1){
-      res.redirect(`/${urlPrefix}/travel-to-work/taxi-journeys-for-day-summary`)
-    }
-    else{
-      res.redirect(`/${urlPrefix}/travel-to-work/mileage-for-day-summary`)
-    }
-  })
-
+  
 
 }

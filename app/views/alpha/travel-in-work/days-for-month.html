@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form id="form" method="post" action="#">
+
+      {% set dataList = data['dataList'] %}
+
+      <div class="govuk-form-group">
+
+        <h1 class="govuk-heading-l">
+          Number of taxi journeys during work on each day in {{data["travel-in-work-date-month"] | numberMonth}} {{data["travel-in-work-date-year"]}}
+        </h1>
+        {% for week in dataList %}
+
+        <fieldset class="govuk-fieldset govuk-!-margin-bottom-4">
+
+          {% if week.days.length == 7 or week.days[0].value != 1 %}
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              <!-- Week starting on {{week.days[0].text}} -->
+              Week beginning {{week.days[0].value}} {{data["travel-in-work-date-month"] | numberMonth}}
+            </h2>
+          </legend>
+          {% endif %}
+
+            {% for day in week.days %}
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="tiw-{{day.value}}">
+                {{day.text}}
+              </label>
+              <input class="govuk-input govuk-input--width-2" id="tiw-{{day.value}}" name="tiw-days[{{day.value}}].journeys" type="number"
+              value={{data['tiw-days'][day.value-1]}}>
+            </div>
+
+            {% endfor %}
+
+        </fieldset>
+        {% endfor %}
+
+      </div>
+
+
+      <div class="moj-button-action">
+        <button class="govuk-button" data-module="govuk-button" name="action" value="continue">
+          Continue
+        </button>
+      </div>
+    </form>
+  </div>
+  {# /govuk-grid-column-two-thirds #}
+</div>{# /govuk-grid-row #}
+{% endblock %}

@@ -4,6 +4,56 @@
 Claim money back from Access to Work
 {% endblock %}
 
+{% set travelLength %}
+{{ data.travel | length }}
+{% endset %}
+
+{% set taxiTotal = 0 %}
+{% for month in data['month-list'] %}
+{% for day in month.travel %}
+{% if day.travel_journeys %}
+{% set taxiTotal = taxiTotal | float + day.travel_journeys | float %}
+{% endif %}
+{% if day.repeattravel_journeys %}
+{% set taxiTotal = taxiTotal | float + day.repeattravel_journeys | float %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% set taxiTotal = 0 | float %}
+{% endfor %}
+
+{% set repeattravelLength %}
+{{ data.repeattravel | length }}
+{% endset %}
+
+{% set mileageTotal = 0 %}
+{% for month in data['month-list'] %}
+{% for day in month.milage %}
+{% if day.milage_total %}
+{% set mileageTotal = mileageTotal | float + day.milage_total | float %}
+{% endif %}
+{% if day.repeatmilage_total %}
+{% set mileageTotal = mileageTotal | float + day.repeatmilage_total | float %}
+{% endif %}
+{% endfor %}
+{% else %}
+{% set mileageTotal = 0 | float %}
+{% endfor %}
+
+{% set taxiinworkTotal = 0 %}
+{% for day in data.travel %}
+{% set taxiinworkTotal = taxiinworkTotal | float + day.travel_cost | float %}
+{% else %}
+{% set taxiTotal = 0 | float %}
+{% endfor %}
+
+{% set repeattaxiinworkTotal = 0 %}
+{% for day in data.repeattravel %}
+{% set repeattaxiinworkTotal = repeattaxiinworkTotal | float + day.repeattravel_cost | float %}
+{% else %}
+{% set repeattaxiTotal = 0 | float %}
+{% endfor %}
+
 {% block content %}
 
 <style>
@@ -198,96 +248,125 @@ Claim money back from Access to Work
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
     <form method="post" action="#">
-
-
-
       <div class="govuk-form-group">
 
-
+        {% if (data['total-journeys'] < 1) %} 
         <h1 class="govuk-heading-l">
-
-          {% if (data['travelinwork'].length < 1) %} 
           You've removed all the months from this claim
-          {% else %}
-          You’ve told us you want to claim for
-          £{{data['total-cost']}}
-          of travel
-          {% endif %}
-          
         </h1>
 
-        {% for month_data in data['travelinwork'] %}
+        {% else %}
+
+        {% if (data['transport-option'] == "taxi") %}
+        <h1 class="govuk-heading-l">You’ve told us you want to claim for {{data['total-journeys']}}
+          {% if data['total-journeys'] === 1 %}
+          taxi journey
+          {% else %}
+          taxi journeys
+          {% endif %}
+        </h1>
+
+
+        {% elseif (data['way-of-claiming'] == "journeys") %}
+        <h1 class="govuk-heading-l">You’ve told us you want to claim for {{data['total-journeys']}}
+          {% if data['total-journeys'] === 1 %}
+          journey
+          {% else %}
+          journeys
+          {% endif %}
+        </h1>
+
+        {% else %}
+        <h1 class="govuk-heading-l">You’ve told us you want to claim for {{data['total-journeys']}}
+          {% if data['total-journeys'] === 1 %}
+          mile
+          {% else %}
+          miles
+          {% endif %}
+        </h1>
+        {% endif %}
+        {% endif %}
+
+
+        {% for month_data in data['month-list'] | sortBy('month') | sortBy('year') %}
+
 
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
             <h2 class="govuk-summary-card__title">
-              Taxi journeys in {{month_data.month | numberMonth}} {{month_data.year}}
+              {% if data['transport-option'] == "taxi" %}
+              Taxi Journeys in {{month_data.month | numberMonth}} {{month_data.year}}
+              {% elseif data['way-of-claiming'] == "mileage" %}
+              Miles in {{month_data.month | numberMonth}} {{month_data.year}}
+              {% else %}
+              Journeys in {{month_data.month | numberMonth}} {{month_data.year}}
+              {% endif %}
             </h2>
             <ul class="govuk-summary-card__actions">
               <li class="govuk-summary-card__action"> <a class="govuk-link"
-                href="days-for-month-change?month={{month_data.month}}&year={{month_data.year}}">
-                Change journeys<span class="govuk-visually-hidden"> in {{month_data.month | numberMonth}}
-                  {{month_data.year}}</span>
-              </a>
+                  href="days-for-month-change?month={{month_data.month}}&year={{month_data.year}}">
+                  {% if data['transport-option'] == "taxi" %}
+                    Change journeys
+                  {% elseif data['way-of-claiming'] == "mileage" %}
+                    Change miles
+                  {% else %}
+                    Change journeys
+                  {% endif %}
+                  <span class="govuk-visually-hidden"> in {{month_data.month | numberMonth}}
+                    {{month_data.year}}</span>
+                </a>
               </li>
               <li class="govuk-summary-card__action"> <a class="govuk-link"
-                  href="remove-month?month={{month_data.month}}&year={{month_data.year}}">
-                  Remove month<span class="govuk-visually-hidden"> of {{month_data.month | numberMonth}}
-                    {{month_data.year}}</span>
+                href="remove-month?month={{month_data.month}}&year={{month_data.year}}">
+                Remove month
+                <span class="govuk-visually-hidden"> of {{month_data.month | numberMonth}}
+                  {{month_data.year}}</span>
                 </a>
               </li>
             </ul>
           </div>
           <div class="govuk-summary-card__content">
-
             <table class="govuk-summary-list govuk-!-margin-bottom-0">
               <tbody class="govuk-summary-list">
-                {% for day_data in month_data.days %}
-                {% for journey_data in day_data.journeys %}
-
+                {% for day in month_data.days | sortBy('day') %}
                 <tr class="govuk-summary-list__row">
                   <th scope="row" class="govuk-summary-list__key">
-                    {{day_data.day | weekDay(month_data.month, month_data.year) }} {{month_data.month | numberMonth}}
+                    {{day.day}} {{month_data.month | numberMonth}} {{month_data.year}}
                   </th>
                   <td class="govuk-summary-list__value">
-                    From {{journey_data.postcodeFrom}}<br />
-                    To {{journey_data.postcodeTo}}<br />
-                    £{{journey_data.cost}}
+                    {{day.journeys}}
                   </td>
                 </tr>
 
                 {% else %}
                 <div class="govuk-inset-text">
-                  Tell us about the support you received to continue.
+                  Tell us about the journeys you have taken to and from work to continue.
                 </div>
-                {% endfor %}
                 {% endfor %}
               </tbody>
             </table>
-
-
           </div>
         </div>
 
         {% endfor %}
 
-        {% if (data['travelinwork'].length < 1) %}
+        {% if (data['month-list'].length < 1) %}
         <p class="govuk-body">
-          If you still want to make a claim, you'll need to add journeys for at least one month.
+          If you still want to make a claim, you'll need to add 
+          {% if data['way-of-claiming'] == "mileage" %} miles {% else %} journeys {% endif %}
+          for at least one month.
         </p>
         {% endif %}
 
       </div>
 
-
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
             <h2 class="govuk-fieldset__heading">
-              {% if (data['travelinwork'].length < 1) %}
-                Do you want to add a month to this claim? 
+              {% if (data['month-list'].length < 1) %} 
+              Do you want to add a month to this claim? 
               {% else %}
                 Do you want to add another month to this claim?
               {% endif %}
@@ -303,7 +382,7 @@ Claim money back from Access to Work
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="new-month-2" name="new-month" type="radio" value="no">
               <label class="govuk-label govuk-radios__label" for="new-month-2">
-                {% if (data['travelinwork'].length < 1) %}
+                {% if (data['month-list'].length < 1) %}
                 No, return to account home 
               {% else %}
                 No
@@ -314,7 +393,6 @@ Claim money back from Access to Work
 
         </fieldset>
       </div>
-
 
       <button class="govuk-button" data-module="govuk-button">
         Continue

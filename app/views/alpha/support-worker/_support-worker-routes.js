@@ -106,6 +106,10 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
     req.session.data["month-list"] = monthList
 
+    if (req.session.data['month-list'].length < 1 && month === 'no') {
+      res.redirect(`/${urlPrefix}/portal`)
+    }
+
     if (month === 'yes') {
       req.session.data['support'] = []
       res.redirect(`/${urlPrefix}/support-worker/claiming-for-month-repeat`)
