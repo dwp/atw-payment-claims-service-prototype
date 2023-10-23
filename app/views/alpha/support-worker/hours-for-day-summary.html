@@ -146,15 +146,13 @@ Claim money back from Access to Work
 
         {% endfor %}
 
-        {% if (data['month-list'].length < 1) %}
+      </div>
+
+      {% if (data['month-list'].length < 1) %}
         <p class="govuk-body">
           If you still want to make a claim, you'll need to add support for at least one month.
         </p>
-        {% endif %}
-
-
-      </div>
-
+      {% else %}
       <p class="govuk-body">
         You can add other months to this claim if we need to pay the same person or company.
       </p>
@@ -162,6 +160,8 @@ Claim money back from Access to Work
 
         If we need to pay a different person or company, you'll need to make a separate claim.
       </p>
+      {% endif %}
+
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
