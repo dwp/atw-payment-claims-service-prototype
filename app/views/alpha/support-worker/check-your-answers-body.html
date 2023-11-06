@@ -98,6 +98,32 @@
 
                         <tr class="govuk-summary-list__row">
                             <th scope="row" class="govuk-summary-list__key">
+                                Support worker type
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                {% if data['supportWorkerType'] == 'other' %}
+                                {{data['typeNotShown']}}
+                                {% else %}
+                                {{data['supportWorkerType']}}
+                                {% endif %} 
+                            </td>
+                            {% if print != true %}
+
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                {% if (data['view-claim']) %}
+                                {% else %}
+                                <a href="support-worker-type">
+                                    Change
+                                    <span class="govuk-visually-hidden"> support worker type</span>
+                                </a>
+                                {% endif %}
+                            </td>
+                            {% endif %}
+
+                        </tr>
+
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
                                 Support worker or agency name
                             </th>
                             <td class="govuk-summary-list__value">

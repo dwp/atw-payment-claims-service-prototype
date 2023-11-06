@@ -20,8 +20,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
   router.post('/support-worker/support-worker-type', function (req, res) {
     const type = req.session.data['supportWorkerType']
 
-    if (type === 'Other') {
-      res.redirect(`/${urlPrefix}/support-worker/contact-dwp`)
+    if (type === 'other') {
+      res.redirect(`/${urlPrefix}/support-worker/before-you-continue`)
     } else {
       res.redirect(`/${urlPrefix}/support-worker/grant-information`)
     }
