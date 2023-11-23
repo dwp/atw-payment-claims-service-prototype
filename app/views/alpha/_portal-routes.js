@@ -77,7 +77,762 @@ module.exports = function (folderForViews, urlPrefix, router) {
       res.redirect(`/${urlPrefix}/portal-screens/multiple-claims-history`)
     } else if (employer === 'supportworker') {
       res.redirect(`/${urlPrefix}/portal-screens/claims-history`)
+    } else {
+      res.redirect(`/${urlPrefix}/portal-screens/claims-history`)
     }
+  })
+
+  router.post('/multiple-claims-history', function (req, res) {
+    const employer = req.session.data['journey-type']
+
+    if (!req.session.data.page){
+      req.session.data.page = 1
+    }
+
+    if (employer === 'supportworker') {
+      req.session.data['claimshistory'] = [
+        {
+          date: '1 November 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£150',
+          year: 2023
+        },
+        {
+          date: '1 October 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£155',
+          year: 2023
+        },
+        {
+          date: '2 September 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£150',
+          year: 2023
+        },
+        {
+          date: '1 August 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£150',
+          year: 2023
+        },
+        {
+          date: '1 July 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£150',
+          year: 2023
+        },
+        {
+          date: '1 June 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£150',
+          year: 2023
+        },
+        {
+          date: '1 May 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£150',
+          year: 2023
+        },
+        {
+          date: '1 April 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£150',
+          year: 2023
+        },
+        {
+          date: '1 March 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2023
+        },
+        {
+          date: '1 February 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2023
+        },
+        {
+          date: '1 January 2023',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2023
+        },
+        {
+          date: '1 December 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£80',
+          year: 2022
+        },
+        {
+          date: '1 November 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2022
+        },
+        {
+          date: '1 October 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2022
+        },
+        {
+          date: '1 September 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2022
+        },
+        {
+          date: '1 August 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2022
+        },
+        {
+          date: '1 July 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£120',
+          year: 2022
+        },
+        {
+          date: '1 June 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2022
+        },
+        {
+          date: '1 May 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£120',
+          year: 2022
+        },
+        {
+          date: '1 April 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2022
+        },
+        {
+          date: '1 March 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2022
+        },
+        {
+          date: '3 February 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2022
+        },
+        {
+          date: '12 January 2022',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2022
+        },
+        {
+          date: '1 December 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£85',
+          year: 2021
+        },
+        {
+          date: '1 November 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2021
+        },
+        {
+          date: '1 October 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2021
+        },
+        {
+          date: '1 September 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2021
+        },
+        {
+          date: '1 August 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£130',
+          year: 2021
+        },
+        {
+          date: '1 July 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2021
+        },
+        {
+          date: '1 June 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2021
+        },
+        {
+          date: '1 May 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2021
+        },
+        {
+          date: '1 April 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2021
+        },
+        {
+          date: '1 March 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2021
+        },
+        {
+          date: '1 February 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2021
+        },
+        {
+          date: '3 January 2021',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2021
+        },
+        {
+          date: '1 December 2020',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£65',
+          year: 2020
+        },
+        {
+          date: '1 November 2020',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2020
+        },
+        {
+          date: '1 October 2020',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2020
+        },
+        {
+          date: '1 September 2020',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2020
+        },
+        {
+          date: '1 August 2020',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2020
+        },
+        {
+          date: '1 July 2020',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2020
+        },
+        {
+          date: '1 June 2020',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2020
+        },
+        {
+          date: '1 May 2020',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2020
+        },
+        {
+          date: '1 April 2020',
+          type: 'BSL Interpreter',
+          person: 'Jane Smith',
+          cost: '£100',
+          year: 2020
+        }
+      ]
+    }
+
+    if (employer === 'traveltowork') {
+      req.session.data['claimshistory'] = [
+        {
+          date: '1 November 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£150',
+          page: 1
+        },
+        {
+          date: '1 October 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£155',
+          page: 1
+        },
+        {
+          date: '2 September 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£150',
+          page: 1
+        },
+        {
+          date: '1 August 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£150',
+          page: 1
+        },
+        {
+          date: '1 July 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£150',
+          page: 1
+        },
+        {
+          date: '1 June 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£150',
+          page: 1
+        },
+        {
+          date: '1 May 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£150',
+          page: 1
+        },
+        {
+          date: '1 April 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£150',
+          page: 1
+        },
+        {
+          date: '1 March 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 1
+        },
+        {
+          date: '1 February 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 1
+        },
+        {
+          date: '1 January 2023',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 2
+        },
+        {
+          date: '1 December 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£80',
+          page: 2
+        },
+        {
+          date: '1 November 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 2
+        },
+        {
+          date: '1 October 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 2
+        },
+        {
+          date: '1 September 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 2
+        },
+        {
+          date: '1 August 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 2
+        },
+        {
+          date: '1 July 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£120',
+          page: 2
+        },
+        {
+          date: '1 June 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 2
+        },
+        {
+          date: '1 May 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£120',
+          page: 2
+        },
+        {
+          date: '1 April 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 2
+        },
+        {
+          date: '1 March 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 3
+        },
+        {
+          date: '3 February 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 3
+        },
+        {
+          date: '12 January 2022',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 3
+        },
+        {
+          date: '1 December 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£85',
+          page: 3
+        },
+        {
+          date: '1 November 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 3
+        },
+        {
+          date: '1 October 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 3
+        },
+        {
+          date: '1 September 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 3
+        },
+        {
+          date: '1 August 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£130',
+          page: 3
+        },
+        {
+          date: '1 July 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 3
+        },
+        {
+          date: '1 June 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 3
+        },
+        {
+          date: '1 May 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 4
+        },
+        {
+          date: '1 April 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 4
+        },
+        {
+          date: '1 March 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 4
+        },
+        {
+          date: '1 February 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 4
+        },
+        {
+          date: '3 January 2021',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          year: 2021
+        },
+        {
+          date: '1 December 2020',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£65',
+          page: 4
+        },
+        {
+          date: '1 November 2020',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 4
+        },
+        {
+          date: '1 October 2020',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 4
+        },
+        {
+          date: '1 September 2020',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 4
+        },
+        {
+          date: '1 August 2020',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 4
+        },
+        {
+          date: '1 July 2020',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 4
+        },
+        {
+          date: '1 June 2020',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 5
+        },
+        {
+          date: '1 May 2020',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 5
+        },
+        {
+          date: '1 April 2020',
+          type: 'Taxi',
+          person: 'ABC Taxis',
+          cost: '£100',
+          page: 5
+        }
+      ]
+    }
+
+    if (employer === 'specialaidsandequipment') {
+      req.session.data['claimshistory'] = [
+        {
+          date: '1 November 2023',
+          equipment: 2,
+          person: 'EmployerCo',
+          cost: '£60',
+          short: 'Nov 23',
+          page: 1
+        },
+        {
+          date: '20 October 2023',
+          equipment: 2,
+          person: 'EmployerCo',
+          cost: '£30',
+          short: 'Oct 23',
+          page: 1
+        },
+        {
+          date: '19 October 2023',
+          equipment: 1,
+          person: 'EmployerCo',
+          cost: '£150',
+          short: 'Oct 23',
+          page: 1
+        },
+        {
+          date: '1 August 2023',
+          equipment: 1,
+          person: 'EmployerCo',
+          cost: '£10',
+          short: 'Aug 23',
+          page: 1
+        },
+        {
+          date: '5 January 2023',
+          equipment: 3,
+          person: 'EmployerCo',
+          cost: '£90',
+          short: 'Jan 23',
+          page: 1
+        },
+        {
+          date: '1 November 2022',
+          equipment: 1,
+          person: 'EmployerCo',
+          cost: '£130',
+          short: 'Nov 22',
+          page: 1
+        },
+        {
+          date: '29 October 2022',
+          equipment: 1,
+          person: 'EmployerCo',
+          cost: '£130',
+          short: 'Oct 22',
+          page: 1
+        },
+        {
+          date: '20 September 2022',
+          equipment: 1,
+          person: 'EmployerCo',
+          cost: '£10',
+          short: 'Sep 22',
+          page: 1
+        },
+        {
+          date: '1 August 2022',
+          equipment: 1,
+          person: 'EmployerCo',
+          cost: '£30',
+          short: 'Aug 22',
+          page: 1
+        },
+        {
+          date: '13 July 2022',
+          equipment: 1,
+          person: 'EmployerCo',
+          cost: '£120',
+          short: 'Jul 22',
+          page: 1
+        },
+        {
+          date: '1 June 2022',
+          equipment: 1,
+          person: 'EmployerCo',
+          cost: '£130',
+          short: 'Jun 22',
+          page: 2
+        },
+        {
+          date: '12 January 2022',
+          equipment: 3,
+          person: 'EmployerCo',
+          cost: '£55',
+          short: 'Jan 22',
+          page: 2
+        },
+        {
+          date: '1 December 2021',
+          equipment: 1,
+          person: 'EmployerCo',
+          cost: '£85',
+          short: 'Dec 21',
+          page: 2
+        },
+        {
+          date: '8 November 2021',
+          equipment: 2,
+          person: 'EmployerCo',
+          cost: '£130',
+          short: 'Nov 21',
+          page: 2
+        }
+      ]
+    }
+
+    res.redirect(`/${urlPrefix}/portal-screens/claims-history`)
   })
 
 
@@ -276,7 +1031,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
       }
       else if (claim == 3) {
-        req.session.data = 
+        req.session.data =
         {
           "journey-type": "adaptations",
           "multiple-employers": false,
