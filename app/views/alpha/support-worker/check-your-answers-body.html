@@ -42,6 +42,61 @@
         {% endif %}
         {% endif %}
 
+        {%if (data['sw-declaration']) %}
+
+        {% for month_data in data['month-list'] | sortBy('month') | sortBy('year') %}
+
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">Support in {{month_data.month | numberMonth}} {{month_data.year}}</h2>
+          </div>
+          <div class="govuk-summary-card__content">
+
+            <table class="govuk-summary-list govuk-!-margin-bottom-0">
+              <tbody class="govuk-summary-list">
+                {% for item in month_data.support | sortBy('day') %}
+
+                <tr class="govuk-summary-list__row">
+                  <th scope="row" class="govuk-summary-list__key">
+                    {{item.day | weekDay(month_data.month, month_data.year) }} {{month_data.month | numberMonth}}
+                  </th>
+                  <td class="govuk-summary-list__value">
+                    {% if item.support_hours %}
+                    {{item.support_hours}} {% if item.support_hours == 1 %} hour {% else %} hours {% endif %}
+                    {% if item.support_minutes %}
+                    and
+                    {{item.support_minutes}} {% if item.support_minutes == 1 %} minute {% else %} minutes {% endif %}
+                    {% endif %}
+
+                    {% elseif item.repeatsupport_hours %}
+                    {{item.repeatsupport_hours}} {% if item.repeatsupport_hours == 1 %} hour {% else %} hours {% endif
+                    %}
+                    {% if item.repeatsupport_minutes %}
+                    and
+                    {{item.repeatsupport_minutes}} {% if item.repeatsupport_minutes == 1 %} minute {% else %} minutes {%
+                    endif %}
+                    {% endif %}
+
+                    {% endif %}
+                  </td>
+                  
+                </tr>
+
+                {% else %}
+                <div class="govuk-inset-text">
+                  Tell us about the support you received to continue.
+                </div>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            
+          </div>
+        </div>
+
+        {% endfor %}
+
+        {% else %}
 
         <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
@@ -86,6 +141,7 @@
             </div>
         </div>
 
+        {% endif %}
 
         <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
