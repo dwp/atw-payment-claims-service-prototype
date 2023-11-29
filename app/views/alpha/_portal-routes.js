@@ -85,9 +85,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
   router.post('/multiple-claims-history', function (req, res) {
     const employer = req.session.data['journey-type']
 
-    if (!req.session.data.page){
-      req.session.data.page = 1
-    }
+    req.session.data.page = 1
+    
 
     if (employer === 'supportworker') {
       req.session.data['claimshistory'] = [
@@ -99,10 +98,24 @@ module.exports = function (folderForViews, urlPrefix, router) {
           year: 2023
         },
         {
+          date: '1 November 2023',
+          type: 'Support worker',
+          person: 'John Doe',
+          cost: '£50',
+          year: 2023
+        },
+        {
           date: '1 October 2023',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£155',
+          year: 2023
+        },
+        {
+          date: '1 October 2023',
+          type: 'Support worker',
+          person: 'John Doe',
+          cost: '£50',
           year: 2023
         },
         {
@@ -113,6 +126,13 @@ module.exports = function (folderForViews, urlPrefix, router) {
           year: 2023
         },
         {
+          date: '1 September 2023',
+          type: 'Support worker',
+          person: 'John Doe',
+          cost: '£50',
+          year: 2023
+        },
+        {
           date: '1 August 2023',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
@@ -120,10 +140,24 @@ module.exports = function (folderForViews, urlPrefix, router) {
           year: 2023
         },
         {
+          date: '1 August 2023',
+          type: 'Support worker',
+          person: 'John Doe',
+          cost: '£50',
+          year: 2023
+        },
+        {
           date: '1 July 2023',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
+          year: 2023
+        },
+        {
+          date: '1 July 2023',
+          type: 'Support worker',
+          person: 'John Doe',
+          cost: '£50',
           year: 2023
         },
         {
@@ -194,34 +228,6 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
-          year: 2022
-        },
-        {
-          date: '1 August 2022',
-          type: 'BSL Interpreter',
-          person: 'Jane Smith',
-          cost: '£130',
-          year: 2022
-        },
-        {
-          date: '1 July 2022',
-          type: 'BSL Interpreter',
-          person: 'Jane Smith',
-          cost: '£120',
-          year: 2022
-        },
-        {
-          date: '1 June 2022',
-          type: 'BSL Interpreter',
-          person: 'Jane Smith',
-          cost: '£130',
-          year: 2022
-        },
-        {
-          date: '1 May 2022',
-          type: 'BSL Interpreter',
-          person: 'Jane Smith',
-          cost: '£120',
           year: 2022
         },
         {

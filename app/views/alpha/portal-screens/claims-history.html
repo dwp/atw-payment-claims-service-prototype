@@ -38,6 +38,10 @@ improve it.'
 {% block content %}
 
 <style>
+  .table-date {
+    white-space: nowrap;
+  }
+
   .govuk-summary-card {
     margin-bottom: 20px;
     border: 1px solid #b1b4b6
@@ -262,7 +266,7 @@ improve it.'
           {% for claim in data.claimshistory %}
           {% if claim.year == 2023 %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{{claim.date}}</td>
+            <td class="govuk-table__header table-date">{{claim.date}}</td>
             <td class="govuk-table__cell">{{claim.type}}</td>
             <td class="govuk-table__cell">{{claim.person}}</td>
             <td class="govuk-table__cell">{{claim.cost}}</td>
@@ -294,7 +298,7 @@ improve it.'
           {% for claim in data.claimshistory %}
           {% if claim.year == 2022 %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{{claim.date}}</td>
+            <td class="govuk-table__header table-date">{{claim.date}}</td>
             <td class="govuk-table__cell">{{claim.type}}</td>
             <td class="govuk-table__cell">{{claim.person}}</td>
             <td class="govuk-table__cell">{{claim.cost}}</td>
@@ -326,7 +330,7 @@ improve it.'
           {% for claim in data.claimshistory %}
           {% if claim.year == 2021 %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{{claim.date}}</td>
+            <td class="govuk-table__header table-date">{{claim.date}}</td>
             <td class="govuk-table__cell">{{claim.type}}</td>
             <td class="govuk-table__cell">{{claim.person}}</td>
             <td class="govuk-table__cell">{{claim.cost}}</td>
@@ -358,7 +362,7 @@ improve it.'
           {% for claim in data.claimshistory %}
           {% if claim.year == 2020 %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{{claim.date}}</td>
+            <td class="govuk-table__header table-date">{{claim.date}}</td>
             <td class="govuk-table__cell">{{claim.type}}</td>
             <td class="govuk-table__cell">{{claim.person}}</td>
             <td class="govuk-table__cell">{{claim.cost}}</td>
@@ -445,7 +449,7 @@ improve it.'
             
             {% if claim.page == data.page %}
             <tr class="govuk-summary-list__row">
-              <th scope="row" class="govuk-summary-list__key">
+              <th scope="row" class="govuk-summary-list__key table-date">
                 {{claim.date}}
               </th>
               <td class="govuk-summary-list__value">
@@ -647,65 +651,6 @@ improve it.'
 
     {% if (data['journey-type'] == "specialaidsandequipment") %}
 
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Specialist equipment claims</h2>
-      </div>
-      <div class="govuk-summary-card__content">
-
-        <table class="govuk-summary-list govuk-!-margin-bottom-0">
-          <tbody class="govuk-summary-list">
-            <tr class="govuk-summary-list__row">
-              <th scope="col" class="govuk-summary-list__key">
-                Date submitted
-              </th>
-              <th scope="col" class="govuk-summary-list__key">
-                Equipment
-              </th>
-              <th scope="col" class="govuk-summary-list__key">
-                Person or company paid
-              </th>
-              <th scope="col" class="govuk-summary-list__key">
-                Cost
-              </th>
-              <th scope="col" class="govuk-summary-list__key">
-
-              </th>
-            </tr>
-
-            {% for claim in data.claimshistory %}
-            
-            {% if claim.page == data.page %}
-            <tr class="govuk-summary-list__row">
-              <th scope="row" class="govuk-summary-list__key">
-                {{claim.date}}
-              </th>
-              <td class="govuk-summary-list__value">
-                {{claim.equipment}}
-              </td>
-              <td class="govuk-summary-list__value">
-                {{claim.person}}
-              </td>
-              <td class="govuk-summary-list__value">
-                {{claim.cost}}
-              </td>
-              <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link"
-                  href="hours-for-day-change?month={{month_data.month}}&year={{month_data.year}}">
-                  View claim
-                </a>
-              </td>
-            </tr>
-            {% endif %}
-            {% endfor %}
-
-          </tbody>
-        </table>
-
-
-      </div>
-    </div>
-
     {% from "govuk/components/pagination/macro.njk" import govukPagination %}
 
     {% if data.page == 1 %}
@@ -749,7 +694,68 @@ improve it.'
 
     {% endif %}
 
-    {% endif %}
+
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Specialist equipment claims</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+
+        <table class="govuk-summary-list govuk-!-margin-bottom-0">
+          <tbody class="govuk-summary-list">
+            <tr class="govuk-summary-list__row">
+              <th scope="col" class="govuk-summary-list__key">
+                Date submitted
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Equipment
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Person or company paid
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Cost
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+
+              </th>
+            </tr>
+
+            {% for claim in data.claimshistory %}
+            
+            {% if claim.page == data.page %}
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key table-date">
+                {{claim.date}}
+              </th>
+              <td class="govuk-summary-list__value">
+                {{claim.equipment}}
+              </td>
+              <td class="govuk-summary-list__value">
+                {{claim.person}}
+              </td>
+              <td class="govuk-summary-list__value">
+                {{claim.cost}}
+              </td>
+              <td class="govuk-summary-list__actions">
+                <a id="{{item.day}}-change" class="govuk-link"
+                  href="hours-for-day-change?month={{month_data.month}}&year={{month_data.year}}">
+                  View claim
+                </a>
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+
+        {% endif %}
 
 
     {% if (data['journey-type'] == "adaptations") %}
