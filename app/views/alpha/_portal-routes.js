@@ -924,6 +924,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
   router.get('/portal-screens/view-claim', function (req, res) {
     const type = req.query.type
+    const journeytype = req.session.data['journey-type']
+    const multiple = req.session.data['multiple-awards']
     const claim = req.query.claim
 
     if (type === 'adaptations') {
@@ -931,9 +933,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
       if (claim == 1) {
         req.session.data =
         {
-          "journey-type": "adaptations",
-          "multiple-employers": false,
-          "multiple-awards": false,
+          "journey-type": journeytype,
+          "multiple-awards": multiple,
           "adaptation-to-vehicle": "Yes",
           adaptation_name: "",
           key: null,
@@ -992,9 +993,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
       else if (claim == 2) {
         req.session.data =
         {
-          "journey-type": "adaptations",
-          "multiple-employers": false,
-          "multiple-awards": false,
+          "journey-type": journeytype,
+          "multiple-awards": multiple,
           "adaptation-to-vehicle": "Yes",
           adaptation_name: "",
           key: null,
@@ -1039,9 +1039,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
       else if (claim == 3) {
         req.session.data =
         {
-          "journey-type": "adaptations",
-          "multiple-employers": false,
-          "multiple-awards": false,
+          "journey-type": journeytype,
+          "multiple-awards": multiple,
           "adaptation-to-vehicle": "Yes",
           adaptation_name: "Manual to automatic conversion",
           key: 0,
@@ -1097,12 +1096,10 @@ module.exports = function (folderForViews, urlPrefix, router) {
       if (claim == 1) {
         req.session.data =
         {
-          type: "supportworker",
           claim: "1",
           "view-claim": true,
-          "journey-type": "supportworker",
-          "multiple-employers": false,
-          "multiple-awards": false,
+          "journey-type": journeytype,
+          "multiple-awards": multiple,
           "answers-checked-sw": "true",
           "support-for-workplace": "Yes",
           providor: "John Doe",
@@ -1402,9 +1399,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
       else if (claim == 2) {
         req.session.data =
         {
-          "journey-type": "supportworker",
-          "multiple-employers": false,
-          "multiple-awards": false,
+          "journey-type": journeytype,
+          "multiple-awards": multiple,
           "support-for-workplace": "Yes",
           providor: "Jane Green",
           "support-month": "5",
@@ -1655,9 +1651,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
       else if (claim == 3) {
         req.session.data =
         {
-          "journey-type": "supportworker",
-          "multiple-employers": false,
-          "multiple-awards": false,
+          "journey-type": journeytype,
+          "multiple-awards": multiple,
           "support-for-workplace": "Yes",
           providor: "John Smith",
           "support-month": "5",
