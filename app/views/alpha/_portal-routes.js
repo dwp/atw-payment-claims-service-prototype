@@ -91,315 +91,315 @@ module.exports = function (folderForViews, urlPrefix, router) {
     if (employer === 'supportworker') {
       req.session.data['claimshistory'] = [
         {
-          date: '1 November 2023',
+          date: '1 November',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
           year: 2023
         },
         {
-          date: '1 November 2023',
+          date: '1 November',
           type: 'Support worker',
           person: 'John Doe',
           cost: '£50',
           year: 2023
         },
         {
-          date: '1 October 2023',
+          date: '1 October',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£155',
           year: 2023
         },
         {
-          date: '1 October 2023',
+          date: '1 October',
           type: 'Support worker',
           person: 'John Doe',
           cost: '£50',
           year: 2023
         },
         {
-          date: '2 September 2023',
+          date: '2 September',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
           year: 2023
         },
         {
-          date: '1 September 2023',
+          date: '1 September',
           type: 'Support worker',
           person: 'John Doe',
           cost: '£50',
           year: 2023
         },
         {
-          date: '1 August 2023',
+          date: '1 August',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
           year: 2023
         },
         {
-          date: '1 August 2023',
+          date: '1 August',
           type: 'Support worker',
           person: 'John Doe',
           cost: '£50',
           year: 2023
         },
         {
-          date: '1 July 2023',
+          date: '1 July',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
           year: 2023
         },
         {
-          date: '1 July 2023',
+          date: '1 July',
           type: 'Support worker',
           person: 'John Doe',
           cost: '£50',
           year: 2023
         },
         {
-          date: '1 June 2023',
+          date: '1 June',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
           year: 2023
         },
         {
-          date: '1 May 2023',
+          date: '1 May',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
           year: 2023
         },
         {
-          date: '1 April 2023',
+          date: '1 April',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
           year: 2023
         },
         {
-          date: '1 March 2023',
+          date: '1 March',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2023
         },
         {
-          date: '1 February 2023',
+          date: '1 February',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2023
         },
         {
-          date: '1 January 2023',
+          date: '1 January',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2023
         },
         {
-          date: '1 December 2022',
+          date: '1 December',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£80',
           year: 2022
         },
         {
-          date: '1 November 2022',
+          date: '1 November',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2022
         },
         {
-          date: '1 October 2022',
+          date: '1 October',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2022
         },
         {
-          date: '1 September 2022',
+          date: '1 September',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2022
         },
         {
-          date: '1 April 2022',
+          date: '1 April',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2022
         },
         {
-          date: '1 March 2022',
+          date: '1 March',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2022
         },
         {
-          date: '3 February 2022',
+          date: '3 February',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2022
         },
         {
-          date: '12 January 2022',
+          date: '12 January',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2022
         },
         {
-          date: '1 December 2021',
+          date: '1 December',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£85',
           year: 2021
         },
         {
-          date: '1 November 2021',
+          date: '1 November',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2021
         },
         {
-          date: '1 October 2021',
+          date: '1 October',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2021
         },
         {
-          date: '1 September 2021',
+          date: '1 September',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2021
         },
         {
-          date: '1 August 2021',
+          date: '1 August',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
           year: 2021
         },
         {
-          date: '1 July 2021',
+          date: '1 July',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2021
         },
         {
-          date: '1 June 2021',
+          date: '1 June',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2021
         },
         {
-          date: '1 May 2021',
+          date: '1 May',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2021
         },
         {
-          date: '1 April 2021',
+          date: '1 April',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2021
         },
         {
-          date: '1 March 2021',
+          date: '1 March',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2021
         },
         {
-          date: '1 February 2021',
+          date: '1 February',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2021
         },
         {
-          date: '3 January 2021',
+          date: '3 January',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2021
         },
         {
-          date: '1 December 2020',
+          date: '1 December',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£65',
           year: 2020
         },
         {
-          date: '1 November 2020',
+          date: '1 November',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2020
         },
         {
-          date: '1 October 2020',
+          date: '1 October',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2020
         },
         {
-          date: '1 September 2020',
+          date: '1 September',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2020
         },
         {
-          date: '1 August 2020',
+          date: '1 August',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2020
         },
         {
-          date: '1 July 2020',
+          date: '1 July',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2020
         },
         {
-          date: '1 June 2020',
+          date: '1 June',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2020
         },
         {
-          date: '1 May 2020',
+          date: '1 May',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
           year: 2020
         },
         {
-          date: '1 April 2020',
+          date: '1 April',
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
@@ -412,6 +412,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
       req.session.data['claimshistory'] = [
         {
           date: '1 November 2023',
+          paid: '18 December 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
@@ -419,6 +420,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 October 2023',
+          paid: '16 December 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£155',
@@ -426,6 +428,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '2 September 2023',
+          paid: '4 November 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
@@ -433,6 +436,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 August 2023',
+          paid: '1 November 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
@@ -440,6 +444,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 July 2023',
+          paid: '2 September 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
@@ -447,6 +452,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 June 2023',
+          paid: '28 August 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
@@ -454,6 +460,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 May 2023',
+          paid: '28 August 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
@@ -461,6 +468,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 April 2023',
+          paid: '21 August 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
@@ -468,6 +476,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 March 2023',
+          paid: '5 July 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -475,6 +484,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 February 2023',
+          paid: '1 June 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -482,6 +492,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 January 2023',
+          paid: '10 May 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -489,6 +500,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 December 2022',
+          paid: '1 May 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£80',
@@ -496,6 +508,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 November 2022',
+          paid: '1 February 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -503,6 +516,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 October 2022',
+          paid: '25 January 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -510,6 +524,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 September 2022',
+          paid: '21 January 2023',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -517,6 +532,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 August 2022',
+          paid: '1 December 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -524,6 +540,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 July 2022',
+          paid: '1 October 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£120',
@@ -531,6 +548,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 June 2022',
+          paid: '1 September 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -538,6 +556,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 May 2022',
+          paid: '1 August 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£120',
@@ -545,6 +564,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 April 2022',
+          paid: '1 July 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -552,6 +572,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 March 2022',
+          paid: '1 June 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -559,6 +580,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '3 February 2022',
+          paid: '1 May 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -566,6 +588,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '12 January 2022',
+          paid: '1 April 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -573,6 +596,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 December 2021',
+          paid: '1 March 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£85',
@@ -580,6 +604,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 November 2021',
+          paid: '19 February 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -587,6 +612,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 October 2021',
+          paid: '11 February 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -594,6 +620,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 September 2021',
+          paid: '1 February 2022',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -601,6 +628,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 August 2021',
+          paid: '1 December 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
@@ -608,6 +636,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 July 2021',
+          paid: '1 November 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -615,6 +644,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 June 2021',
+          paid: '1 October 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -622,6 +652,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 May 2021',
+          paid: '1 September 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -629,6 +660,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 April 2021',
+          paid: '1 August 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -636,6 +668,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 March 2021',
+          paid: '1 July 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -643,6 +676,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 February 2021',
+          paid: '1 June 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -650,6 +684,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '3 January 2021',
+          paid: '1 May 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -657,6 +692,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 December 2020',
+          paid: '1 April 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£65',
@@ -664,6 +700,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 November 2020',
+          paid: '1 March 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -671,6 +708,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 October 2020',
+          paid: '1 February 2021',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -678,6 +716,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 September 2020',
+          paid: '1 December 2020',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -685,6 +724,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 August 2020',
+          paid: '1 November 2020',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -692,6 +732,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 July 2020',
+          paid: '1 October 2020',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -699,6 +740,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 June 2020',
+          paid: '1 September 2020',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -706,6 +748,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 May 2020',
+          paid: '1 August 2020',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
@@ -713,6 +756,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         },
         {
           date: '1 April 2020',
+          paid: '17 July 2020',
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',

@@ -19,7 +19,7 @@ improve it.'
       <a class="govuk-breadcrumbs__link" href="../portal.html">Home</a>
     </li>
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="open-claims.html">Your claims</a>
+      <a class="govuk-breadcrumbs__link" href="open-claims.html">Open claims</a>
     </li>
   </ol>
 </div>
@@ -220,22 +220,22 @@ improve it.'
       <fieldset class="govuk-fieldset" aria-describedby="claims-history-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
-            Your claims
+            Open claims
           </h1>
         </legend>
 
         <p>
-          Claims you’ve submitted.
+          Claims you've submitted that we've not paid yet.
         </p>
         <p>
           When we’ve paid a claim, it will show in your 
           {% if ((data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true")) %}
           <a href="multiple-claims-history">
-            payment history.
+            paid claims.
           </a>
           {% else %}
           <a href="claims-history">
-            payment history.
+            paid claims.
           </a>
           {% endif %}
         </p>
@@ -257,7 +257,7 @@ improve it.'
                 Date submitted
               </th>
               <th scope="col" class="govuk-summary-list__key">
-                Support worker or agency name
+                Support type
               </th>
               <th scope="col" class="govuk-summary-list__key">
                 Person or company we need to pay
@@ -271,7 +271,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                3 July 2023
+                3 December 2023
               </th>
               <td class="govuk-summary-list__value">
                 John Doe
@@ -290,7 +290,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                2 July 2023
+                2 December 2023
               </th>
               <td class="govuk-summary-list__value">
                 Jane Green
@@ -309,7 +309,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                4 June 2023
+                4 November 2023
               </th>
               <td class="govuk-summary-list__value">
                 John Doe
@@ -364,7 +364,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                3 July 2023
+                3 December 2023
               </th>
               <td class="govuk-summary-list__value">
                 Taxi
@@ -384,7 +384,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                2 July 2023
+                2 December 2023
               </th>
               <td class="govuk-summary-list__value">
                 Lift
@@ -404,7 +404,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                4 June 2023
+                4 November 2023
               </th>
               <td class="govuk-summary-list__value">
                 Taxi
@@ -461,7 +461,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                3 July 2023
+                3 December 2023
               </th>
               <td class="govuk-summary-list__value">
                 2
@@ -481,7 +481,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                2 July 2023
+                2 December 2023
               </th>
               <td class="govuk-summary-list__value">
                 1
@@ -501,7 +501,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                4 June 2023
+                4 November 2023
               </th>
               <td class="govuk-summary-list__value">
                 4
@@ -558,7 +558,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                3 July 2023
+                3 December 2023
               </th>
               <td class="govuk-summary-list__value">
                 3
@@ -578,7 +578,7 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                4 June 2023
+                4 November 2023
               </th>
               <td class="govuk-summary-list__value">
                 1
@@ -604,9 +604,6 @@ improve it.'
     </div>
 
     {% endif %}
-
-
-    <p>You can <a href="claims-history-timeline">find out what stages a claim goes through</a> after you’ve sent it.</p>
 
   </div>
 </div>

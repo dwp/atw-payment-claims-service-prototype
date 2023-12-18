@@ -29,7 +29,7 @@ improve it.'
     </li>
     {% endif %}
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="claims-history.html">Payment history</a>
+      <a class="govuk-breadcrumbs__link" href="claims-history.html">Paid claims</a>
     </li>
   </ol>
 </div>
@@ -218,6 +218,20 @@ improve it.'
     border-bottom: none
   }
 
+  tr td:last-child {
+    width: 1% !important; 
+    white-space: nowrap !important;
+  }
+
+  th {
+    width: auto !important; 
+  }
+
+  tbody {
+    width: auto !important;
+  }
+
+
 </style>
 
 
@@ -229,7 +243,7 @@ improve it.'
       <fieldset class="govuk-fieldset" aria-describedby="claims-history-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
-            Payment history
+            Paid claims
           </h1>
         </legend>
 
@@ -260,11 +274,12 @@ improve it.'
     {% if (data['journey-type'] == "supportworker") %}
 
     {% set 2023Html %}
+    <h2 class="govuk-heading-m">Claims submitted in 2023</h2>
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Date submitted</th>
-            <th scope="col" class="govuk-table__header">Support worker or agency name</th>
+            <th scope="col" class="govuk-table__header">Support type</th>
             <th scope="col" class="govuk-table__header">Person or company paid</th>
             <th scope="col" class="govuk-table__header">Cost</th>
             <th scope="col" class="govuk-table__header"></th>
@@ -274,7 +289,10 @@ improve it.'
           {% for claim in data.claimshistory %}
           {% if claim.year == 2023 %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__header table-date">{{claim.date}}</td>
+            <td class="govuk-table__header">
+              {{claim.date}}
+              <span class="govuk-visually-hidden">{{claim.year}}</span>
+            </td>
             <td class="govuk-table__cell">{{claim.type}}</td>
             <td class="govuk-table__cell">{{claim.person}}</td>
             <td class="govuk-table__cell">{{claim.cost}}</td>
@@ -292,11 +310,12 @@ improve it.'
     {% endset -%}
 
     {% set 2022Html %}
+    <h2 class="govuk-heading-m">Claims submitted in 2022</h2>
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Date submitted</th>
-            <th scope="col" class="govuk-table__header">Support worker or agency name</th>
+            <th scope="col" class="govuk-table__header">Support type</th>
             <th scope="col" class="govuk-table__header">Person or company paid</th>
             <th scope="col" class="govuk-table__header">Cost</th>
             <th scope="col" class="govuk-table__header"></th>
@@ -306,7 +325,10 @@ improve it.'
           {% for claim in data.claimshistory %}
           {% if claim.year == 2022 %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__header table-date">{{claim.date}}</td>
+            <td class="govuk-table__header">
+              {{claim.date}}
+              <span class="govuk-visually-hidden">{{claim.year}}</span>
+            </td>
             <td class="govuk-table__cell">{{claim.type}}</td>
             <td class="govuk-table__cell">{{claim.person}}</td>
             <td class="govuk-table__cell">{{claim.cost}}</td>
@@ -324,11 +346,12 @@ improve it.'
     {% endset -%}
 
     {% set 2021Html %}
+    <h2 class="govuk-heading-m">Claims submitted in 2021</h2>
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Date submitted</th>
-            <th scope="col" class="govuk-table__header">Support worker or agency name</th>
+            <th scope="col" class="govuk-table__header">Support type</th>
             <th scope="col" class="govuk-table__header">Person or company paid</th>
             <th scope="col" class="govuk-table__header">Cost</th>
             <th scope="col" class="govuk-table__header"></th>
@@ -338,7 +361,10 @@ improve it.'
           {% for claim in data.claimshistory %}
           {% if claim.year == 2021 %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__header table-date">{{claim.date}}</td>
+            <td class="govuk-table__header">
+              {{claim.date}}
+              <span class="govuk-visually-hidden">{{claim.year}}</span>
+            </td>
             <td class="govuk-table__cell">{{claim.type}}</td>
             <td class="govuk-table__cell">{{claim.person}}</td>
             <td class="govuk-table__cell">{{claim.cost}}</td>
@@ -356,11 +382,12 @@ improve it.'
     {% endset -%}
 
     {% set 2020Html %}
+    <h2 class="govuk-heading-m">Claims submitted in 2020</h2>
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Date submitted</th>
-            <th scope="col" class="govuk-table__header">Support worker or agency name</th>
+            <th scope="col" class="govuk-table__header">Support type</th>
             <th scope="col" class="govuk-table__header">Person or company paid</th>
             <th scope="col" class="govuk-table__header">Cost</th>
             <th scope="col" class="govuk-table__header"></th>
@@ -370,7 +397,10 @@ improve it.'
           {% for claim in data.claimshistory %}
           {% if claim.year == 2020 %}
           <tr class="govuk-table__row">
-            <td class="govuk-table__header table-date">{{claim.date}}</td>
+            <td class="govuk-table__header">
+              {{claim.date}}
+              <span class="govuk-visually-hidden">{{claim.year}}</span>
+            </td>
             <td class="govuk-table__cell">{{claim.type}}</td>
             <td class="govuk-table__cell">{{claim.person}}</td>
             <td class="govuk-table__cell">{{claim.cost}}</td>
@@ -433,14 +463,15 @@ improve it.'
       </div>
       <div class="govuk-summary-card__content">
 
-        <table class="govuk-summary-list govuk-!-margin-bottom-0">
+        <table class="govuk-!-margin-bottom-0">
           <tbody class="govuk-summary-list">
+            
             <tr class="govuk-summary-list__row">
               <th scope="col" class="govuk-summary-list__key">
                 Date submitted
               </th>
               <th scope="col" class="govuk-summary-list__key">
-                Type of travel
+                Date paid
               </th>
               <th scope="col" class="govuk-summary-list__key">
                 Person or company paid
@@ -449,7 +480,7 @@ improve it.'
                 Cost
               </th>
               <th scope="col" class="govuk-summary-list__key">
-
+            
               </th>
             </tr>
 
@@ -457,11 +488,11 @@ improve it.'
             
             {% if claim.page == data.page %}
             <tr class="govuk-summary-list__row">
-              <th scope="row" class="govuk-summary-list__key table-date">
+              <th scope="row" class="govuk-summary-list__key">
                 {{claim.date}}
               </th>
               <td class="govuk-summary-list__value">
-                {{claim.type}}
+                {{claim.paid}}
               </td>
               <td class="govuk-summary-list__value">
                 {{claim.person}}
@@ -734,7 +765,7 @@ improve it.'
             
             {% if claim.page == data.page %}
             <tr class="govuk-summary-list__row">
-              <th scope="row" class="govuk-summary-list__key table-date">
+              <th scope="row" class="govuk-summary-list__key">
                 {{claim.date}}
               </th>
               <td class="govuk-summary-list__value">
