@@ -1000,8 +1000,20 @@ module.exports = function (folderForViews, urlPrefix, router) {
     } else if (journeytype === 'supportworker' && checked) {
       res.redirect(`/${urlPrefix}/support-worker/check-your-answers`)
     } else if (journeytype === 'supportworker') {
-      res.redirect(`/${urlPrefix}/support-worker/providing-evidence`)
+      res.redirect(`/${urlPrefix}/support-worker/additional-cost-types`)
     }
+  })
+
+  router.post('/support-worker/additional-cost-types', function (req, res) {
+    const additionalCostTypes = req.session.data['additional-cost-types']
+
+    res.redirect(`/${urlPrefix}/support-worker/claim-additional-costs`)
+  })
+
+  router.post('/support-worker/claim-additional-costs', function (req, res) {
+    const change = req.session.data['change-cost']
+
+    res.redirect(`/${urlPrefix}/support-worker/providing-evidence`)
   })
 
   router.post('/support-worker/change-cost-answer', function (req, res) {
