@@ -6,6 +6,15 @@ module.exports = function (folderForViews, urlPrefix, router) {
     res.render(`./${folderForViews}/travel-to-work/start-a-claim`)
   })
 
+  router.get('/travel-to-work/travel-to-work', function (req, res) {
+    if (req.session.data['multiple-ttw']){
+      res.redirect(`/${urlPrefix}/travel-to-work/start-a-claim-multiple`)
+    }
+    else{
+      res.render(`./${folderForViews}/travel-to-work/travel-to-work`)
+    }
+  })
+
   router.post('/travel-to-work/travel-to-work-answers', function (req, res) {
     const aids = req.session.data['travel-to-work']
 
@@ -14,6 +23,12 @@ module.exports = function (folderForViews, urlPrefix, router) {
     } else if (aids === 'No') {
       res.redirect(`/${urlPrefix}/travel-to-work/contact-dwp`)
     }
+  })
+
+  router.post('/travel-to-work/start-a-claim-multiple', function (req, res) {
+    const claim = req.session.data['journey-type']
+
+    res.redirect(`/${urlPrefix}/travel-to-work/grant-information`)
   })
 
   router.post('/travel-to-work/transport-option-answer-preview', function (req, res) {

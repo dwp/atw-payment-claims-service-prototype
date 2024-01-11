@@ -1,6 +1,13 @@
 module.exports = function (folderForViews, urlPrefix, router) {
 
   router.post('/start-journey', function (req, res) {
+    if (req.session.data['journey-type'] == "traveltoworkmultiple") {
+      req.session.data['journey-type'] = "traveltowork"
+      req.session.data['multiple-ttw'] = true
+    }
+    else {
+      req.session.data['multiple-ttw'] = false
+    }
     if (req.session.data['journey-type'] == "multipleawards") {
       req.session.data['multiple-awards'] = true
       req.session.data['multiple-employers'] = false
