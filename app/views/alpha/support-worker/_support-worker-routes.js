@@ -1007,7 +1007,13 @@ module.exports = function (folderForViews, urlPrefix, router) {
   router.post('/support-worker/additional-cost-types', function (req, res) {
     const additionalCostTypes = req.session.data['additional-cost-types']
 
-    res.redirect(`/${urlPrefix}/support-worker/claim-additional-costs`)
+    if (additionalCostTypes == 'none'){
+      res.redirect(`/${urlPrefix}/support-worker/providing-evidence`)
+    }
+    else {
+      res.redirect(`/${urlPrefix}/support-worker/claim-additional-costs`)
+    }
+
   })
 
   router.post('/support-worker/claim-additional-costs', function (req, res) {
