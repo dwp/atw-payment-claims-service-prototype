@@ -199,7 +199,7 @@
             </div>
         </div>
 
-        {% if (data['additional-cost-types'] != 'none') %}
+        {% if ((data['additional-cost-types'] != 'none') and (data['claim-additional-costs'] == 'yes') and (data['additional-costs-journey'])) %}
 
         <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
