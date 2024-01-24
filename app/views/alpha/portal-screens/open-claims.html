@@ -228,7 +228,7 @@ improve it.'
           Claims you've submitted that we've not paid yet.
         </p>
         <p>
-          When we’ve paid a claim, it will show in your 
+          When we’ve paid a claim, it will show in your
           {% if ((data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true")) %}
           <a href="multiple-claims-history">
             paid claims.
@@ -243,14 +243,15 @@ improve it.'
       </fieldset>
     </div>
 
-    {% if (data['journey-type'] == "supportworker") or (data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true") %}
+    {% if (data['journey-type'] == "supportworker") or (data['journey-type'] == "multipleawards") or
+    (data['multiple-awards'] == "true") %}
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Support worker claims</h2>
+        <h2 class="govuk-summary-card__title">Support worker claims waiting for countersign</h2>
       </div>
       <div class="govuk-summary-card__content">
 
-        <table class="govuk-summary-list govuk-!-margin-bottom-0">
+        <table class="govuk-table govuk-!-margin-bottom-0">
           <tbody class="govuk-summary-list">
             <tr class="govuk-summary-list__row">
               <th scope="col" class="govuk-summary-list__key">
@@ -271,10 +272,11 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                3 December 2023
+                20 January
+                <span class="govuk-visually-hidden">2024</span>
               </th>
               <td class="govuk-summary-list__value">
-                John Doe
+                BSL Intepreter
               </td>
               <td class="govuk-summary-list__value">
                 John Doe
@@ -284,45 +286,90 @@ improve it.'
               </td>
               <td class="govuk-summary-list__actions">
                 <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
-                  View claim<span class="govuk-visually-hidden"> for 3 July 2023</span>
+                  View claim<span class="govuk-visually-hidden"> for 20 January 2024</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+    <div class="govuk-summary-card">
+
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Support worker claims waiting for payment</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+
+        <table class="govuk-summary-list govuk-!-margin-bottom-0">
+          <tbody class="govuk-summary-list">
+            <tr class="govuk-summary-list__row">
+              <th scope="col" class="govuk-summary-list__key">
+                Date submitted
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Expected payment date
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Support type
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Person or company we need to pay
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Cost
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+
+              </th>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                2 January
+                <span class="govuk-visually-hidden">2024</span>
+              </th>
+              <th scope="row" class="govuk-summary-list__key">
+                21 January
+                <span class="govuk-visually-hidden">2024</span>
+              </th>
+              <td class="govuk-summary-list__value">
+                Support worker
+              </td>
+              <td class="govuk-summary-list__value">
+                Jane Smith
+              </td>
+              <td class="govuk-summary-list__value">
+                £1450
+              </td>
+              <td class="govuk-summary-list__actions">
+                <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=2">
+                  View claim<span class="govuk-visually-hidden"> for 2 January 2024</span>
                 </a>
               </td>
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                2 December 2023
+                3 January
+                <span class="govuk-visually-hidden">2024</span>
+              </th>
+              <th scope="row" class="govuk-summary-list__key">
+                21 January
+                <span class="govuk-visually-hidden">2024</span>
               </th>
               <td class="govuk-summary-list__value">
-                Jane Green
+                BSL Intepreter
               </td>
               <td class="govuk-summary-list__value">
-                Jane Green
+                John Doe
               </td>
               <td class="govuk-summary-list__value">
                 £980
               </td>
               <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=2">
-                  View claim<span class="govuk-visually-hidden"> for 2 July 2023</span>
-                </a>
-              </td>
-            </tr>
-            <tr class="govuk-summary-list__row">
-              <th scope="row" class="govuk-summary-list__key">
-                4 November 2023
-              </th>
-              <td class="govuk-summary-list__value">
-                John Doe
-              </td>
-              <td class="govuk-summary-list__value">
-                John Doe
-              </td>
-              <td class="govuk-summary-list__value">
-                £1600
-              </td>
-              <td class="govuk-summary-list__actions">
                 <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=3">
-                  View claim<span class="govuk-visually-hidden"> for 4 June 2023</span>
+                  View claim<span class="govuk-visually-hidden"> for 3 January 2024</span>
                 </a>
               </td>
             </tr>
@@ -335,7 +382,8 @@ improve it.'
 
     {% endif %}
 
-    {% if (data['journey-type'] == "traveltowork") or (data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true") %}
+    {% if (data['journey-type'] == "traveltowork") or (data['journey-type'] == "multipleawards") or
+    (data['multiple-awards'] == "true") %}
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
@@ -364,7 +412,8 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                3 December 2023
+                3 December
+                <span class="govuk-visually-hidden">2023</span>
               </th>
               <td class="govuk-summary-list__value">
                 Taxi
@@ -376,15 +425,15 @@ improve it.'
                 £100
               </td>
               <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link"
-                  href="#">
+                <a id="{{item.day}}-change" class="govuk-link" href="#">
                   View claim
                 </a>
               </td>
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                2 December 2023
+                2 December
+                <span class="govuk-visually-hidden">2023</span>
               </th>
               <td class="govuk-summary-list__value">
                 Lift
@@ -396,15 +445,15 @@ improve it.'
                 £100
               </td>
               <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link"
-                href="#">
-                View claim
+                <a id="{{item.day}}-change" class="govuk-link" href="#">
+                  View claim
                 </a>
               </td>
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                4 November 2023
+                4 November
+                <span class="govuk-visually-hidden">2023</span>
               </th>
               <td class="govuk-summary-list__value">
                 Taxi
@@ -416,9 +465,8 @@ improve it.'
                 £100
               </td>
               <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link"
-                href="#">
-                View claim
+                <a id="{{item.day}}-change" class="govuk-link" href="#">
+                  View claim
                 </a>
               </td>
             </tr>
@@ -432,7 +480,8 @@ improve it.'
     {% endif %}
 
 
-    {% if (data['journey-type'] == "specialaidsandequipment") or (data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true") %}
+    {% if (data['journey-type'] == "specialaidsandequipment") or (data['journey-type'] == "multipleawards") or
+    (data['multiple-awards'] == "true") %}
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
@@ -461,7 +510,8 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                3 December 2023
+                3 December
+                <span class="govuk-visually-hidden">2023</span>
               </th>
               <td class="govuk-summary-list__value">
                 2
@@ -473,15 +523,15 @@ improve it.'
                 £100
               </td>
               <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link"
-                href="#">
-                View claim
+                <a id="{{item.day}}-change" class="govuk-link" href="#">
+                  View claim
                 </a>
               </td>
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                2 December 2023
+                2 December
+                <span class="govuk-visually-hidden">2023</span>
               </th>
               <td class="govuk-summary-list__value">
                 1
@@ -493,15 +543,15 @@ improve it.'
                 £100
               </td>
               <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link"
-                href="#">
-                View claim
+                <a id="{{item.day}}-change" class="govuk-link" href="#">
+                  View claim
                 </a>
               </td>
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                4 November 2023
+                4 November
+                <span class="govuk-visually-hidden">2023</span>
               </th>
               <td class="govuk-summary-list__value">
                 4
@@ -513,9 +563,8 @@ improve it.'
                 £100
               </td>
               <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link"
-                href="#">
-                View claim
+                <a id="{{item.day}}-change" class="govuk-link" href="#">
+                  View claim
                 </a>
               </td>
             </tr>
@@ -529,7 +578,8 @@ improve it.'
     {% endif %}
 
 
-    {% if (data['journey-type'] == "adaptations") or (data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true") %}
+    {% if (data['journey-type'] == "adaptations") or (data['journey-type'] == "multipleawards") or
+    (data['multiple-awards'] == "true") %}
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
@@ -558,7 +608,8 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                3 December 2023
+                3 December
+                <span class="govuk-visually-hidden">2023</span>
               </th>
               <td class="govuk-summary-list__value">
                 3
@@ -570,15 +621,15 @@ improve it.'
                 £850
               </td>
               <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link"
-                href="#">
-                View claim
+                <a id="{{item.day}}-change" class="govuk-link" href="#">
+                  View claim
                 </a>
               </td>
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                4 November 2023
+                4 November
+                <span class="govuk-visually-hidden">2023</span>
               </th>
               <td class="govuk-summary-list__value">
                 1
@@ -590,9 +641,8 @@ improve it.'
                 £1010
               </td>
               <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link"
-                href="#">
-                View claim
+                <a id="{{item.day}}-change" class="govuk-link" href="#">
+                  View claim
                 </a>
               </td>
             </tr>
