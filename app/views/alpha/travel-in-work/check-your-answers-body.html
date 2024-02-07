@@ -262,7 +262,7 @@
 
         <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
-                <h2 class="govuk-summary-card__title">Total travel</h2>
+                <h2 class="govuk-summary-card__title">Travel details</h2>
             </div>
             <div class="govuk-summary-card__content">
                 <table class="govuk-summary-list govuk-!-margin-bottom-0">
@@ -270,14 +270,34 @@
 
                         <tr class="govuk-summary-list__row">
                             <th scope="row" class="govuk-summary-list__key">
-                                Total number of journeys
+                                Journey total
                             </th>
                             <td class="govuk-summary-list__value">
                                 {{data['total-journeys']}}
                             </td>
                             {% if print != true %}
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                <a href="../travel-in-work/taxi-journeys-for-day-summary">
+                                    Change
+                                    <span class="govuk-visually-hidden">Journey total</span>
+                                </a>
+                            </td>
+                            {% endif %}
+                        </tr>
 
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
+                                Total miles
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                {{data['total-mileage']}}
+                            </td>
+                            {% if print != true %}
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                <a href="../travel-in-work/total-mileage">
+                                    Change
+                                    <span class="govuk-visually-hidden"> Total mileage</span>
+                                </a>
                             </td>
                             {% endif %}
                         </tr>
@@ -286,7 +306,7 @@
 
                         <tr class="govuk-summary-list__row">
                             <th scope="row" class="govuk-summary-list__key">
-                                Total cost of journeys
+                                Total cost
                             </th>
                             <td class="govuk-summary-list__value">
                                 £{{data["total-cost"]}}
