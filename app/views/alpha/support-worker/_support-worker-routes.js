@@ -3,7 +3,13 @@ const { indexOf, forEach } = require("lodash")
 module.exports = function (folderForViews, urlPrefix, router) {
   router.get('/support-worker/start-a-claim', function (req, res) {
 
-    res.render(`./${folderForViews}/support-worker/start-a-claim`)
+    if (req.session.data['journey-type'] == 'claimadditionalcosts'){
+      res.redirect(`/${urlPrefix}/additional-costs/grant-information`)
+    }
+    else{
+      res.redirect(`/${urlPrefix}/support-worker/grant-information`)
+    }
+
   })
 
   // post - Are you claiming for support in the workplace
@@ -1001,7 +1007,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     } else if (journeytype === 'supportworker' && checked) {
       res.redirect(`/${urlPrefix}/support-worker/check-your-answers`)
     } else if (journeytype === 'supportworker') {
-      if (acjourney){
+      if (acjourney == 1){
         res.redirect(`/${urlPrefix}/support-worker/additional-costs`)
       }
       else{

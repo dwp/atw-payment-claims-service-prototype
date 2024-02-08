@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Additional costs</h1>
+        <form action="#" method="post" class="form">
+
+          {% if data['additional-cost-types'].includes('travel') %}
+
+          {{ govukInput({
+            label: {
+              text: "What is the total travel costs for this claim, in pounds?",
+              classes: "govuk-label--s"
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            id: "travel-costs",
+            name: "travelcosts"
+          }) }}
+
+          {% endif %}
+
+          {% if data['additional-cost-types'].includes('accommodation') %}
+
+          {{ govukInput({
+            label: {
+              text: "What is the total accommodation costs for this claim, in pounds?",
+              classes: "govuk-label--s"
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            id: "accommodation-costs",
+            name: "accommodationcosts"
+          }) }}
+
+          {% endif %}
+
+          {% if data['additional-cost-types'].includes('food') %}
+
+          {{ govukInput({
+            label: {
+              text: "What is the total food costs for this claim, in pounds?",
+              classes: "govuk-label--s"
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            id: "food-costs",
+            name: "foodcosts"
+          }) }}
+
+          {% endif %}
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

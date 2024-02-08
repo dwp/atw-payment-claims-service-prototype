@@ -13,7 +13,7 @@ Claim money back from Access to Work
     <div class="govuk-grid-column-two-thirds">
         <form action="cost-of-support-answer" method="post" class="form">
 
-            {% if data['additional-costs-journey'] %}
+            {% if data['additional-costs-journey'] != 0 %}
 
             {{ govukInput({
             id: "cost-of-support",
