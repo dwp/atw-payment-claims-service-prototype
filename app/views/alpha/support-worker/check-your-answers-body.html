@@ -199,6 +199,93 @@
             </div>
         </div>
 
+        {% if ((data['additional-cost-types'] != 'none') and (data['claim-additional-costs'] == 'yes') and (data['additional-costs-journey'])) %}
+
+        <div class="govuk-summary-card">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">Additional costs</h2>
+            </div>
+            <div class="govuk-summary-card__content">
+
+                <table class="govuk-summary-list govuk-!-margin-bottom-0">
+                    <tbody class="govuk-summary-list">
+
+                        {% if data['additional-cost-types'].includes('travel') %}
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
+                                Travel costs
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                £{{data['travelcosts']}}
+                            </td>
+
+                            {% if print != true %}
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                {% if (data['view-claim']) %}
+                                {% else %}
+                                <a href="additional-cost-types.html">
+                                    Change
+                                    <span class="govuk-visually-hidden"> cost of travel</span>
+                                </a>
+                                {% endif %}
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endif %}
+
+                        {% if data['additional-cost-types'].includes('accommodation') %}
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
+                                Accomodation costs
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                £{{data['accommodationcosts']}}
+                            </td>
+
+                            {% if print != true %}
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                {% if (data['view-claim']) %}
+                                {% else %}
+                                <a href="additional-cost-types.html">
+                                    Change
+                                    <span class="govuk-visually-hidden"> cost of accommodation</span>
+                                </a>
+                                {% endif %}
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endif %}
+
+                        {% if data['additional-cost-types'].includes('food') %}
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
+                                Food costs
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                £{{data['foodcosts']}}
+                            </td>
+
+                            {% if print != true %}
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                {% if (data['view-claim']) %}
+                                {% else %}
+                                <a href="additional-cost-types.html">
+                                    Change
+                                    <span class="govuk-visually-hidden"> cost of food</span>
+                                </a>
+                                {% endif %}
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        {% endif %}
+
         {%if (data['journey-type'] == "traveltowork-ammendment") or (data['sw-declaration']) %}
 
         {% elseif (data['existing-payee'] == "one") or (data['existing-payee'] == "two") or (data['existing-payee'] ==
