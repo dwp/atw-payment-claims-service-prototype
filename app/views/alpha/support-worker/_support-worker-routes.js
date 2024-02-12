@@ -80,20 +80,25 @@ module.exports = function (folderForViews, urlPrefix, router) {
         if (month.support) {
           var minuteTotal = 0
           var hourTotal = 0
-          month.support.forEach(function (day) {
-            if (day.support_minutes) {
-              minuteTotal = minuteTotal + parseInt(day.support_minutes)
-            }
-            if (day.support_hours) {
-              hourTotal = hourTotal + parseInt(day.support_hours)
-            }
-            if (day.repeatsupport_minutes) {
-              minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
-            }
-            if (day.repeatsupport_hours) {
-              hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
-            }
-          });
+          if (req.session.data['vrs-journey']) {
+            minuteTotal = minuteTotal + parseInt(month.support)
+          }
+          else {
+            month.support.forEach(function (day) {
+              if (day.support_minutes) {
+                minuteTotal = minuteTotal + parseInt(day.support_minutes)
+              }
+              if (day.support_hours) {
+                hourTotal = hourTotal + parseInt(day.support_hours)
+              }
+              if (day.repeatsupport_minutes) {
+                minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
+              }
+              if (day.repeatsupport_hours) {
+                hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
+              }
+            });
+          }
           while (minuteTotal >= 60) {
             hourTotal += 1
             minuteTotal -= 60
@@ -131,20 +136,26 @@ module.exports = function (folderForViews, urlPrefix, router) {
     if (monthList) {
       monthList.forEach(function (month) {
         if (month.support) {
-          month.support.forEach(function (day) {
-            if (day.support_minutes) {
-              minuteTotal = minuteTotal + parseInt(day.support_minutes)
-            }
-            if (day.support_hours) {
-              hourTotal = hourTotal + parseInt(day.support_hours)
-            }
-            if (day.repeatsupport_minutes) {
-              minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
-            }
-            if (day.repeatsupport_hours) {
-              hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
-            }
-          });
+          if (req.session.data['vrs-journey']) {
+            minuteTotal = minuteTotal + parseInt(month.support)
+          }
+          else {
+            month.support.forEach(function (day) {
+              if (day.support_minutes) {
+                minuteTotal = minuteTotal + parseInt(day.support_minutes)
+              }
+              if (day.support_hours) {
+                hourTotal = hourTotal + parseInt(day.support_hours)
+              }
+              if (day.repeatsupport_minutes) {
+                minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
+              }
+              if (day.repeatsupport_hours) {
+                hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
+              }
+            });
+          }
+
         }
       });
     }
@@ -180,70 +191,75 @@ module.exports = function (folderForViews, urlPrefix, router) {
   })
 
   router.post('/support-worker/month-claim-answer', function (req, res) {
-    var days = new Array(7);
-    days[0] = "Sunday";
-    days[1] = "Monday";
-    days[2] = "Tuesday";
-    days[3] = "Wednesday";
-    days[4] = "Thursday";
-    days[5] = "Friday";
-    days[6] = "Saturday";
-
-    const monthNames = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-
-    var month = req.session.data["support-month"]
-    var year = req.session.data["support-year"]
-
-    var month_list = req.session.data['month-list']
-    if (month_list) {
-      var month_data = month_list.find((month) => month.month === req.session.data["support-month"] && month.year === req.session.data["support-year"]);
-
-      if (month_data) {
-        res.redirect(`/${urlPrefix}/support-worker/days-for-month-change?month=` + month + `&year=` + year)
-      }
-      else{
-        req.session.data.checked = []
-        req.session.data['support'] = []
-      }
+    if (req.session.data['vrs-journey']) {
+      res.redirect(`/${urlPrefix}/support-worker/minutes-for-month`)
     }
+    else {
+      var days = new Array(7);
+      days[0] = "Sunday";
+      days[1] = "Monday";
+      days[2] = "Tuesday";
+      days[3] = "Wednesday";
+      days[4] = "Thursday";
+      days[5] = "Friday";
+      days[6] = "Saturday";
 
-    const getDays = (year, month) => {
-      return new Date(year, month, 0).getDate();
-    };
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
 
-    var monthLength = getDays(year, month);
-    var monthDayList = []
+      var month = req.session.data["support-month"]
+      var year = req.session.data["support-year"]
 
-    for (let i = 1; i <= monthLength; i++) {
-      var a = new Date(year, month - 1, i);
-      var r = days[a.getDay()];
-      var monthDay = { value: i, text: r + " " + i + " " + monthNames[a.getMonth()] }
-      monthDayList.push(monthDay)
-    }
+      var month_list = req.session.data['month-list']
+      if (month_list) {
+        var month_data = month_list.find((month) => month.month === req.session.data["support-month"] && month.year === req.session.data["support-year"]);
 
-    var i = 0
-    var weeksList = []
-    var currentWeek = { weekNumber: 1, days: [] }
-
-    while (i < monthDayList.length) {
-      var currentDay = monthDayList[i]
-
-      currentWeek.days.push(currentDay)
-
-      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
-        weeksList.push(currentWeek)
-        var newWeekNumber = currentWeek.weekNumber + 1
-        currentWeek = { weekNumber: newWeekNumber, days: [] }
+        if (month_data) {
+          res.redirect(`/${urlPrefix}/support-worker/days-for-month-change?month=` + month + `&year=` + year)
+        }
+        else {
+          req.session.data.checked = []
+          req.session.data['support'] = []
+        }
       }
 
-      i++
-    }
+      const getDays = (year, month) => {
+        return new Date(year, month, 0).getDate();
+      };
 
-    req.session.data.dataList = weeksList
-    res.redirect(`/${urlPrefix}/support-worker/days-for-month`)
+      var monthLength = getDays(year, month);
+      var monthDayList = []
+
+      for (let i = 1; i <= monthLength; i++) {
+        var a = new Date(year, month - 1, i);
+        var r = days[a.getDay()];
+        var monthDay = { value: i, text: r + " " + i + " " + monthNames[a.getMonth()] }
+        monthDayList.push(monthDay)
+      }
+
+      var i = 0
+      var weeksList = []
+      var currentWeek = { weekNumber: 1, days: [] }
+
+      while (i < monthDayList.length) {
+        var currentDay = monthDayList[i]
+
+        currentWeek.days.push(currentDay)
+
+        if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
+          weeksList.push(currentWeek)
+          var newWeekNumber = currentWeek.weekNumber + 1
+          currentWeek = { weekNumber: newWeekNumber, days: [] }
+        }
+
+        i++
+      }
+
+      req.session.data.dataList = weeksList
+      res.redirect(`/${urlPrefix}/support-worker/days-for-month`)
+    }
   })
 
   router.post('/support-worker/days-for-month', function (req, res) {
@@ -252,22 +268,22 @@ module.exports = function (folderForViews, urlPrefix, router) {
     selectedDays.forEach(supportDay => {
       support.push({ day: supportDay })
     });
-    if (req.session.data['support']){
+    if (req.session.data['support']) {
       support.forEach(checkedDay => {
         var existingDay = req.session.data['support'].find((day) => day.day === checkedDay.day);
-        if (!existingDay){
+        if (!existingDay) {
           req.session.data['support'].push(checkedDay)
         }
       });
       req.session.data['support'].forEach(existingDay => {
         var checkedDay = support.find((day) => day.day === existingDay.day);
-        if (!checkedDay){
+        if (!checkedDay) {
           const index = req.session.data['support'].indexOf(existingDay);
           req.session.data['support'].splice(index, 1);
         }
       });
     }
-    else{
+    else {
       req.session.data['support'] = support
     }
     req.session.data["support-worker-errors"] = []
@@ -385,70 +401,75 @@ module.exports = function (folderForViews, urlPrefix, router) {
   })
 
   router.post('/support-worker/month-claim-answer-repeat', function (req, res) {
-    var days = new Array(7);
-    days[0] = "Sunday";
-    days[1] = "Monday";
-    days[2] = "Tuesday";
-    days[3] = "Wednesday";
-    days[4] = "Thursday";
-    days[5] = "Friday";
-    days[6] = "Saturday";
-
-    const monthNames = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-
-    var month = req.session.data["repeatsupport-month"]
-    var year = req.session.data["repeatsupport-year"]
-
-    var month_list = req.session.data['month-list']
-    if (month_list) {
-      var month_data = month_list.find((month) => month.month === req.session.data["repeatsupport-month"] && month.year === req.session.data["repeatsupport-year"]);
-
-      if (month_data) {
-        res.redirect(`/${urlPrefix}/support-worker/days-for-month-change?month=` + month + `&year=` + year)
-      }
-      else{
-        req.session.data.checked = []
-        req.session.data['support'] = []
-      }
+    if (req.session.data['vrs-journey']) {
+      res.redirect(`/${urlPrefix}/support-worker/minutes-for-month`)
     }
+    else {
+      var days = new Array(7);
+      days[0] = "Sunday";
+      days[1] = "Monday";
+      days[2] = "Tuesday";
+      days[3] = "Wednesday";
+      days[4] = "Thursday";
+      days[5] = "Friday";
+      days[6] = "Saturday";
 
-    const getDays = (year, month) => {
-      return new Date(year, month, 0).getDate();
-    };
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
 
-    var monthLength = getDays(year, month);
-    var monthDayList = []
+      var month = req.session.data["repeatsupport-month"]
+      var year = req.session.data["repeatsupport-year"]
 
-    for (let i = 1; i <= monthLength; i++) {
-      var a = new Date(year, month - 1, i);
-      var r = days[a.getDay()];
-      var monthDay = { value: i, text: r + " " + i + " " + monthNames[a.getMonth()] }
-      monthDayList.push(monthDay)
-    }
+      var month_list = req.session.data['month-list']
+      if (month_list) {
+        var month_data = month_list.find((month) => month.month === req.session.data["repeatsupport-month"] && month.year === req.session.data["repeatsupport-year"]);
 
-    var i = 0
-    var weeksList = []
-    var currentWeek = { weekNumber: 1, days: [] }
-
-    while (i < monthDayList.length) {
-      var currentDay = monthDayList[i]
-
-      currentWeek.days.push(currentDay)
-
-      if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
-        weeksList.push(currentWeek)
-        var newWeekNumber = currentWeek.weekNumber + 1
-        currentWeek = { weekNumber: newWeekNumber, days: [] }
+        if (month_data) {
+          res.redirect(`/${urlPrefix}/support-worker/days-for-month-change?month=` + month + `&year=` + year)
+        }
+        else {
+          req.session.data.checked = []
+          req.session.data['support'] = []
+        }
       }
 
-      i++
-    }
+      const getDays = (year, month) => {
+        return new Date(year, month, 0).getDate();
+      };
 
-    req.session.data.dataList = weeksList
-    res.redirect(`/${urlPrefix}/support-worker/days-for-month-repeat`)
+      var monthLength = getDays(year, month);
+      var monthDayList = []
+
+      for (let i = 1; i <= monthLength; i++) {
+        var a = new Date(year, month - 1, i);
+        var r = days[a.getDay()];
+        var monthDay = { value: i, text: r + " " + i + " " + monthNames[a.getMonth()] }
+        monthDayList.push(monthDay)
+      }
+
+      var i = 0
+      var weeksList = []
+      var currentWeek = { weekNumber: 1, days: [] }
+
+      while (i < monthDayList.length) {
+        var currentDay = monthDayList[i]
+
+        currentWeek.days.push(currentDay)
+
+        if ((currentDay.text.includes('Sunday')) || (i == monthDayList.length - 1)) {
+          weeksList.push(currentWeek)
+          var newWeekNumber = currentWeek.weekNumber + 1
+          currentWeek = { weekNumber: newWeekNumber, days: [] }
+        }
+
+        i++
+      }
+
+      req.session.data.dataList = weeksList
+      res.redirect(`/${urlPrefix}/support-worker/days-for-month-repeat`)
+    }
   })
 
   router.post('/support-worker/days-for-month-repeat', function (req, res) {
@@ -457,25 +478,25 @@ module.exports = function (folderForViews, urlPrefix, router) {
     selectedDays.forEach(supportDay => {
       support.push({ day: supportDay })
     });
-    if (req.session.data['repeatsupport']){
+    if (req.session.data['repeatsupport']) {
       support.forEach(checkedDay => {
         var existingDay = req.session.data['repeatsupport'].find((day) => day.day === checkedDay.day);
-        if (!existingDay){
+        if (!existingDay) {
           req.session.data['repeatsupport'].push(checkedDay)
         }
       });
       req.session.data['repeatsupport'].forEach(existingDay => {
         var checkedDay = support.find((day) => day.day === existingDay.day);
-        if (!checkedDay){
+        if (!checkedDay) {
           const index = req.session.data['repeatsupport'].indexOf(existingDay);
           req.session.data['repeatsupport'].splice(index, 1);
         }
-      });   
+      });
     }
-    else{
+    else {
       req.session.data['repeatsupport'] = support
     }
-     
+
     req.session.data["support-worker-errors"] = []
     res.redirect(`/${urlPrefix}/support-worker/hours-for-day-repeat`)
   })
@@ -587,20 +608,25 @@ module.exports = function (folderForViews, urlPrefix, router) {
         if (monthList) {
           monthList.forEach(function (month) {
             if (month.support) {
-              month.support.forEach(function (day) {
-                if (day.support_minutes) {
-                  minuteTotal = minuteTotal + parseInt(day.support_minutes)
-                }
-                if (day.support_hours) {
-                  hourTotal = hourTotal + parseInt(day.support_hours)
-                }
-                if (day.repeatsupport_minutes) {
-                  minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
-                }
-                if (day.repeatsupport_hours) {
-                  hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
-                }
-              });
+              if (req.session.data['vrs-journey']) {
+                minuteTotal = minuteTotal + parseInt(month.support)
+              }
+              else {
+                month.support.forEach(function (day) {
+                  if (day.support_minutes) {
+                    minuteTotal = minuteTotal + parseInt(day.support_minutes)
+                  }
+                  if (day.support_hours) {
+                    hourTotal = hourTotal + parseInt(day.support_hours)
+                  }
+                  if (day.repeatsupport_minutes) {
+                    minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
+                  }
+                  if (day.repeatsupport_hours) {
+                    hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
+                  }
+                });
+              }
             }
           });
         }
@@ -732,20 +758,25 @@ module.exports = function (folderForViews, urlPrefix, router) {
         if (monthList) {
           monthList.forEach(function (month) {
             if (month.support) {
-              month.support.forEach(function (day) {
-                if (day.support_minutes) {
-                  minuteTotal = minuteTotal + parseInt(day.support_minutes)
-                }
-                if (day.support_hours) {
-                  hourTotal = hourTotal + parseInt(day.support_hours)
-                }
-                if (day.repeatsupport_minutes) {
-                  minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
-                }
-                if (day.repeatsupport_hours) {
-                  hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
-                }
-              });
+              if (req.session.data['vrs-journey']) {
+                minuteTotal = minuteTotal + parseInt(month.support)
+              }
+              else {
+                month.support.forEach(function (day) {
+                  if (day.support_minutes) {
+                    minuteTotal = minuteTotal + parseInt(day.support_minutes)
+                  }
+                  if (day.support_hours) {
+                    hourTotal = hourTotal + parseInt(day.support_hours)
+                  }
+                  if (day.repeatsupport_minutes) {
+                    minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
+                  }
+                  if (day.repeatsupport_hours) {
+                    hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
+                  }
+                });
+              }
             }
           });
         }
@@ -1100,7 +1131,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
   router.post('/support-worker/remove-month-confirmation', function (req, res) {
 
-    if (req.session.data['remove-month'] == 'No'){
+    if (req.session.data['remove-month'] == 'No') {
       res.redirect(`/${urlPrefix}/support-worker/hours-for-day-summary`)
     }
 
@@ -1120,20 +1151,71 @@ module.exports = function (folderForViews, urlPrefix, router) {
     if (monthList) {
       monthList.forEach(function (month) {
         if (month.support) {
-          month.support.forEach(function (day) {
-            if (day.support_minutes) {
-              minuteTotal = minuteTotal + parseInt(day.support_minutes)
-            }
-            if (day.support_hours) {
-              hourTotal = hourTotal + parseInt(day.support_hours)
-            }
-            if (day.repeatsupport_minutes) {
-              minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
-            }
-            if (day.repeatsupport_hours) {
-              hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
-            }
-          });
+          if (req.session.data['vrs-journey']) {
+            minuteTotal = minuteTotal + parseInt(month.support)
+          }
+          else {
+            month.support.forEach(function (day) {
+              if (day.support_minutes) {
+                minuteTotal = minuteTotal + parseInt(day.support_minutes)
+              }
+              if (day.support_hours) {
+                hourTotal = hourTotal + parseInt(day.support_hours)
+              }
+              if (day.repeatsupport_minutes) {
+                minuteTotal = minuteTotal + parseInt(day.repeatsupport_minutes)
+              }
+              if (day.repeatsupport_hours) {
+                hourTotal = hourTotal + parseInt(day.repeatsupport_hours)
+              }
+            });
+          }
+        }
+      });
+    }
+
+    while (minuteTotal >= 60) {
+      hourTotal += 1
+      minuteTotal -= 60
+    }
+
+    req.session.data["hour-total"] = hourTotal
+    req.session.data["minute-total"] = minuteTotal
+
+    res.redirect(`/${urlPrefix}/support-worker/hours-for-day-summary`)
+  })
+
+  router.post('/support-worker/minutes-for-month', function (req, res) {
+
+    var month = req.session.data['support-month']
+    var year = req.session.data['support-year']
+    var minutes = req.session.data['minutes-of-support']
+
+    var list = [
+      { month: month, year: year, support: minutes }
+    ];
+
+    if (req.session.data['month-list']) {
+      var month_index = req.session.data['month-list'].findIndex((el) => el.month === month && el.year === year);
+      if (month_index != -1) {
+        req.session.data['month-list'][month_index] = list[0]
+      }
+      else {
+        req.session.data['month-list'].push(list[0]);
+      }
+    }
+    else {
+      req.session.data['month-list'] = list
+    }
+
+    var minuteTotal = 0;
+    var hourTotal = 0;
+
+    var monthList = req.session.data['month-list']
+    if (monthList) {
+      monthList.forEach(function (month) {
+        if (month.support) {
+          minuteTotal = minuteTotal + parseInt(month.support)
         }
       });
     }

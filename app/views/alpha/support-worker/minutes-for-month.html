@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form action="#" method="post" class="form">
+
+            <div class="govuk-form-group">
+                <h1 class="govuk-label-wrapper">
+                  <label class="govuk-label govuk-label--l" for="minutes-of-support">
+                    How many VRS minutes did you use in {{data["support-month"] | numberMonth}} {{data["support-year"]}}?
+                  </label>
+                </h1>
+                <input class="govuk-input govuk-input--width-5" id="minutes-of-support" name="minutes-of-support" type="text">
+              </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

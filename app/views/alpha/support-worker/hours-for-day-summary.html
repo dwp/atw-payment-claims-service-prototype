@@ -4,41 +4,6 @@
 Claim money back from Access to Work
 {% endblock %}
 
-{% set supportLength %}
-{{ data.support | length }}
-{% endset %}
-
-{% set minuteTotal = 0 %}
-{% for month in data['month-list'] %}
-{% for day in month.support %}
-{% if day.support_minutes %}
-{% set minuteTotal = minuteTotal | float + day.support_minutes | float %}
-{% endif %}
-{% if day.repeatsupport_minutes %}
-{% set minuteTotal = minuteTotal | float + day.repeatsupport_minutes | float %}
-{% endif %}
-{% endfor %}
-{% else %}
-{% set minuteTotal = 0 | float %}
-{% endfor %}
-
-{% set hourTotal = 0 %}
-{% for month in data['month-list'] %}
-{% for day in month.support %}
-{% if day.support_hours %}
-{% set hourTotal = hourTotal | float + day.support_hours | float %}
-{% endif %}
-{% if day.repeatsupport_hours %}
-{% set hourTotal = hourTotal | float + day.repeatsupport_hours | float %}
-{% endif %}
-{% endfor %}
-{% else %}
-{% set hourTotal = 0 | float %}
-{% endfor %}
-
-{% set repeatsupportLength %}
-{{ data.repeatsupport | length }}
-{% endset %}
 
 
 {% block content %}
@@ -102,6 +67,24 @@ Claim money back from Access to Work
           </div>
           <div class="govuk-summary-card__content">
 
+            {% if data['vrs-journey'] %}
+
+            <table class="govuk-summary-list govuk-!-margin-bottom-0">
+              <tbody class="govuk-summary-list">
+                <tr class="govuk-summary-list__row">
+                  <th scope="row" class="govuk-summary-list__key">
+                    VRS minutes in {{month_data.month | numberMonth}}
+                  </th>
+                  <td class="govuk-summary-list__value">
+                    {{month_data.support}}
+                  </td>
+                  
+                </tr>
+              </tbody>
+            </table>
+
+            {% else %}
+
             <table class="govuk-summary-list govuk-!-margin-bottom-0">
               <tbody class="govuk-summary-list">
                 {% for item in month_data.support | sortBy('day') %}
@@ -140,7 +123,8 @@ Claim money back from Access to Work
               </tbody>
             </table>
 
-            
+            {% endif %}
+
           </div>
         </div>
 
