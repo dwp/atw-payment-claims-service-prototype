@@ -80,7 +80,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         if (month.support) {
           var minuteTotal = 0
           var hourTotal = 0
-          if (req.session.data['vrs-journey']) {
+          if (req.session.data['vrs-journey'] == 'true') {
             minuteTotal = minuteTotal + parseInt(month.support)
           }
           else {
@@ -136,7 +136,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     if (monthList) {
       monthList.forEach(function (month) {
         if (month.support) {
-          if (req.session.data['vrs-journey']) {
+          if (req.session.data['vrs-journey'] == 'true') {
             minuteTotal = minuteTotal + parseInt(month.support)
           }
           else {
@@ -177,6 +177,21 @@ module.exports = function (folderForViews, urlPrefix, router) {
   })
 
   router.post('/support-worker/before-you-continue-answer', function (req, res) {
+    if (req.session.data['vrs-journey'] == 'true') {
+      res.redirect(`/${urlPrefix}/support-worker/are-you-claiming-vrs`)
+    }
+    else {
+      res.redirect(`/${urlPrefix}/support-worker/support-worker-agency-name`)
+    }
+  })
+
+  router.post('/support-worker/are-you-claiming-vrs', function (req, res) {
+    if (req.session.data['claiming-vrs'] == 'Yes') {
+      req.session.data['vrs-journey'] = 'true'
+    }
+    else {
+      req.session.data['vrs-journey'] = 'false'
+    }
     res.redirect(`/${urlPrefix}/support-worker/support-worker-agency-name`)
   })
 
@@ -191,7 +206,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
   })
 
   router.post('/support-worker/month-claim-answer', function (req, res) {
-    if (req.session.data['vrs-journey']) {
+    if (req.session.data['vrs-journey'] == 'true') {
       res.redirect(`/${urlPrefix}/support-worker/minutes-for-month`)
     }
     else {
@@ -401,7 +416,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
   })
 
   router.post('/support-worker/month-claim-answer-repeat', function (req, res) {
-    if (req.session.data['vrs-journey']) {
+    if (req.session.data['vrs-journey'] == 'true') {
       res.redirect(`/${urlPrefix}/support-worker/minutes-for-month`)
     }
     else {
@@ -608,7 +623,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         if (monthList) {
           monthList.forEach(function (month) {
             if (month.support) {
-              if (req.session.data['vrs-journey']) {
+              if (req.session.data['vrs-journey'] == 'true') {
                 minuteTotal = minuteTotal + parseInt(month.support)
               }
               else {
@@ -758,7 +773,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         if (monthList) {
           monthList.forEach(function (month) {
             if (month.support) {
-              if (req.session.data['vrs-journey']) {
+              if (req.session.data['vrs-journey'] == 'true') {
                 minuteTotal = minuteTotal + parseInt(month.support)
               }
               else {
@@ -1151,7 +1166,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     if (monthList) {
       monthList.forEach(function (month) {
         if (month.support) {
-          if (req.session.data['vrs-journey']) {
+          if (req.session.data['vrs-journey'] == 'true') {
             minuteTotal = minuteTotal + parseInt(month.support)
           }
           else {
