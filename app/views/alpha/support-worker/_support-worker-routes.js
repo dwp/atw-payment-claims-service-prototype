@@ -99,9 +99,11 @@ module.exports = function (folderForViews, urlPrefix, router) {
               }
             });
           }
-          while (minuteTotal >= 60) {
-            hourTotal += 1
-            minuteTotal -= 60
+          if (req.session.data['vrs-journey'] && req.session.data['vrs-journey'] == 'false') {
+            while (minuteTotal >= 60) {
+              hourTotal += 1
+              minuteTotal -= 60
+            }
           }
           month['totalhours'] = hourTotal
           month['totalminutes'] = minuteTotal
@@ -110,6 +112,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     }
 
     req.session.data["month-list"] = monthList
+    req.session.data["minutes-of-support"] = ''
 
     if (req.session.data['month-list'].length < 1 && month === 'no') {
       res.redirect(`/${urlPrefix}/portal`)
@@ -117,7 +120,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
     if (month === 'yes') {
       req.session.data['support'] = []
-      res.redirect(`/${urlPrefix}/support-worker/claiming-for-month-repeat`)
+      res.redirect(`/${urlPrefix}/support-worker/claiming-for-month`)
     } else if (month === 'no' && journeytype === 'traveltowork-ammendment') {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
     } else if (month === 'no' && checked) {
@@ -160,9 +163,11 @@ module.exports = function (folderForViews, urlPrefix, router) {
       });
     }
 
-    while (minuteTotal >= 60) {
-      hourTotal += 1
-      minuteTotal -= 60
+    if (req.session.data['vrs-journey'] && req.session.data['vrs-journey'] == 'false') {
+      while (minuteTotal >= 60) {
+        hourTotal += 1
+        minuteTotal -= 60
+      }
     }
 
     req.session.data["hour-total"] = hourTotal
@@ -207,6 +212,21 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
   router.post('/support-worker/month-claim-answer', function (req, res) {
     if (req.session.data['vrs-journey'] == 'true') {
+      var month = req.session.data["support-month"]
+      var year = req.session.data["support-year"]
+
+      var month_list = req.session.data['month-list']
+      if (month_list) {
+        var month_data = month_list.find((month) => month.month === req.session.data["support-month"] && month.year === req.session.data["support-year"]);
+
+        if (month_data) {
+          res.redirect(`/${urlPrefix}/support-worker/minutes-for-month-change?month=` + month + `&year=` + year)
+        }
+        else {
+          req.session.data.checked = []
+          req.session.data['support'] = []
+        }
+      }
       res.redirect(`/${urlPrefix}/support-worker/minutes-for-month`)
     }
     else {
@@ -646,9 +666,11 @@ module.exports = function (folderForViews, urlPrefix, router) {
           });
         }
 
-        while (minuteTotal >= 60) {
-          hourTotal += 1
-          minuteTotal -= 60
+        if (req.session.data['vrs-journey'] && req.session.data['vrs-journey'] == 'false') {
+          while (minuteTotal >= 60) {
+            hourTotal += 1
+            minuteTotal -= 60
+          }
         }
 
         req.session.data["hour-total"] = hourTotal
@@ -796,9 +818,11 @@ module.exports = function (folderForViews, urlPrefix, router) {
           });
         }
 
-        while (minuteTotal >= 60) {
-          hourTotal += 1
-          minuteTotal -= 60
+        if (req.session.data['vrs-journey'] && req.session.data['vrs-journey'] == 'false') {
+          while (minuteTotal >= 60) {
+            hourTotal += 1
+            minuteTotal -= 60
+          }
         }
 
         req.session.data["hour-total"] = hourTotal
@@ -969,6 +993,32 @@ module.exports = function (folderForViews, urlPrefix, router) {
     }
     else {
       res.redirect(`/${urlPrefix}/support-worker/hours-for-day`)
+    }
+  })
+
+  router.get('/support-worker/minutes-for-month-change', function (req, res) {
+    if (req.query.month) {
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      var month = req.query.month
+      var year = req.query.year
+
+      var month_list = req.session.data['month-list']
+      var month_data = month_list.find((month) => month.month === req.query.month && month.year === req.query.year);
+
+      req.session.data.checked = []
+      req.session.data["support-month"] = req.query.month
+      req.session.data["support-year"] = req.query.year
+      req.session.data["minutes-of-support"] = month_data.support
+      res.redirect(`/${urlPrefix}/support-worker/minutes-for-month`)
+
+    }
+    else {
+      res.redirect(`/${urlPrefix}/support-worker/minutes-for-month`)
     }
   })
 
@@ -1189,9 +1239,11 @@ module.exports = function (folderForViews, urlPrefix, router) {
       });
     }
 
-    while (minuteTotal >= 60) {
-      hourTotal += 1
-      minuteTotal -= 60
+    if (req.session.data['vrs-journey'] && req.session.data['vrs-journey'] == 'false') {
+      while (minuteTotal >= 60) {
+        hourTotal += 1
+        minuteTotal -= 60
+      }
     }
 
     req.session.data["hour-total"] = hourTotal
@@ -1235,9 +1287,11 @@ module.exports = function (folderForViews, urlPrefix, router) {
       });
     }
 
-    while (minuteTotal >= 60) {
-      hourTotal += 1
-      minuteTotal -= 60
+    if (req.session.data['vrs-journey'] && req.session.data['vrs-journey'] == 'false') {
+      while (minuteTotal >= 60) {
+        hourTotal += 1
+        minuteTotal -= 60
+      }
     }
 
     req.session.data["hour-total"] = hourTotal

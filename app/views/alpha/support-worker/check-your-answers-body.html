@@ -58,9 +58,11 @@
                                 {{month_data.month | numberMonth}} {{month_data.year}}
                             </th>
                             <td class="govuk-summary-list__value">
+                                {% if month_data['totalhours'] != 0 %}
                                 {{month_data['totalhours']}}
                                 {% if month_data['totalhours'] == 1 %} hour {% else %} hours {% endif %}
                                 and
+                                {% endif %}
                                 {{month_data['totalminutes']}}
                                 {% if month_data['totalminutes'] == 1 %} minute {% else %} minutes {% endif %}
                             </td>
@@ -123,9 +125,11 @@
                                 Total support
                             </th>
                             <td class="govuk-summary-list__value">
-                                {{data['hour-total']}} {% if data['hour-total'] == 1 %} hour {% else %} hours {% endif
-                                %}
-                                and {{data['minute-total']}}
+                                {% if data['hour-total'] != 0 %}
+                                {{data['hour-total']}} {% if data['hour-total'] == 1 %} hour {% else %} hours {% endif %}
+                                and 
+                                {% endif %}
+                                {{data['minute-total']}}
                                 {% if data.minute-total == 1 %} minute {% else %} minutes {% endif %}
                             </td>
                             {% if print != true %}
