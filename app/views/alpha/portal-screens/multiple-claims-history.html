@@ -15,18 +15,27 @@ html: 'This is a new service – your <a class="govuk-link" href="/alpha/feedbac
 
 <div class="govuk-breadcrumbs">
     <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item">
-            <a class="govuk-breadcrumbs__link" href="../portal.html">Home</a>
-        </li>
-        </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="../portal.html">Home</a>
+      </li>
+      {% if (data['journey-type'] == "multipleemployers") or (data['multiple-employers'] == "true") %}
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="multiple-employer-history.html">Employer history</a>
+      </li>
+      {% endif %}
+      {% if (data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true") %}
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="multiple-claims-history.html">Claims history type</a>
+      </li>
+      {% endif %}
     </ol>
-</div>
+  </div>
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <form action="claims-history" method="post" class="form">
+        <form action="../multiple-claims-history" method="post" class="form">
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="travel-to-work-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -64,7 +73,7 @@ html: 'This is a new service – your <a class="govuk-link" href="/alpha/feedbac
                                    type="radio"
                                    value="supportworker">
                             <label class="govuk-label govuk-radios__label" for="supportworker">
-                              Support workers
+                              Support worker
                             </label>
                         </div>
                         {% endif %}
