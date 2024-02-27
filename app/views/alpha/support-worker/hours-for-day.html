@@ -91,11 +91,13 @@ Claim money back from Access to Work
                             {% for error in hoursFieldErrors %}
                             <p id="support[{{item.day}}][support_hours]-error" class="govuk-error-message">
                                 <span class="govuk-visually-hidden">Error:</span> {{error.message}}
+                                <span class="govuk-visually-hidden">for {{item.day | weekDay(data["support-month"], data["support-year"]) }} {{data["support-month"] | numberMonth}}</span>
                             </p>
                             {% endfor %}
                             {% for error in minutesFieldErrors %}
                             <p id="support[{{item.day}}][support_minutes]-error" class="govuk-error-message">
                                 <span class="govuk-visually-hidden">Error:</span> {{error.message}}
+                                <span class="govuk-visually-hidden">for {{item.day | weekDay(data["support-month"], data["support-year"]) }} {{data["support-month"] | numberMonth}}</span>
                             </p>
                             {% endfor %}
                             <div class="govuk-date-input" id="support-hours">
@@ -104,6 +106,7 @@ Claim money back from Access to Work
                                         <label class="govuk-label govuk-input__label"
                                             for="support[{{item.day}}][support_hours]">
                                             Hours
+                                            <span class="govuk-visually-hidden">of support for {{item.day | weekDay(data["support-month"], data["support-year"]) }} {{data["support-month"] | numberMonth}}</span>
                                         </label>
                                         {% if hoursFieldErrors | length %}
                                         <input
@@ -126,6 +129,8 @@ Claim money back from Access to Work
                                         <label class="govuk-label govuk-input__label"
                                             for="support[{{item.day}}][support_minutes]">
                                             Minutes
+                                            <span class="govuk-visually-hidden">of support for {{item.day | weekDay(data["support-month"], data["support-year"]) }} {{data["support-month"] | numberMonth}}</span>
+
                                         </label>
                                         {% if minutesFieldErrors | length %}
                                         <input
