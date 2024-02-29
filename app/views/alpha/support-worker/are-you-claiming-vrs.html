@@ -14,9 +14,42 @@ Claim money back from Access to Work
 
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" aria-describedby="claiming-vrs-hint">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                    <h1 class="govuk-fieldset__heading">
+                      What type of support are you claiming for?
+                    </h1>
+                  </legend>
+                  <!-- <div id="signIn-hint" class="govuk-hint">
+                    You’ll need an account to prove your identity and complete your Self Assessment.
+                  </div> -->
+                  <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="claiming-vrs-yes" name="claiming-vrs" type="radio" value="Yes" aria-describedby="claiming-vrs-yes-hint">
+                      <label class="govuk-label govuk-radios__label" for="claiming-vrs-yes">
+                        Video Relay Service (VRS) minutes 
+                      </label>
+                      <div id="claiming-vrs-yes-hint" class="govuk-hint govuk-radios__hint">
+                        This has to be previously agreed with Access to Work.
+                      </div>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="claiming-vrs-no" name="claiming-vrs" type="radio" value="No" aria-describedby="claiming-vrs-no-hint">
+                      <label class="govuk-label govuk-radios__label" for="claiming-vrs-no">
+                        Any other type of support
+                      </label>
+                      <!-- <div id="claiming-vrs-no-hint" class="govuk-hint govuk-radios__hint">
+                        If you don’t have a GOV.UK One Login, you can create one.
+                      </div> -->
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+            <!-- <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="claiming-vrs-hint">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                         <h1 class="govuk-fieldset__heading">
-                            Are you claiming for Virtual Relay Service (VRS) support?
+                            Are you claiming for Video Relay Service (VRS) support?
                         </h1>
                     </legend>
                     <div id="claiming-vrs-hint" class="govuk-hint">
@@ -42,12 +75,15 @@ Claim money back from Access to Work
                     </div>
 
                 </fieldset>
-            </div>
+            </div> -->
+
             <button class="govuk-button" data-module="govuk-button">
                 Continue
             </button>
         </form>
     </div>
 </div>
+
+
 
 {% endblock %}

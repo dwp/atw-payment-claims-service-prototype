@@ -73,6 +73,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const month = req.session.data['new-month']
     const journeytype = req.session.data['journey-type']
     const checked = req.session.data['contact-confirmed']
+    var costTotal = 0
 
     var monthList = req.session.data['month-list']
     if (monthList) {
@@ -82,6 +83,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           var hourTotal = 0
           if (req.session.data['vrs-journey'] == 'true') {
             minuteTotal = minuteTotal + parseInt(month.support)
+            costTotal = costTotal + parseInt(month.cost)
           }
           else {
             month.support.forEach(function (day) {
@@ -113,6 +115,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
     req.session.data["month-list"] = monthList
     req.session.data["minutes-of-support"] = ''
+    req.session.data["cost-of-support"] = ''
 
     if (req.session.data['month-list'].length < 1 && month === 'no') {
       res.redirect(`/${urlPrefix}/portal`)
@@ -125,6 +128,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
     } else if (month === 'no' && checked) {
       res.redirect(`/${urlPrefix}/support-worker/check-your-answers`)
+    } else if (month === 'no' && journeytype === 'supportworker' && req.session.data['vrs-journey'] && req.session.data['vrs-journey'] == 'true') {
+      req.session.data["cost-of-support"] = costTotal
+      res.redirect(`/${urlPrefix}/support-worker/providing-evidence`)
     } else if (month === 'no' && journeytype === 'supportworker') {
       res.redirect(`/${urlPrefix}/support-worker/cost-of-support`)
     }
@@ -1014,6 +1020,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
       req.session.data["support-month"] = req.query.month
       req.session.data["support-year"] = req.query.year
       req.session.data["minutes-of-support"] = month_data.support
+      req.session.data["cost-of-support"] = month_data.cost
       res.redirect(`/${urlPrefix}/support-worker/minutes-for-month`)
 
     }
@@ -1257,9 +1264,10 @@ module.exports = function (folderForViews, urlPrefix, router) {
     var month = req.session.data['support-month']
     var year = req.session.data['support-year']
     var minutes = req.session.data['minutes-of-support']
+    var cost = req.session.data['cost-of-support']
 
     var list = [
-      { month: month, year: year, support: minutes }
+      { month: month, year: year, support: minutes, cost: cost }
     ];
 
     if (req.session.data['month-list']) {

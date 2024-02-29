@@ -81,10 +81,13 @@ Claim money back from Access to Work
               <tbody class="govuk-summary-list">
                 <tr class="govuk-summary-list__row">
                   <th scope="row" class="govuk-summary-list__key">
-                    VRS minutes in {{month_data.month | numberMonth}}
+                    VRS support in {{month_data.month | numberMonth}}
                   </th>
                   <td class="govuk-summary-list__value">
-                    {{month_data.support}}
+                    {{month_data.support}} minutes
+                  </td>
+                  <td class="govuk-summary-list__value">
+                    £{{month_data.cost}}
                   </td>
                   
                 </tr>

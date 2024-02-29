@@ -10,24 +10,50 @@ Claim money back from Access to Work
 
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-        <form action="#" method="post" class="form">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">VRS packages bought in {{data["support-month"] | numberMonth}} {{data["support-year"]}}
+    </h1>
 
-            <div class="govuk-form-group">
-                <h1 class="govuk-label-wrapper">
-                  <label class="govuk-label govuk-label--l" for="minutes-of-support">
-                    How many VRS minutes did you buy in {{data["support-month"] | numberMonth}} {{data["support-year"]}}?
-                  </label>
-                </h1>
-                <input class="govuk-input govuk-input--width-5" id="minutes-of-support" name="minutes-of-support" type="text" value="{{data['minutes-of-support']}}">
-              </div>
+    <form action="#" method="post" class="form">
 
-            <button type="submit" class="govuk-button" data-module="govuk-button">
-                Continue
-            </button>
+      <!-- <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="minutes-of-support">
+            How many VRS minutes did you buy in {{data["support-month"] | numberMonth}} {{data["support-year"]}}?
+          </label>
+        </h1>
+        <input class="govuk-input govuk-input--width-5" id="minutes-of-support" name="minutes-of-support" type="text"
+          value="{{data['minutes-of-support']}}">
+      </div> -->
 
-        </form>
-    </div>
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="minutes-of-support">
+          VRS minutes
+        </label>
+        <div id="minutes-of-support-hint" class="govuk-hint">
+          For example, 500
+        </div>
+        <input class="govuk-input govuk-input--width-10" id="minutes-of-support" name="minutes-of-support" type="text"
+          aria-describedby="minutes-of-support-hint">
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="cost-of-support">
+          Cost of minutes, in pounds
+        </label>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-5" id="cost-of-support" name="cost-of-support" type="text"
+            spellcheck="false" aria-describedby="cost-of-support-hint">
+        </div>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+  </div>
 </div>
 
 
