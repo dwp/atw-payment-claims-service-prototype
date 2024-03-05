@@ -7,6 +7,15 @@ Claim money back from Access to Work
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+    {% if data["travel-in-work-errors"]|length %}
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+        {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: data["travel-in-work-errors"]
+        }) }}
+        {% endif %}
+
     <form id="form" method="post" action="#">
       <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Journey details</h1>
 
