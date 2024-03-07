@@ -450,17 +450,17 @@ module.exports = function (folderForViews, urlPrefix, router) {
       day_support.journeys.forEach(function (journey) {
         //Enter start postcode
         if (!journey.postcodeFrom) {
-          errors.push({ text: day_support.day + " " + monthName + ": Enter start postcode", message: "Enter start postcode", href: "#support[" + day_support.day + "][support_hours]" })
+          errors.push({ text: day_support.day + " " + monthName + ": Enter start postcode", message: "Enter start postcode", href: "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][postcodeFrom]" })
         }
 
         //Enter end postcode
         if (!journey.postcodeTo) {
-          errors.push({ text: day_support.day + " " + monthName + ": Enter end postcode", message: "Enter end postcode", href: "#support[" + day_support.day + "][support_minutes]" })
+          errors.push({ text: day_support.day + " " + monthName + ": Enter end postcode", message: "Enter end postcode", href: "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][postcodeTo]" })
         }
 
         //Enter cost postcode
         if (!journey.cost) {
-          errors.push({ text: day_support.day + " " + monthName + ": Enter cost of support", message: "Enter cost of support", href: "#support[" + day_support.day + "][support_minutes]" })
+          errors.push({ text: day_support.day + " " + monthName + ": Enter cost of support", message: "Enter cost of support", href: "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][cost]" })
         }
       })
     });
