@@ -82,7 +82,7 @@ Claim money back from Access to Work
 
           {% if postcodeFromErrors | length %}
 
-          <div class="govuk-form-group">
+          <div class="govuk-form-group govuk-form-group--error">
             <label class="govuk-label" for="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeFrom]">
               Journey start postcode
               <span class="govuk-visually-hidden">
@@ -92,6 +92,13 @@ Claim money back from Access to Work
                 {{data["travel-in-work-date-year"]}}
               </span>
             </label>
+            {% for error in postcodeFromErrors %}
+            <p id="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeFrom]-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> {{error.message}}
+              <span class="govuk-visually-hidden">for {{item.day | weekDay(data["support-month"], data["support-year"])
+                }} {{data["support-month"] | numberMonth}}</span>
+            </p>
+            {% endfor %}
             <input class="govuk-input govuk-input--width-10"
               id="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeFrom]"
               name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeFrom]" type="text"
