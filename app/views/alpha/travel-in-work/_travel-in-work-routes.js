@@ -109,38 +109,38 @@ module.exports = function (folderForViews, urlPrefix, router) {
     if (existingData) {
       selectedDays.forEach(newDay => {
         var existingDay = existingData.find((day) => day.day == newDay.day.toString());
-        if (existingDay){
-          if (newDay.journeys.length > existingDay.journeys.length){
+        if (existingDay) {
+          if (newDay.journeys.length > existingDay.journeys.length) {
             var diff = newDay.journeys.length - existingDay.journeys.length
             var length = existingDay.journeys.length
-            for (let i = 0; i < diff; i++){
+            for (let i = 0; i < diff; i++) {
               existingDay.journeys.push({
-                index: i+length,
+                index: i + length,
                 postcodeFrom: '',
                 postcodeTo: '',
                 cost: ''
               })
             }
           }
-          else if (newDay.journeys.length < existingDay.journeys.length){
+          else if (newDay.journeys.length < existingDay.journeys.length) {
             existingData[existingDay.index] = newDay
           }
         }
-        else{
+        else {
           req.session.data['travel-in-work'].push(newDay)
         }
       });
 
       existingData.forEach(existingDay => {
         var newDay = selectedDays.find((day) => day.day.toString() == existingDay.day.toString());
-        if (!newDay){
+        if (!newDay) {
           existingData.splice(existingDay.index, 1);
         }
       });
 
       req.session.data['travel-in-work'] = existingData
     }
-    else{
+    else {
       req.session.data['travel-in-work'] = selectedDays
     }
 
@@ -397,12 +397,12 @@ module.exports = function (folderForViews, urlPrefix, router) {
       req.session.data.travelinwork = []
       req.session.data.travelinwork.push(month_data)
     }
-    else{
+    else {
       var existingMonth = existingData.find((foundMonth) => foundMonth.month.toString() == month_data.month.toString());
-      if (existingMonth){
+      if (existingMonth) {
         req.session.data.travelinwork[existingData.indexOf(existingMonth)] = month_data
       }
-      else{
+      else {
         req.session.data.travelinwork.push(month_data)
       }
     }
@@ -430,6 +430,46 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
     req.session.data['total-cost'] = total_cost
     req.session.data['total-journeys'] = total_journeys
+
+    /////// Validation
+
+    const monthNames = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
+    var a = new Date(year, month - 1, 1);
+
+    var monthName = monthNames[a.getMonth()]
+
+    var month_support_check = req.session.data['travel-in-work']
+    var errors = []
+    req.session.data["travel-in-work-errors"] = []
+
+    month_support_check.forEach(function (day_support) {
+      day_support.journeys.forEach(function (journey) {
+        //Enter start postcode
+        if (!journey.postcodeFrom) {
+          errors.push({ text: day_support.day + " " + monthName + ": Enter start postcode", message: "Enter start postcode", href: "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][postcodeFrom]" })
+        }
+
+        //Enter end postcode
+        if (!journey.postcodeTo) {
+          errors.push({ text: day_support.day + " " + monthName + ": Enter end postcode", message: "Enter end postcode", href: "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][postcodeTo]" })
+        }
+
+        //Enter cost postcode
+        if (!journey.cost) {
+          errors.push({ text: day_support.day + " " + monthName + ": Enter cost of support", message: "Enter cost of support, in pounds", href: "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][cost]" })
+        }
+      })
+    });
+
+    if (errors.length) {
+      req.session.data["travel-in-work-errors"] = errors
+      res.redirect(`/${urlPrefix}/travel-in-work/taxi-journeys-for-day`)
+      return
+    }
 
     res.redirect(`/${urlPrefix}/travel-in-work/taxi-journeys-for-day-summary`)
   })
@@ -653,7 +693,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
   router.post('/travel-in-work/remove-month-confirmation', function (req, res) {
 
-    if (req.session.data['remove-month'] == 'No'){
+    if (req.session.data['remove-month'] == 'No') {
       res.redirect(`/${urlPrefix}/travel-in-work/taxi-journeys-for-day-summary`)
     }
 
