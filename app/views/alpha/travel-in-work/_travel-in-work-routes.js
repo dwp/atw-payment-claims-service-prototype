@@ -460,7 +460,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
         //Enter cost postcode
         if (!journey.cost) {
-          errors.push({ text: day_support.day + " " + monthName + ": Enter cost of support", message: "Enter cost of support", href: "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][cost]" })
+          errors.push({ text: day_support.day + " " + monthName + ": Enter cost of support", message: "Enter cost of support, in pounds", href: "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][cost]" })
         }
       })
     });

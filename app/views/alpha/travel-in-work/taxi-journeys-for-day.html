@@ -36,16 +36,17 @@ Claim money back from Access to Work
         {% set outerFieldErrors = [] %}
         {% for error in data["travel-in-work-errors"] %}
         {% if (
-        (error.href == "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][postcodeFrom]") or
-        (error.href == "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][postcodeTo]") or
-        (error.href == "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][cost]") ) %}
+        (error.href == "#travel-in-work[" + day.index + "][journeys][" + journey.index + "][postcodeFrom]") or
+        (error.href == "#travel-in-work[" + day.index + "][journeys][" + journey.index + "][postcodeTo]") or
+        (error.href == "#travel-in-work[" + day.index + "][journeys][" + journey.index + "][cost]") ) %}
         {% set outerFieldErrors = (outerFieldErrors.push(error), outerFieldErrors) %}
         {% endif %}
         {% endfor %}
 
+
         {% set postcodeFromErrors = [] %}
         {% for error in outerFieldErrors %}
-        {% if (error.href == "#travel-in-work[" + day_support.index + "][journeys][" + journey.index +
+        {% if (error.href == "#travel-in-work[" + day.index + "][journeys][" + journey.index +
         "][postcodeFrom]") %}
         {% set postcodeFromErrors = (postcodeFromErrors.push(error), postcodeFromErrors) %}
         {% endif %}
@@ -53,7 +54,7 @@ Claim money back from Access to Work
 
         {% set postcodeToErrors = [] %}
         {% for error in outerFieldErrors %}
-        {% if (error.href == "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][postcodeTo]")
+        {% if (error.href == "#travel-in-work[" + day.index + "][journeys][" + journey.index + "][postcodeTo]")
         %}
         {% set postcodeToErrors = (postcodeToErrors.push(error), postcodeToErrors) %}
         {% endif %}
@@ -61,7 +62,7 @@ Claim money back from Access to Work
 
         {% set costErrors = [] %}
         {% for error in outerFieldErrors %}
-        {% if (error.href == "#travel-in-work[" + day_support.index + "][journeys][" + journey.index + "][cost]") %}
+        {% if (error.href == "#travel-in-work[" + day.index + "][journeys][" + journey.index + "][cost]") %}
         {% set costErrors = (costErrors.push(error), costErrors) %}
         {% endif %}
         {% endfor %}
@@ -93,13 +94,14 @@ Claim money back from Access to Work
               </span>
             </label>
             {% for error in postcodeFromErrors %}
-            <p id="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeFrom]-error" class="govuk-error-message">
+            <p id="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeFrom]-error"
+              class="govuk-error-message">
               <span class="govuk-visually-hidden">Error:</span> {{error.message}}
-              <span class="govuk-visually-hidden">for {{item.day | weekDay(data["support-month"], data["support-year"])
-                }} {{data["support-month"] | numberMonth}}</span>
+              <span class="govuk-visually-hidden">for {{day.day | weekDay(data["travel-in-work-date-month"], data["travel-in-work-date-year"])
+                }} {{data["travel-in-work-date-month"] | numberMonth}}</span>
             </p>
             {% endfor %}
-            <input class="govuk-input govuk-input--width-10"
+            <input class="govuk-input govuk-input--error govuk-input--width-10"
               id="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeFrom]"
               name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeFrom]" type="text"
               value={{journey.postcodeFrom}}>
@@ -125,6 +127,34 @@ Claim money back from Access to Work
 
           {% endif %}
 
+          {% if postcodeToErrors | length %}
+
+          <div class="govuk-form-group govuk-form-group--error">
+            <label class="govuk-label" for="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeTo]">
+              Journey end postcode
+              <span class="govuk-visually-hidden">
+                for
+                {{(((journey.index | int) +1) | stringifyNumber) | capitalizeFirstLetter }}
+                journey on {{day.day}} {{data["travel-in-work-date-month"] | numberMonth}}
+                {{data["travel-in-work-date-year"]}}
+              </span>
+            </label>
+            {% for error in postcodeToErrors %}
+            <p id="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeTo]-error"
+              class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> {{error.message}}
+              <span class="govuk-visually-hidden">for {{day.day | weekDay(data["travel-in-work-date-month"], data["travel-in-work-date-year"])
+                }} {{data["travel-in-work-date-month"] | numberMonth}}</span>
+            </p>
+            {% endfor %}
+            <input class="govuk-input govuk-input--error govuk-input--width-10"
+              id="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeTo]"
+              name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeTo]" type="text"
+              value="{{journey.postcodeTo}}">
+          </div>
+
+          {% else %}
+
           <div class="govuk-form-group">
             <label class="govuk-label" for="travel-in-work[{{day.index}}][journeys][{{journey.index}}][postcodeTo]">
               Journey end postcode
@@ -141,11 +171,46 @@ Claim money back from Access to Work
               value="{{journey.postcodeTo}}">
           </div>
 
+          {% endif %}
+
+
+
         </div>
+
+        {% if costErrors | length %}
+
+        <div class="govuk-form-group govuk-form-group--error">
+          <label class="govuk-label" for="travel-in-work[{{day.index}}][journeys][{{journey.index}}][cost]">
+            Total cost of this journey in pounds
+            <span class="govuk-visually-hidden">
+              for
+              {{(((journey.index | int) +1) | stringifyNumber) | capitalizeFirstLetter }}
+              journey on {{day.day}} {{data["travel-in-work-date-month"] | numberMonth}}
+              {{data["travel-in-work-date-year"]}}
+            </span>
+          </label>
+          {% for error in costErrors %}
+            <p id="travel-in-work[{{day.index}}][journeys][{{journey.index}}][cost]-error"
+              class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> {{error.message}}
+              <span class="govuk-visually-hidden">for {{day.day | weekDay(data["travel-in-work-date-month"], data["travel-in-work-date-year"])
+                }} {{data["travel-in-work-date-month"] | numberMonth}}</span>
+            </p>
+            {% endfor %}
+          <div class="govuk-input__wrapper">
+            <div class="govuk-input__prefix" aria-hidden="true">£</div>
+            <input class="govuk-input govuk-input--error govuk-input--width-3"
+              id="travel-in-work[{{day.index}}][journeys][{{journey.index}}][cost]"
+              name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][cost]" type="text"
+              value="{{journey.cost}}">
+          </div>
+        </div>
+
+        {% else %}
 
         <div class="govuk-form-group">
           <label class="govuk-label" for="travel-in-work[{{day.index}}][journeys][{{journey.index}}][cost]">
-            Total cost of this journey in pounds
+            Total cost of this journey, in pounds
             <span class="govuk-visually-hidden">
               for
               {{(((journey.index | int) +1) | stringifyNumber) | capitalizeFirstLetter }}
@@ -160,8 +225,10 @@ Claim money back from Access to Work
               name="travel-in-work[{{day.index}}][journeys][{{journey.index}}][cost]" type="text"
               value="{{journey.cost}}">
           </div>
-
         </div>
+
+        {% endif %}
+
         {% endfor %}
 
         {% else %}
