@@ -259,30 +259,17 @@
 
         <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
-                <h2 class="govuk-summary-card__title">Travel summary</h2>
+                <h2 class="govuk-summary-card__title">
+                                {% if data['way-of-claiming'] == "mileage" %}
+                                Lift claim information
+                                {% else %}
+                                Taxi travel claim information
+                                {% endif %}
+                </h2>
             </div>
             <div class="govuk-summary-card__content">
                 <table class="govuk-summary-list govuk-!-margin-bottom-0">
                     <tbody class="govuk-summary-list">
-                        <tr class="govuk-summary-list__row">
-                            <th scope="row" class="govuk-summary-list__key">
-                                Type of travel
-                            </th>
-                            <td class="govuk-summary-list__value">
-                                {% if (data["transport-option"]=="taxi") or
-                                (data["transport-option"]=="taxi-during-work")%}
-                                Taxi
-                                {% elif (data["transport-option"]=="lift") or
-                                (data["transport-option"]=="lift-during-work")%}
-                                Lift from a friend, colleague or relative
-                                {% endif %}
-                            </td>
-                            {% if print != true %}
-                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
-
-                            </td>
-                            {% endif %}
-                        </tr>
 
                         <tr class="govuk-summary-list__row">
                             <th scope="row" class="govuk-summary-list__key">
