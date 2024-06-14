@@ -96,6 +96,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
+          status: 'Created',
           year: 2023
         },
         {
@@ -104,6 +105,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Support worker',
           person: 'John Doe',
           cost: '£50',
+          status: 'Created',
           year: 2023
         },
         {
@@ -112,6 +114,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£155',
+          status: 'Approved',
           year: 2023
         },
         {
@@ -120,6 +123,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Support worker',
           person: 'John Doe',
           cost: '£50',
+          status: 'Not approved',
           year: 2023
         },
         {
@@ -128,6 +132,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -136,6 +141,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Support worker',
           person: 'John Doe',
           cost: '£50',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -144,6 +150,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -152,6 +159,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Support worker',
           person: 'John Doe',
           cost: '£50',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -160,6 +168,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -168,6 +177,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Support worker',
           person: 'John Doe',
           cost: '£50',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -176,6 +186,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -184,6 +195,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -192,6 +204,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£150',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -200,6 +213,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -208,6 +222,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'RM Rejected',
           year: 2023
         },
         {
@@ -216,6 +231,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2023
         },
         {
@@ -224,6 +240,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£80',
+          status: 'Posted',
           year: 2022
         },
         {
@@ -232,6 +249,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2022
         },
         {
@@ -240,6 +258,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2022
         },
         {
@@ -248,6 +267,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2022
         },
         {
@@ -256,6 +276,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2022
         },
         {
@@ -264,6 +285,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2022
         },
         {
@@ -272,6 +294,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2022
         },
         {
@@ -280,6 +303,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2022
         },
         {
@@ -288,6 +312,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£85',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -296,6 +321,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -304,6 +330,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -312,6 +339,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'RM Rejected',
           year: 2021
         },
         {
@@ -320,6 +348,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£130',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -328,6 +357,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -336,6 +366,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -344,6 +375,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -352,6 +384,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -360,6 +393,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -368,6 +402,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -376,6 +411,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2021
         },
         {
@@ -384,6 +420,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£65',
+          status: 'Posted',
           year: 2020
         },
         {
@@ -392,6 +429,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2020
         },
         {
@@ -400,6 +438,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2020
         },
         {
@@ -408,6 +447,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2020
         },
         {
@@ -416,6 +456,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2020
         },
         {
@@ -424,6 +465,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2020
         },
         {
@@ -432,6 +474,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2020
         },
         {
@@ -440,6 +483,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2020
         },
         {
@@ -448,6 +492,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'BSL Interpreter',
           person: 'Jane Smith',
           cost: '£100',
+          status: 'Posted',
           year: 2020
         }
       ]
