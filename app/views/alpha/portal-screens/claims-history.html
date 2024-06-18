@@ -323,7 +323,7 @@ You can also
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Claim end</th>
-            <th scope="col" class="govuk-table__header">Received by payment office</th>
+            <th scope="col" class="govuk-table__header">Received by Access to Work</th>
             <th scope="col" class="govuk-table__header">Payee</th>
             <th scope="col" class="govuk-table__header">Amount</th>
             <th scope="col" class="govuk-table__header">Status</th>
@@ -347,12 +347,12 @@ You can also
               {{claim.cost}}
             </td>
             <td class="govuk-table__cell">
-              {%if claim.status == 'In progress' %}
+              {%if claim.status == 'Created' %}
               <strong class="govuk-tag govuk-tag--yellow">
-                {{claim.status}}
+              In progress
               </strong>
               {% endif %}
-              {%if claim.status == 'Approved' or claim.status == 'Not approved' %}
+              {%if claim.status == 'Approved'%}
               <strong class="govuk-tag govuk-tag--blue">
                 Ready for payment
               </strong>
@@ -362,7 +362,7 @@ You can also
                 Payment sent
               </strong>
               {% endif %}
-              {%if claim.status == 'RM Rejected' %}
+              {%if claim.status == 'RM Rejected' or claim.status=='Not approved'%}
               <strong class="govuk-tag govuk-tag--red">
                 Rejected
               </strong>
