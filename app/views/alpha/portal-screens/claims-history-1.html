@@ -293,27 +293,22 @@ improve it.'
       <fieldset class="govuk-fieldset" aria-describedby="claims-history-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
-            Payment history
+            Payment summary: support worker
           </h1>
         </legend>
 
         <p>
-          Payments made from your
-          {% if (data['journey-type'] == "supportworker") %}
-          support worker
-          {% elseif (data['journey-type'] == "traveltowork") %}
-          travel to or from work
-          {% elseif (data['journey-type'] == "specialaidsandequipment") %}
-          specialist equipment
-          {% endif %}
-          grant.
+          Payments made or waiting to be to paid. 
+          <br/>
+          <br/>
+          This also includes rejected payments - find out what to do if your payment has been rejected.
         </p>
 
         {% if ((data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true")) %}
         <p>
           You can also
           <a href="multiple-claims-history">
-            view claims for other types of support
+            view payments for other types of support
           </a>.
         </p>
         {% endif %}
@@ -323,17 +318,17 @@ improve it.'
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Upcoming payments</h2>
+        <h2 class="govuk-summary-card__title">Waiting decision</h2>
       </div>
       <div class="govuk-summary-card__content">
 
         <table class="govuk-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">End date of claim</th>
-              <th scope="col" class="govuk-table__header">Claim received by payment office</th>
-              <th scope="col" class="govuk-table__header">Payee name</th>
-              <th scope="col" class="govuk-table__header">Payment amount</th>
+              <th scope="col" class="govuk-table__header">Claim end</th>
+              <th scope="col" class="govuk-table__header">Received by Access to Work</th>
+              <th scope="col" class="govuk-table__header">Payee</th>
+              <th scope="col" class="govuk-table__header">Amount</th>
               <th scope="col" class="govuk-table__header">Status</th>
             </tr>
           </thead>
@@ -386,14 +381,14 @@ improve it.'
   <br />
 
     {% set 2023Html %}
-    <h2 class="govuk-heading-m">Payments made in 2023</h2>
+    <h2 class="govuk-heading-m">2023 payments</h2>
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">End date of claim</th>
+          <th scope="col" class="govuk-table__header">Claim end</th>
           <th scope="col" class="govuk-table__header">Payment date</th>
-          <th scope="col" class="govuk-table__header">Payee name</th>
-          <th scope="col" class="govuk-table__header">Payment amount</th>
+          <th scope="col" class="govuk-table__header">Payee</th>
+          <th scope="col" class="govuk-table__header">Amount</th>
           <th scope="col" class="govuk-table__header">Status</th>
         </tr>
       </thead>
@@ -444,14 +439,14 @@ improve it.'
     {% endset -%}
 
     {% set 2022Html %}
-    <h2 class="govuk-heading-m">Payments made in 2022</h2>
+    <h2 class="govuk-heading-m">2022 payments</h2>
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">End date of claim</th>
-          <th scope="col" class="govuk-table__header">Claim received by payment office</th>
-          <th scope="col" class="govuk-table__header">Payee name</th>
-          <th scope="col" class="govuk-table__header">Payment amount</th>
+          <th scope="col" class="govuk-table__header">Claim end</th>
+          <th scope="col" class="govuk-table__header">Received by Access to Work</th>
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Amount</th>
           <th scope="col" class="govuk-table__header">Status</th>
         </tr>
       </thead>
@@ -502,14 +497,14 @@ improve it.'
     {% endset -%}
 
     {% set 2021Html %}
-    <h2 class="govuk-heading-m">Payments made in 2021</h2>
+    <h2 class="govuk-heading-m">2021 payments</h2>
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">End date of claim</th>
-          <th scope="col" class="govuk-table__header">Claim received by payment office</th>
-          <th scope="col" class="govuk-table__header">Payee name</th>
-          <th scope="col" class="govuk-table__header">Payment amount</th>
+          <th scope="col" class="govuk-table__header">Claim end</th>
+          <th scope="col" class="govuk-table__header">Received by Access to Work</th>
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Amount</th>
           <th scope="col" class="govuk-table__header">Status</th>
         </tr>
       </thead>
@@ -560,14 +555,14 @@ improve it.'
     {% endset -%}
 
     {% set 2020Html %}
-    <h2 class="govuk-heading-m">Payments made in 2020</h2>
+    <h2 class="govuk-heading-m">2020 payments</h2>
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">End date of claim</th>
-          <th scope="col" class="govuk-table__header">Claim received by payment office</th>
-          <th scope="col" class="govuk-table__header">Payee name</th>
-          <th scope="col" class="govuk-table__header">Payment amount</th>
+          <th scope="col" class="govuk-table__header">Claim end</th>
+          <th scope="col" class="govuk-table__header">Received by Access to Work</th>
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Amount</th>
           <th scope="col" class="govuk-table__header">Status</th>
         </tr>
       </thead>
@@ -622,28 +617,28 @@ improve it.'
     {{ govukTabs({
     items: [
     {
-    label: "2023",
+    label: "2023 payments",
     id: "tab2023",
     panel: {
     html: 2023Html
     }
     },
     {
-    label: "2022",
+    label: "2022 payments",
     id: "tab2022",
     panel: {
     html: 2022Html
     }
     },
     {
-    label: "2021",
+    label: "2021 payments",
     id: "tab2021",
     panel: {
     html: 2021Html
     }
     },
     {
-    label: "2020",
+    label: "2020 payments",
     id: "tab2020",
     panel: {
     html: 2020Html

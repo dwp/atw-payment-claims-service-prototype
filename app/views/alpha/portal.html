@@ -203,14 +203,14 @@ html: 'This is a new service – your <a class="govuk-link"
                       {% set claimsHistoryLink %}./portal-screens/claims-history{% endset %}
                   {% endif %}
                   
-                      {% set claimHistoryTitle %}Payment history{% endset %}
+                      {% set claimHistoryTitle %}Payments summary{% endset %}
 
                   {{ card({
                   "href": claimsHistoryLink | safe,
                   "clickable": "true",
                   "heading": claimHistoryTitle | safe,
                   "headingClasses": "govuk-heading-m",
-                  "description": "View claims we’ve paid."
+                  "description": "Your list of claims paid, due to be paid, or rejected for payment."
                   }) }}
               </li>
 
