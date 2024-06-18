@@ -104,7 +104,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£150',
           status: 'Created',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 November',
@@ -113,7 +114,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'John Doe',
           cost: '£50',
           status: 'Created',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 October',
@@ -122,7 +124,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£155',
           status: 'Approved',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 October',
@@ -131,7 +134,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'John Doe',
           cost: '£50',
           status: 'Not approved',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '2 September',
@@ -140,7 +144,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£150',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 September',
@@ -149,7 +154,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'John Doe',
           cost: '£50',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 August',
@@ -158,7 +164,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£150',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 August',
@@ -167,7 +174,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'John Doe',
           cost: '£50',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 July',
@@ -176,7 +184,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£150',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 July',
@@ -185,7 +194,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'John Doe',
           cost: '£50',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 June',
@@ -194,7 +204,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£150',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 May',
@@ -203,7 +214,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£150',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 April',
@@ -212,7 +224,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£150',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 March',
@@ -221,7 +234,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 February',
@@ -230,7 +244,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'RM Rejected',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 January',
@@ -239,7 +254,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2023
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 December',
@@ -248,7 +264,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£80',
           status: 'Posted',
-          year: 2022
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 November',
@@ -257,7 +274,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2022
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 October',
@@ -266,7 +284,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2022
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 September',
@@ -275,7 +294,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2022
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 April',
@@ -284,7 +304,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2022
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 March',
@@ -293,7 +314,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2022
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '3 February',
@@ -302,7 +324,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2022
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '12 January',
@@ -311,7 +334,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2022
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 December',
@@ -320,7 +344,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£85',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 November',
@@ -329,7 +354,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 October',
@@ -338,7 +364,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 September',
@@ -347,7 +374,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'RM Rejected',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 August',
@@ -356,7 +384,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£130',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 July',
@@ -365,7 +394,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 June',
@@ -374,7 +404,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 May',
@@ -383,7 +414,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 April',
@@ -392,7 +424,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 March',
@@ -401,7 +434,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 February',
@@ -410,7 +444,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '3 January',
@@ -419,7 +454,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2021
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 December',
@@ -428,7 +464,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£65',
           status: 'Posted',
-          year: 2020
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 November',
@@ -437,7 +474,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2020
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 October',
@@ -446,7 +484,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2020
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 September',
@@ -455,7 +494,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2020
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 August',
@@ -464,7 +504,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2020
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 July',
@@ -473,7 +514,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2020
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 June',
@@ -482,7 +524,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2020
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 May',
@@ -491,7 +534,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2020
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 April',
@@ -500,7 +544,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
           person: 'Jane Smith',
           cost: '£100',
           status: 'Posted',
-          year: 2020
+          year: 2020,
+          yearpaid: 2020
         }
       ]
     }

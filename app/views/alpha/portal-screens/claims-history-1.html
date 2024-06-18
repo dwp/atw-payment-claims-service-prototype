@@ -334,14 +334,14 @@ improve it.'
           </thead>
           <tbody class="govuk-table__body">
             {% for claim in data.claimshistory %}
-            {% if claim.status != 'Posted' and claim.status != 'RM Rejected' %}
+            {% if claim.status != 'Posted' and claim.status != 'RM Rejected' and claim.status != 'Not approved' %}
             <tr class="govuk-table__row">
               <td class="govuk-table__header">
                 {{claim.date}}
                 <span class="govuk-visually-hidden">{{claim.year}}</span>
               </td>
               <td class="govuk-table__cell">
-                {{claim.paid}}
+                {{claim.paid}} {{claim.yearpaid}}
               </td>
               <td class="govuk-table__cell">
                 {{claim.person}}
@@ -352,10 +352,10 @@ improve it.'
               <td class="govuk-table__cell">
                 {%if claim.status == 'Created' %}
                 <strong class="govuk-tag govuk-tag--yellow">
-                  {{claim.status}}
+                  In progress
                 </strong>
                 {% endif %}
-                {%if claim.status == 'Approved' or claim.status == 'Not approved' %}
+                {%if claim.status == 'Approved' %}
                 <strong class="govuk-tag govuk-tag--blue">
                   Ready for payment
                 </strong>
@@ -365,7 +365,7 @@ improve it.'
                   Payment sent
                 </strong>
                 {% endif %}
-                {%if claim.status == 'RM Rejected' %}
+                {%if claim.status == 'RM Rejected' or claim.status == 'Not approved' %}
                 <strong class="govuk-tag govuk-tag--red">
                   Rejected
                 </strong>
@@ -394,14 +394,14 @@ improve it.'
       </thead>
       <tbody class="govuk-table__body">
         {% for claim in data.claimshistory %}
-        {% if claim.year == 2023 and ( claim.status == 'Posted' or claim.status == 'RM Rejected' ) %}
+        {% if claim.year == 2023 and ( claim.status == 'Posted' or claim.status == 'RM Rejected' or claim.status == 'Not approved' ) %}
         <tr class="govuk-table__row">
           <td class="govuk-table__header">
             {{claim.date}}
             <span class="govuk-visually-hidden">{{claim.year}}</span>
           </td>
           <td class="govuk-table__cell">
-            {{claim.paid}}
+            {{claim.paid}} {{claim.yearpaid}}
           </td>
           <td class="govuk-table__cell">
             {{claim.person}}
@@ -412,10 +412,10 @@ improve it.'
           <td class="govuk-table__cell">
             {%if claim.status == 'Created' %}
             <strong class="govuk-tag govuk-tag--yellow">
-              {{claim.status}}
+              In progress
             </strong>
             {% endif %}
-            {%if claim.status == 'Approved' or claim.status == 'Not approved' %}
+            {%if claim.status == 'Approved' %}
             <strong class="govuk-tag govuk-tag--blue">
               Ready for payment
             </strong>
@@ -425,7 +425,7 @@ improve it.'
               Payment sent
             </strong>
             {% endif %}
-            {%if claim.status == 'RM Rejected' %}
+            {%if claim.status == 'RM Rejected' or claim.status == 'Not approved' %}
             <strong class="govuk-tag govuk-tag--red">
               Rejected
             </strong>
@@ -459,8 +459,8 @@ improve it.'
             <span class="govuk-visually-hidden">{{claim.year}}</span>
           </td>
           <td class="govuk-table__cell">
-            {{claim.paid}}
-          </td><br/>
+            {{claim.paid}} {{claim.yearpaid}}
+          </td>
           <td class="govuk-table__cell">
             {{claim.person}}
           </td>
@@ -470,10 +470,10 @@ improve it.'
           <td class="govuk-table__cell">
             {%if claim.status == 'Created' %}
             <strong class="govuk-tag govuk-tag--yellow">
-              {{claim.status}}
+              In progress
             </strong>
             {% endif %}
-            {%if claim.status == 'Approved' or claim.status == 'Not approved' %}
+            {%if claim.status == 'Approved' %}
             <strong class="govuk-tag govuk-tag--blue">
               Ready for payment
             </strong>
@@ -483,7 +483,7 @@ improve it.'
               Payment sent
             </strong>
             {% endif %}
-            {%if claim.status == 'RM Rejected' %}
+            {%if claim.status == 'RM Rejected' or claim.status == 'Not approved' %}
             <strong class="govuk-tag govuk-tag--red">
               Rejected
             </strong>
@@ -517,7 +517,7 @@ improve it.'
             <span class="govuk-visually-hidden">{{claim.year}}</span>
           </td>
           <td class="govuk-table__cell">
-            {{claim.paid}}
+            {{claim.paid}} {{claim.yearpaid}}
           </td>
           <td class="govuk-table__cell">
             {{claim.person}}
@@ -528,10 +528,10 @@ improve it.'
           <td class="govuk-table__cell">
             {%if claim.status == 'Created' %}
             <strong class="govuk-tag govuk-tag--yellow">
-              {{claim.status}}
+              In progress
             </strong>
             {% endif %}
-            {%if claim.status == 'Approved' or claim.status == 'Not approved' %}
+            {%if claim.status == 'Approved' %}
             <strong class="govuk-tag govuk-tag--blue">
               Ready for payment
             </strong>
@@ -541,7 +541,7 @@ improve it.'
               Payment sent
             </strong>
             {% endif %}
-            {%if claim.status == 'RM Rejected' %}
+            {%if claim.status == 'RM Rejected' or claim.status == 'Not approved' %}
             <strong class="govuk-tag govuk-tag--red">
               Rejected
             </strong>
@@ -575,7 +575,7 @@ improve it.'
             <span class="govuk-visually-hidden">{{claim.year}}</span>
           </td>
           <td class="govuk-table__cell">
-            {{claim.paid}}
+            {{claim.paid}} {{claim.yearpaid}}
           </td>
           <td class="govuk-table__cell">
             {{claim.person}}
@@ -586,10 +586,10 @@ improve it.'
           <td class="govuk-table__cell">
             {%if claim.status == 'Created' %}
             <strong class="govuk-tag govuk-tag--yellow">
-              {{claim.status}}
+              In progress
             </strong>
             {% endif %}
-            {%if claim.status == 'Approved' or claim.status == 'Not approved' %}
+            {%if claim.status == 'Approved'%}
             <strong class="govuk-tag govuk-tag--blue">
               Ready for payment
             </strong>
@@ -599,7 +599,7 @@ improve it.'
               Payment sent
             </strong>
             {% endif %}
-            {%if claim.status == 'RM Rejected' %}
+            {%if claim.status == 'RM Rejected' or claim.status == 'Not approved' %}
             <strong class="govuk-tag govuk-tag--red">
               Rejected
             </strong>
