@@ -558,7 +558,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
-          year: 2023
+          status: 'Created',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 October',
@@ -566,7 +568,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£155',
-          year: 2023
+          status: 'Approved',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '2 September',
@@ -574,7 +578,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
-          year: 2023
+          status: 'Approved',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 August',
@@ -582,7 +588,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
-          year: 2023
+          status: 'Approved',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 July',
@@ -590,7 +598,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
-          year: 2023
+          status: 'Posted',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 June',
@@ -598,7 +608,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
-          year: 2023
+          status: 'Posted',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 May',
@@ -606,7 +618,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
-          year: 2023
+          status: 'Posted',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 April',
@@ -614,7 +628,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£150',
-          year: 2023
+          status: 'Posted',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 March',
@@ -622,7 +638,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2023
+          status: 'RM Rejected',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 February',
@@ -630,7 +648,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2023
+          status: 'Not approved',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 January',
@@ -638,7 +658,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2023
+          status: 'Posted',
+          year: 2023,
+          yearpaid: 2023
         },
         {
           date: '1 December',
@@ -646,7 +668,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£80',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 November',
@@ -654,7 +678,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 October',
@@ -662,7 +688,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 September',
@@ -670,7 +698,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 August',
@@ -678,7 +708,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 July',
@@ -686,7 +718,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£120',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 June',
@@ -694,7 +728,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 May',
@@ -702,7 +738,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£120',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 April',
@@ -710,7 +748,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 March',
@@ -718,7 +758,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '3 February',
@@ -726,7 +768,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '12 January',
@@ -734,7 +778,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2022
+          status: 'Posted',
+          year: 2022,
+          yearpaid: 2022
         },
         {
           date: '1 December',
@@ -742,7 +788,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£85',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 November',
@@ -750,7 +798,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 October',
@@ -758,7 +808,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 September',
@@ -766,7 +818,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 August',
@@ -774,7 +828,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£130',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 July',
@@ -782,7 +838,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 June',
@@ -790,7 +848,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 May',
@@ -798,7 +858,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 April',
@@ -806,7 +868,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 March',
@@ -814,7 +878,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 February',
@@ -822,7 +888,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '3 January',
@@ -830,7 +898,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2021
+          status: 'Posted',
+          year: 2021,
+          yearpaid: 2021
         },
         {
           date: '1 December',
@@ -838,7 +908,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£65',
-          year: 2020
+          status: 'Posted',
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 November',
@@ -846,7 +918,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2020
+          status: 'Posted',
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 October',
@@ -854,7 +928,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2020
+          status: 'Posted',
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 September',
@@ -862,7 +938,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2020
+          status: 'Posted',
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 August',
@@ -870,7 +948,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2020
+          status: 'Posted',
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 July',
@@ -878,7 +958,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2020
+          status: 'Posted',
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 June',
@@ -886,7 +968,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2020
+          status: 'Posted',
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 May',
@@ -894,7 +978,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2020
+          status: 'Posted',
+          year: 2020,
+          yearpaid: 2020
         },
         {
           date: '1 April',
@@ -902,7 +988,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'ABC Taxis',
           cost: '£100',
-          year: 2020
+          status: 'Posted',
+          year: 2020,
+          yearpaid: 2020
         }
       ]
     }
@@ -935,8 +1023,16 @@ module.exports = function (folderForViews, urlPrefix, router) {
         }
       ]
     }
+    if (employer === 'specialaidsandequipment') {
+      res.redirect(`/${urlPrefix}/portal-screens/claims-history`)
+    }
+    else if (employer === 'traveltowork') {
+      res.redirect(`/${urlPrefix}/portal-screens/claims-history`)
+    }
+    else if (employer === 'supportworker') {
+      res.redirect(`/${urlPrefix}/portal-screens/claims-history-1`)
+    }
 
-    res.redirect(`/${urlPrefix}/portal-screens/claims-history`)
   })
 
 

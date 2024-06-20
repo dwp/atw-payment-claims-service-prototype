@@ -58,14 +58,7 @@ html: 'This is a new service – your <a class="govuk-link" href="/alpha/feedbac
                                 Travel to or from work
                             </label>
                         </div>
-                        <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="specialaidsandequipment" name="journey-type"
-                                   type="radio"
-                                   value="specialaidsandequipment">
-                            <label class="govuk-label govuk-radios__label" for="specialaidsandequipment">
-                              Specialist equipment
-                            </label>
-                        </div>
+
                         {% if (data['journey-type'] == "multipleemployers") or (data['multiple-employers'] == "true") %}
                         {% else %}
                         <div class="govuk-radios__item">

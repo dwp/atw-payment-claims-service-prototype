@@ -293,7 +293,14 @@ improve it.'
       <fieldset class="govuk-fieldset" aria-describedby="claims-history-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
-            Payment summary: support worker
+            Payments summary: 
+            {% if data['journey-type'] == 'supportworker' %}
+              support worker
+            {% elseif data['journey-type'] == 'traveltowork' %}
+              travel to work
+            {% elseif data['journey-type'] == 'specialaidsandequipment' %}
+              specialist equipment
+            {% endif %}
           </h1>
         </legend>
 
