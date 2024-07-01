@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% if data['transport-option'] == 'taxi' %}
+
+        <h1 class="govuk-heading-l">Claiming for travel by taxi</h2>
+
+        <h2 class="govuk-body">Make sure you have:</h3>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>the number of journeys you made each day</li>
+            <li>the total cost of the journeys</li>
+            <li>invoices or receipts showing costs which cover all the journeys you are claiming for</li>
+        </ul>
+
+        {% else %}
+
+        <h1 class="govuk-heading-l">Claiming for lifts from a friend, colleague or family member</h2>
+
+        <p>You will need to tell us the total mileage travelled or the total number of journeys on each date.</p>
+
+        {% endif %}
+
+        <form action="#" method="post" class="form">
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

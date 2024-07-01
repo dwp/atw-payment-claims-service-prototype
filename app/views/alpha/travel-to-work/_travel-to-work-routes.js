@@ -34,6 +34,12 @@ module.exports = function (folderForViews, urlPrefix, router) {
   router.post('/travel-to-work/transport-option-answer-preview', function (req, res) {
     const transport = req.session.data['transport-option']
 
+      res.redirect(`/${urlPrefix}/travel-to-work/claiming-instructions`)
+  })
+
+  router.post('/travel-to-work/claiming-instructions', function (req, res) {
+    const transport = req.session.data['transport-option']
+
     if (transport === 'taxi') {
       res.redirect(`/${urlPrefix}/travel-to-work/claiming-for-month`)
     } else if (transport === 'lift') {
