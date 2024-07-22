@@ -48,7 +48,12 @@ Claim money back from Access to Work
                       Cost of support
                     </dt>
                     <dd class="govuk-summary-list__value">
-                      £45.00 per journey
+                      {% if data['ttw-claim'] == "traveltowork1" %}
+                        £35.00 
+                      {% else %}
+                        £45.00 
+                      {% endif %}
+                      per journey
                     </dd>
                   </div>
                   <div class="govuk-summary-list__row">
