@@ -205,7 +205,7 @@ Claim money back from Access to Work
     {% if equipmentLength|int === 1 %}
     <h1 class="govuk-heading-l">You’ve told us you want to claim for {{equipmentLength}} piece of specialist equipment</h1>
     {% elseif equipmentLength|int === 0 %}
-    <h1 class="govuk-heading-l">You've removed all equipment from this claim</h1>
+    <h1 class="govuk-heading-l">You've removed all specialist equipment from this claim</h1>
     {% else %}
     <h1 class="govuk-heading-l">You’ve told us you want to claim for {{equipmentLength}} pieces of specialist equipment</h1>
     {% endif %}<div class="govuk-form-group">
@@ -258,7 +258,7 @@ Claim money back from Access to Work
 
       {% else %}
       <p class="govuk-body">
-        If you still want to make a claim, you'll need to add at least one equipment.
+        If you still want to make a claim, you'll need to add at least one piece of equipment.
       </p>
       {% endif %}
 
