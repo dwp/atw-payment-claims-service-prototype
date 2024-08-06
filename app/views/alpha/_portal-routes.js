@@ -1,8 +1,9 @@
 module.exports = function (folderForViews, urlPrefix, router) {
 
-  router.get('/ur-test', function (req, res) {
+  router.get('/testing', function (req, res) {
 
     req.session.data['journey-type'] = "noawards"
+    req.session.data['no-awards'] = true
     req.session.data['multiple-awards'] = true
     req.session.data['multiple-employers'] = false
 

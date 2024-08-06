@@ -99,7 +99,7 @@ html: 'This is a new service – your <a class="govuk-link"
                     {% if ((data['journey-type'] == "multipleawards")) %}
                     {% set sendClaimLink %}./multiple-award-elements/start-a-claim{% endset %}
 
-                    {% elseif ((data['journey-type'] == "noawards")) %}
+                    {% elseif ((data['journey-type'] == "noawards") or (data['no-awards'] == true)) %}
                     {% set sendClaimLink %}./portal-screens/no-awards {% endset %}
 
                     {% elseif (data['journey-type'] == "multipleemployers") %}
