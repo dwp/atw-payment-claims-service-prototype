@@ -18,12 +18,16 @@ Claim money back from Access to Work
     <form id="form" method="post" action="#">
       <h1 class="govuk-heading-l">Your specialist equipment</h1>
 
+      <p class="govuk-body">
+        Give the details of one item of equipment. You will have the option to add more.
+      </p>
+
       <div data-module="moj-add-another">
         <!-- START HERE -->
         <fieldset class="govuk-fieldset moj-add-another__item">
           <div class="govuk-form-group">
             <label class="govuk-label govuk-label--s" for="equipment_name">
-              Name or description of specialist equipment
+              Name or description of equipment
             </label>
 
             <input class="govuk-input" value="{{data['equipment_name']}}" id="equipment_name" name="equipment_name" type="text">
