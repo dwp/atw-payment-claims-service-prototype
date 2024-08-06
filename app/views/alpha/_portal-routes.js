@@ -1,5 +1,14 @@
 module.exports = function (folderForViews, urlPrefix, router) {
 
+  router.get('/ur-test', function (req, res) {
+
+    req.session.data['journey-type'] = "noawards"
+    req.session.data['multiple-awards'] = true
+    req.session.data['multiple-employers'] = false
+
+    res.redirect(`/${urlPrefix}/portal`)
+  })
+  
   router.post('/start-journey', function (req, res) {
     if (req.session.data['journey-type'] == "traveltoworkmultiple") {
       req.session.data['journey-type'] = "traveltowork"

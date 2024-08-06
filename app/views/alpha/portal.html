@@ -200,6 +200,9 @@ html: 'This is a new service – your <a class="govuk-link"
                   {% if ((data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true")) and
                   (data['multiple-employers'] !== "true") %}
                       {% set claimsHistoryLink %}./portal-screens/multiple-claims-history{% endset %}
+                  {% elseif ((data['journey-type'] == "noawards") or (data['multiple-awards'] == "true")) and
+                  (data['multiple-employers'] !== "true") %}
+                      {% set claimsHistoryLink %}./portal-screens/multiple-claims-history{% endset %}
                   {% elseif (data['journey-type'] == "multipleemployers") or (data['multiple-employers'] == "true") %}
                       {% set claimsHistoryLink %}./portal-screens/multiple-employer-history{% endset %}
                   {% else %}
