@@ -1130,6 +1130,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const type = req.query.type
     const journeytype = req.session.data['journey-type']
     const multiple = req.session.data['multiple-awards']
+    const noawards = req.session.data['no-awards']
     const claim = req.query.claim
 
     if (type === 'adaptations') {
@@ -1139,6 +1140,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         {
           "journey-type": journeytype,
           "multiple-awards": multiple,
+          "no-awards": true,
           "adaptation-to-vehicle": "Yes",
           adaptation_name: "",
           key: null,
@@ -1199,6 +1201,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         {
           "journey-type": journeytype,
           "multiple-awards": multiple,
+          "no-awards": true,
           "adaptation-to-vehicle": "Yes",
           adaptation_name: "",
           key: null,
@@ -1245,6 +1248,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         {
           "journey-type": journeytype,
           "multiple-awards": multiple,
+          "no-awards": true,
           "adaptation-to-vehicle": "Yes",
           adaptation_name: "Manual to automatic conversion",
           key: 0,
@@ -1304,6 +1308,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           "view-claim": true,
           "journey-type": journeytype,
           "multiple-awards": multiple,
+          "no-awards": true,
           "answers-checked-sw": "true",
           "support-for-workplace": "Yes",
           providor: "John Doe",
@@ -1605,6 +1610,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         {
           "journey-type": journeytype,
           "multiple-awards": multiple,
+          "no-awards": true,
           "support-for-workplace": "Yes",
           providor: "Jane Green",
           "support-month": "5",
@@ -1857,6 +1863,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
         {
           "journey-type": journeytype,
           "multiple-awards": multiple,
+          "no-awards": true,
           "support-for-workplace": "Yes",
           providor: "John Smith",
           "support-month": "5",

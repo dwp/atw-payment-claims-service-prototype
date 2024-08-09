@@ -246,7 +246,7 @@ improve it.'
     </div>
 
     {% if (data['journey-type'] == "supportworker") or (data['journey-type'] == "multipleawards") or
-    (data['multiple-awards'] == "true") %}
+    (data['multiple-awards'] == "true") or (data['no-awards'] == true) or (data['journey-type'] == "noawards") %}
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h2 class="govuk-summary-card__title">Support worker claims waiting for countersign</h2>
@@ -394,7 +394,7 @@ improve it.'
     {% endif %}
 
     {% if (data['journey-type'] == "traveltowork") or (data['journey-type'] == "multipleawards") or
-    (data['multiple-awards'] == "true") %}
+    (data['multiple-awards'] == "true" or (data['no-awards'] == true) or (data['journey-type'] == "noawards")) %}
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
