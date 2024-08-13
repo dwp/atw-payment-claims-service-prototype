@@ -11,11 +11,18 @@ Claim money back from Access to Work
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if (data['transport-option'] == "taxi") or  (data['transport-option'] == "taxi-during-work")%}
+        {% if (data['transport-option'] == "taxi") or (data['transport-option'] == "taxi-during-work")%}
         <h1 class="govuk-heading-l">Total cost of taxis to or from work: £{{data["cost-of-taxi"]}}</h1>
 
-        <p class="govuk-body">The amount we’ll pay will be less than the total cost. This is because we will deduct the amounts you or your employer have agreed to pay.
-        </p>
+
+
+        
+<p>We will work out how much to pay - this may be less than the total cost.
+<br />
+<br />This is because we will deduct any amounts you or your employer have agreed to contribute.</p>
+
+
+        
 
         {% else %}
 
@@ -23,7 +30,8 @@ Claim money back from Access to Work
 
 
 
-        <p class="govuk-body">This is <b>45p for every mile</b> you’re claiming for. We’ve deducted the amount your employer agreed to pay.
+        <p class="govuk-body">This is <b>45p for every mile</b> you’re claiming for. We’ve deducted the amount your
+            employer agreed to pay.
         </p>
 
         {% endif %}
