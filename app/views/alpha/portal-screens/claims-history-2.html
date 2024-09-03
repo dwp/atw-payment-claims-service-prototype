@@ -283,6 +283,13 @@ improve it.'
     background-color: #cce2d8;
   }
 
+  .govuk-table__cell{
+    padding-top: 18px; padding-bottom: 20px;
+  }
+  .govuk-table__header{
+    padding-top: 18px; padding-bottom: 20px;
+  }
+
 
 </style>
 
@@ -330,9 +337,9 @@ You can also
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Claim end</th>
-            <th scope="col" class="govuk-table__header">Date paid</th>
             <th scope="col" class="govuk-table__header">Payee</th>
             <th scope="col" class="govuk-table__header">Amount</th>
+            <th scope="col" class="govuk-table__header">Last updated</th>
             <th scope="col" class="govuk-table__header">Status</th>
           </tr>
         </thead>
@@ -341,19 +348,20 @@ You can also
           {% if claim.year == 2024 %}
           <tr class="govuk-table__row">
             <td class="govuk-table__header">
-              {{claim.date}}
-              <span class="govuk-visually-hidden"> {{claim.year}} </span>
+                {{claim.date}}
+                <span class="govuk-visually-hidden"> {{claim.year}}, </span>              
             </td>
-            <td class="govuk-table__cell">
-              {%if claim.status == 'Posted' %}
-              {{claim.paid}} {{claim.yearpaid}}
-              {% endif %}
-            </td>
-            <td class="govuk-table__cell">
+            <td class="govuk-table__cell" style="">
               {{claim.person}}
+              <span class="govuk-visually-hidden">, </span>
             </td>
             <td class="govuk-table__cell">
               {{claim.cost}}
+              <span class="govuk-visually-hidden">, </span>
+            </td>
+            <td class="govuk-table__cell">
+              {{claim.paid}} {{claim.yearpaid}}
+              <span class="govuk-visually-hidden">, </span>
             </td>
             <td class="govuk-table__cell">
               {%if claim.status == 'Created' %}
@@ -376,6 +384,7 @@ You can also
                 Rejected
               </strong>
               {% endif %}
+              <span class="govuk-visually-hidden">, </span>
             </td>
           </tr>
           {% endif %}
@@ -390,9 +399,9 @@ You can also
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Claim end</th>
-            <th scope="col" class="govuk-table__header">Date paid</th>
             <th scope="col" class="govuk-table__header">Payee</th>
             <th scope="col" class="govuk-table__header">Amount</th>
+            <th scope="col" class="govuk-table__header">Last updated</th>
             <th scope="col" class="govuk-table__header">Status</th>
           </tr>
         </thead>
@@ -402,18 +411,16 @@ You can also
           <tr class="govuk-table__row">
             <td class="govuk-table__header">
               {{claim.date}}
-              <span class="govuk-visually-hidden">{{claim.year}}</span>
-            </td>
-            <td class="govuk-table__cell">
-              {%if claim.status == 'Posted' %}
-              {{claim.paid}} {{claim.yearpaid}}
-              {% endif %}
+              <span class="govuk-visually-hidden"> {{claim.year}} </span>
             </td>
             <td class="govuk-table__cell">
               {{claim.person}}
             </td>
             <td class="govuk-table__cell">
               {{claim.cost}}
+            </td>
+            <td class="govuk-table__cell">
+              {{claim.paid}} {{claim.yearpaid}}
             </td>
             <td class="govuk-table__cell">
               {%if claim.status == 'Created' %}
@@ -450,9 +457,9 @@ You can also
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Claim end</th>
-            <th scope="col" class="govuk-table__header">Date paid</th>
             <th scope="col" class="govuk-table__header">Payee</th>
             <th scope="col" class="govuk-table__header">Amount</th>
+            <th scope="col" class="govuk-table__header">Last updated</th>
             <th scope="col" class="govuk-table__header">Status</th>
           </tr>
         </thead>
@@ -462,18 +469,16 @@ You can also
           <tr class="govuk-table__row">
             <td class="govuk-table__header">
               {{claim.date}}
-              <span class="govuk-visually-hidden">{{claim.year}}</span>
-            </td>
-            <td class="govuk-table__cell">
-              {%if claim.status == 'Posted' %}
-              {{claim.paid}} {{claim.yearpaid}}
-              {% endif %}
+              <span class="govuk-visually-hidden"> {{claim.year}} </span>
             </td>
             <td class="govuk-table__cell">
               {{claim.person}}
             </td>
             <td class="govuk-table__cell">
               {{claim.cost}}
+            </td>
+            <td class="govuk-table__cell">
+              {{claim.paid}} {{claim.yearpaid}}
             </td>
             <td class="govuk-table__cell">
               {%if claim.status == 'Created' %}
@@ -510,9 +515,9 @@ You can also
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">Claim end</th>
-            <th scope="col" class="govuk-table__header">Date paid</th>
             <th scope="col" class="govuk-table__header">Payee</th>
             <th scope="col" class="govuk-table__header">Amount</th>
+            <th scope="col" class="govuk-table__header">Last updated</th>
             <th scope="col" class="govuk-table__header">Status</th>
           </tr>
         </thead>
@@ -522,18 +527,16 @@ You can also
           <tr class="govuk-table__row">
             <td class="govuk-table__header">
               {{claim.date}}
-              <span class="govuk-visually-hidden">{{claim.year}}</span>
-            </td>
-            <td class="govuk-table__cell">
-              {%if claim.status == 'Posted' %}
-              {{claim.paid}} {{claim.yearpaid}}
-              {% endif %}
+              <span class="govuk-visually-hidden"> {{claim.year}} </span>
             </td>
             <td class="govuk-table__cell">
               {{claim.person}}
             </td>
             <td class="govuk-table__cell">
               {{claim.cost}}
+            </td>
+            <td class="govuk-table__cell">
+              {{claim.paid}} {{claim.yearpaid}}
             </td>
             <td class="govuk-table__cell">
               {%if claim.status == 'Created' %}
@@ -564,7 +567,64 @@ You can also
       </table>
     {% endset -%}
 
-    
+    {% set 2020Html %}
+    <h2 class="govuk-heading-m">Payments made in 2020</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Claim end</th>
+            <th scope="col" class="govuk-table__header">Payee</th>
+            <th scope="col" class="govuk-table__header">Amount</th>
+            <th scope="col" class="govuk-table__header">Last updated</th>
+            <th scope="col" class="govuk-table__header">Status</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% for claim in data.claimshistory %}
+          {% if claim.year == 2020 %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__header">
+              {{claim.date}}
+              <span class="govuk-visually-hidden"> {{claim.year}} </span>
+            </td>
+            <td class="govuk-table__cell">
+              {{claim.person}}
+            </td>
+            <td class="govuk-table__cell">
+              {{claim.cost}}
+            </td>
+            <td class="govuk-table__cell">
+              {{claim.paid}} {{claim.yearpaid}}
+            </td>
+            <td class="govuk-table__cell">
+              {%if claim.status == 'Created' %}
+              <strong class="govuk-tag govuk-tag--yellow">
+                {{claim.status}}
+              </strong>
+              {% endif %}
+              {%if claim.status == 'Approved' or claim.status == 'Not approved' %}
+              <strong class="govuk-tag govuk-tag--blue">
+                Ready for payment
+              </strong>
+              {% endif %}
+              {%if claim.status == 'Posted' %}
+              <strong class="govuk-tag govuk-tag--green">
+                Payment sent
+              </strong>
+              {% endif %}
+              {%if claim.status == 'RM Rejected' %}
+              <strong class="govuk-tag govuk-tag--red">
+                Rejected
+              </strong>
+              {% endif %}
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endset -%}
+
     {% from "govuk/components/tabs/macro.njk" import govukTabs %}
 
     {{ govukTabs({
