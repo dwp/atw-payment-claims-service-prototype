@@ -2,8 +2,9 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
   router.get('/testing', function (req, res) {
 
-    req.session.data['journey-type'] = "noawards"
-    req.session.data['no-awards'] = true
+    req.session.data['journey-type'] = "traveltowork"
+    req.session.data['no-awards'] = false
+    req.session.data['multiple-ttw'] = true
     req.session.data['multiple-awards'] = true
     req.session.data['multiple-employers'] = false
 
@@ -1034,10 +1035,10 @@ module.exports = function (folderForViews, urlPrefix, router) {
       ]
     }
     if (employer === 'specialaidsandequipment') {
-      res.redirect(`/${urlPrefix}/portal-screens/claims-history`)
+      res.redirect(`/${urlPrefix}/portal-screens/claims-history-2`)
     }
     else if (employer === 'traveltowork') {
-      res.redirect(`/${urlPrefix}/portal-screens/claims-history`)
+      res.redirect(`/${urlPrefix}/portal-screens/claims-history-2`)
     }
     else if (employer === 'supportworker') {
       res.redirect(`/${urlPrefix}/portal-screens/claims-history-2`)

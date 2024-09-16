@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form action="existing-account-answers" method="post" class="form">
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="support-for-workplace-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                            Select 
+                            {% if (data['existing-payee'] == 'one') %}
+                            John Doe's
+                            {% elseif (data['existing-payee'] == 'two') %}
+                            Jane Green's
+                            {% elseif (data['existing-payee'] == 'three') %}
+                            Sanjid Kelly's
+                            {% endif %}
+                            payment details
+                        </h1>
+                    </legend>
+
+
+                    <div class="govuk-radios">
+                        {% if (data['existing-payee'] == 'one') %}
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="existing-account-one" name="existing-account"
+                                   type="radio"
+                                   value="one">
+                            <label class="govuk-label govuk-radios__label" for="existing-account-one">
+                                Lloyds Bank</br>
+                                Account number ending in 4567</br>
+                                Sort code ending in 34</br>
+                            </label>
+                            <div id="existing-account-one-hint" class="govuk-hint govuk-radios__hint">
+                                Added 3/10/23
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="existing-account-two" name="existing-account"
+                                   type="radio"
+                                   value="two">
+                                <label class="govuk-label govuk-radios__label" for="existing-account-one">
+                                    Halifax</br>
+                                    Account number ending in 1234</br>
+                                    Sort code ending in 21</br>
+                                </label>
+                                <div id="existing-account-two-hint" class="govuk-hint govuk-radios__hint">
+                                    Added 1/11/21
+                                </div>
+                        </div>
+                        {% elseif (data['existing-payee'] == 'two') %}
+
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="existing-account-three" name="existing-account"
+                                   type="radio"
+                                   value="three">
+                            <label class="govuk-label govuk-radios__label" for="existing-account-three">
+                                Nat West</br>
+                                Account number ending in 1133</br>
+                                Sort code ending in 11</br>
+                            </label>
+                            <div id="existing-account-three-hint" class="govuk-hint govuk-radios__hint">
+                                Added 20/9/22
+                            </div>
+                        </div>
+
+                        {% elseif (data['existing-payee'] == 'three') %}
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="existing-account-four" name="existing-account"
+                                   type="radio"
+                                   value="four">
+                            <label class="govuk-label govuk-radios__label" for="existing-account-four">
+                                Nationwide</br>
+                                Account number ending in 5054</br>
+                                Sort code ending in 21</br>
+                            </label>
+                            <div id="existing-account-four-hint" class="govuk-hint govuk-radios__hint">
+                                Added 2/3/20
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if data['existing-payee'] !== "New" %}
+
+                        <div class="govuk-radios__divider">or</div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="existing-payee-new" name="existing-payee"
+                                   type="radio"
+                                   value="New">
+                            <label class="govuk-label govuk-radios__label" for="existing-payee-new">
+                                Add a bank account
+                            </label>
+                            <div id="existing-payee-one-hint" class="govuk-hint govuk-radios__hint">
+                              When you add a new bank account, it will take a few days for the details to be saved in your account.
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
