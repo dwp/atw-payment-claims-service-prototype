@@ -346,9 +346,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const checked = req.session.data['contact-confirmed']
 
 
-    if (cost === '100') {
-      res.redirect(`/${urlPrefix}/travel-to-work/employer-contribution`)
-    } else if (journeytype === 'traveltowork-ammendment') {
+    if (journeytype === 'traveltowork-ammendment') {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
     } else if (checked) {
       res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
