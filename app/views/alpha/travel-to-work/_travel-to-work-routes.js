@@ -487,11 +487,11 @@ module.exports = function (folderForViews, urlPrefix, router) {
       req.session.data["new-payee-full-name"] = 'London Taxis'
       req.session.data["payee-email"] = 'john.doe@londontaxis.com'
 
-      req.session.data["new-payee-address-line-1"] = '100 Gorgie Park Rd'
+      req.session.data["new-payee-address-line-1"] = '102 Smith Street'
       req.session.data["new-payee-address-line-2"] = ''
-      req.session.data["new-payee-address-town"] = 'Edinburgh'
-      req.session.data["new-payee-address-county"] = 'Midlothian'
-      req.session.data["new-payee-address-postcode"] = 'EH11 2QL'
+      req.session.data["new-payee-address-town"] = 'London'
+      req.session.data["new-payee-address-county"] = 'Greater London'
+      req.session.data["new-payee-address-postcode"] = 'EC1 2HH'
     }
     else if (payee == "two"){
       req.session.data["new-payee-full-name"] = 'Jane Green'
