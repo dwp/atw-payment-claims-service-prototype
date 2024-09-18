@@ -433,8 +433,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const checked = req.session.data['contact-confirmed']
 
     if (payee == "one"){
-      req.session.data["new-payee-full-name"] = 'John Doe'
-      req.session.data["payee-email"] = 'john.doe@deafactioncharity.com'
+      req.session.data["new-payee-full-name"] = 'London Taxis'
+      req.session.data["payee-email"] = 'john.doe@londontaxis.com'
 
       req.session.data["new-payee-address-line-1"] = '100 Gorgie Park Rd'
       req.session.data["new-payee-address-line-2"] = ''
@@ -484,8 +484,8 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const checked = req.session.data['contact-confirmed']
 
     if (payee == "one"){
-      req.session.data["new-payee-full-name"] = 'John Doe'
-      req.session.data["payee-email"] = 'john.doe@deafactioncharity.com'
+      req.session.data["new-payee-full-name"] = 'London Taxis'
+      req.session.data["payee-email"] = 'john.doe@londontaxis.com'
 
       req.session.data["new-payee-address-line-1"] = '100 Gorgie Park Rd'
       req.session.data["new-payee-address-line-2"] = ''
@@ -515,7 +515,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     }
 
     if (account == "one"){
-      req.session.data["name-on-the-account"] = 'Doe and Brothers LLP'
+      req.session.data["name-on-the-account"] = 'London Taxis ltd'
       req.session.data["sort-code"] = '123456'
       req.session.data["account-number"] = '12345678'
     }
