@@ -2,7 +2,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
   router.get('/testing', function (req, res) {
 
-    req.session.data['journey-type'] = "multipleawards"
+    req.session.data['journey-type'] = "traveltowork"
     req.session.data['no-awards'] = false
     req.session.data['multiple-ttw'] = true
     req.session.data['multiple-awards'] = true

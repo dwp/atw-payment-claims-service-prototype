@@ -545,7 +545,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     } else if (checked) {
       res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
     } else {
-      res.redirect(`/${urlPrefix}/travel-to-work/counter-signatory-name`)
+      res.redirect(`/${urlPrefix}/travel-to-work/employement-status`)
     }
   })
 

@@ -207,7 +207,7 @@ html: 'This is a new service – your <a class="govuk-link"
                   {% elseif (data['journey-type'] == "multipleemployers") or (data['multiple-employers'] == "true") %}
                       {% set claimsHistoryLink %}./portal-screens/multiple-employer-history{% endset %}
                   {% else %}
-                      {% set claimsHistoryLink %}./portal-screens/claims-history{% endset %}
+                  {% set claimsHistoryLink %}./portal-screens/multiple-claims-history{% endset %}
                   {% endif %}
                   
                       {% set claimHistoryTitle %}Payments summary{% endset %}
