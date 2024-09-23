@@ -563,7 +563,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
     if (employer === 'traveltowork') {
       req.session.data['claimshistory'] = [
-        {
+        /*{
           date: '1 November',
           paid: '18 November',
           type: 'Taxi',
@@ -582,14 +582,14 @@ module.exports = function (folderForViews, urlPrefix, router) {
           status: 'Approved',
           year: 2024,
           yearpaid: 2024
-        },
+        },*/
         {
           date: '2 September',
           paid: '14 September',
           type: 'Taxi',
           person: 'London Taxis',
           cost: '£150',
-          status: 'Approved',
+          status: 'Created',
           year: 2024,
           yearpaid: 2024
         },
@@ -619,7 +619,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'London Taxis',
           cost: '£150',
-          status: 'Posted',
+          status: 'Approved',
           year: 2024,
           yearpaid: 2024
         },
