@@ -639,7 +639,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'London Taxis',
           cost: '£150',
-          status: 'Posted',
+          status: 'RM Rejected',
           year: 2024,
           yearpaid: 2024
         },
@@ -649,7 +649,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
           type: 'Taxi',
           person: 'London Taxis',
           cost: '£130',
-          status: 'RM Rejected',
+          status: 'Posted',
           year: 2024,
           yearpaid: 2024
         },
