@@ -96,7 +96,11 @@ html: 'This is a new service – your <a class="govuk-link"
 
                 <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
 
-                    {% if ((data['journey-type'] == "multipleawards")) %}
+                    
+                    {% if ((data['journey-type'] == "noawards") or (data['no-awards'] == true)) %}
+                    {% set sendClaimLink %}./portal-screens/no-awards {% endset %}
+                    
+                    {% elseif ((data['journey-type'] == "multipleawards")) %}
                     {% set sendClaimLink %}./multiple-award-elements/start-a-claim{% endset %}
 
                     {% elseif (data['journey-type'] == "multipleemployers") %}
@@ -182,14 +186,14 @@ html: 'This is a new service – your <a class="govuk-link"
 
                         {% set openClaimsLink %}./portal-screens/open-claims{% endset %}
                     
-                        {% set claimHistoryTitle %}Your claims{% endset %}
+                        {% set claimHistoryTitle %}Submitted claims{% endset %}
 
                     {{ card({
                     "href": openClaimsLink | safe,
                     "clickable": "true",
                     "heading": claimHistoryTitle | safe,
                     "headingClasses": "govuk-heading-m",
-                    "description": "View your open claims."
+                    "description": "View your submitted claims."
                     }) }}
                 </li>
 
@@ -197,20 +201,23 @@ html: 'This is a new service – your <a class="govuk-link"
                   {% if ((data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true")) and
                   (data['multiple-employers'] !== "true") %}
                       {% set claimsHistoryLink %}./portal-screens/multiple-claims-history{% endset %}
+                  {% elseif ((data['journey-type'] == "noawards") or (data['multiple-awards'] == "true")) and
+                  (data['multiple-employers'] !== "true") %}
+                      {% set claimsHistoryLink %}./portal-screens/multiple-claims-history{% endset %}
                   {% elseif (data['journey-type'] == "multipleemployers") or (data['multiple-employers'] == "true") %}
                       {% set claimsHistoryLink %}./portal-screens/multiple-employer-history{% endset %}
                   {% else %}
-                      {% set claimsHistoryLink %}./portal-screens/claims-history{% endset %}
+                  {% set claimsHistoryLink %}./portal-screens/multiple-claims-history{% endset %}
                   {% endif %}
                   
-                      {% set claimHistoryTitle %}Paid claims{% endset %}
+                      {% set claimHistoryTitle %}Payments summary{% endset %}
 
                   {{ card({
                   "href": claimsHistoryLink | safe,
                   "clickable": "true",
                   "heading": claimHistoryTitle | safe,
                   "headingClasses": "govuk-heading-m",
-                  "description": "View claims we’ve paid."
+                  "description": "Your list of claims paid, due to be paid, or rejected for payment."
                   }) }}
               </li>
 

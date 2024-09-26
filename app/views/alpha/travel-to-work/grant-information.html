@@ -32,13 +32,13 @@ Claim money back from Access to Work
 
         {% endif %}
 
-        <p>This support can be used while you work as a Finance Analyst at Deaf Action Charity. </p>
+        <p>This support can be used while you work at Kensington and Chelsea Council. </p>
 
         <p>You should have already received a copy of your grant approval letter by post.</p>
         
         <p>If your needs change, you need to <a href="../portal-screens/contact-atw">contact us</a>.</p>
 
-        <h2 class="govuk-heading-m">Support from 5 March 2021 to 5 March 2024</h2>
+        <h2 class="govuk-heading-m">Support from 5 March 2023 to 5 March 2026</h2>
 
 
 
@@ -48,7 +48,12 @@ Claim money back from Access to Work
                       Cost of support
                     </dt>
                     <dd class="govuk-summary-list__value">
-                      £45.00 per journey
+                      {% if data['ttw-claim'] == "traveltowork1" %}
+                        £35.00 
+                      {% else %}
+                        £45.00 
+                      {% endif %}
+                      per journey
                     </dd>
                   </div>
                   <div class="govuk-summary-list__row">
@@ -64,7 +69,7 @@ Claim money back from Access to Work
                       Total amount you or your employer have agreed to contribute
                     </dt>
                     <dd class="govuk-summary-list__value">
-                      £7.50 per journey
+                      £500
                     </dd>
                   </div>
                   <div class="govuk-summary-list__row">
@@ -72,7 +77,7 @@ Claim money back from Access to Work
                       Total amount Access to Work will contribute
                     </dt>
                     <dd class="govuk-summary-list__value">
-                      £37.50 per journey
+                      £6,700
                     </dd>
                   </div>
                   <div class="govuk-summary-list__row">
