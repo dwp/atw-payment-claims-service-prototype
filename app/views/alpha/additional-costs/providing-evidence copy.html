@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form action="receipt-upload" method="post" class="form">
+            <h1 class="govuk-heading-l">How to send us copies of receipts or invoices</h1>
+
+            <p>We accept either:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>photos or scans of paper receipts or invoices</li>
+                <li>digital receipts or invoices</li>
+            </ul>
+
+              <p>Your receipts or invoices must show:</p>
+              <ul class="govuk-list govuk-list--bullet">
+                  <li>the amount paid for the support worker</li>
+                  <li>the support worker's full name</li>
+                  <li>the dates the support worker provided support</li>
+                  <li>a short description of the support they provided</li>
+              </ul>
+
+
+              <h2 class="govuk-heading-m">Taking photos or scans of receipts or invoices</h1>
+              <p>Make sure:</p>
+              <ul class="govuk-list govuk-list--bullet">
+                  <li>you include the whole receipt or invoice</li>
+                  <li>the photo or scan is not blurry</li>
+                  <li>you take photos from above and not at an angle</li>
+                  <li>you take photos in a well-lit place</li>
+              </ul>
+  
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

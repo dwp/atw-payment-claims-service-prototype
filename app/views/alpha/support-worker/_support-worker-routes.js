@@ -3,7 +3,13 @@ const { indexOf, forEach } = require("lodash")
 module.exports = function (folderForViews, urlPrefix, router) {
   router.get('/support-worker/start-a-claim', function (req, res) {
 
-    res.render(`./${folderForViews}/support-worker/start-a-claim`)
+    if (req.session.data['journey-type'] == 'claimadditionalcosts'){
+      res.redirect(`/${urlPrefix}/additional-costs/grant-information`)
+    }
+    else{
+      res.redirect(`/${urlPrefix}/support-worker/grant-information`)
+    }
+
   })
 
   // post - Are you claiming for support in the workplace
@@ -992,6 +998,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const cost = req.session.data['cost-of-support']
     const journeytype = req.session.data['journey-type']
     const checked = req.session.data['contact-confirmed']
+    const acjourney = req.session.data['additional-costs-journey']
 
     if (cost === '100') {
       res.redirect(`/${urlPrefix}/support-worker/employer-contribution`)
@@ -1000,8 +1007,43 @@ module.exports = function (folderForViews, urlPrefix, router) {
     } else if (journeytype === 'supportworker' && checked) {
       res.redirect(`/${urlPrefix}/support-worker/check-your-answers`)
     } else if (journeytype === 'supportworker') {
+      if (acjourney == 1){
+        res.redirect(`/${urlPrefix}/support-worker/additional-costs`)
+      }
+      else{
+        res.redirect(`/${urlPrefix}/support-worker/providing-evidence`)
+      }
+    }
+  })
+
+  router.post('/support-worker/additional-costs', function (req, res) {
+    const claimAdditionalCosts = req.session.data['claim-additional-costs']
+
+    if (claimAdditionalCosts == 'yes'){
+      res.redirect(`/${urlPrefix}/support-worker/additional-cost-types`)
+    }
+    else {
       res.redirect(`/${urlPrefix}/support-worker/providing-evidence`)
     }
+
+  })
+
+  router.post('/support-worker/additional-cost-types', function (req, res) {
+    const additionalCostTypes = req.session.data['additional-cost-types']
+
+    if (additionalCostTypes == 'none'){
+      res.redirect(`/${urlPrefix}/support-worker/providing-evidence`)
+    }
+    else {
+      res.redirect(`/${urlPrefix}/support-worker/claim-additional-costs`)
+    }
+
+  })
+
+  router.post('/support-worker/claim-additional-costs', function (req, res) {
+    const change = req.session.data['change-cost']
+
+    res.redirect(`/${urlPrefix}/support-worker/providing-evidence`)
   })
 
   router.post('/support-worker/change-cost-answer', function (req, res) {

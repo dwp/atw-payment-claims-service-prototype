@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form action="#" method="post" class="form">
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "claim-additional-costs",
+            fieldset: {
+              legend: {
+                text: "Do you want to claim for additional costs?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes"
+              },
+              {
+                value: "no",
+                text: "No"
+              }
+            ]
+          }) }}
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

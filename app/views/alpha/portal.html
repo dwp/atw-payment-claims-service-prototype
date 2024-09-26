@@ -113,7 +113,11 @@ html: 'This is a new service – your <a class="govuk-link"
                     {% set sendClaimLink %}./equipment-and-adaptations-dev/special-aids-and-equipment{% endset %}
 
                     {% elseif (data['journey-type'] == "supportworker") %}
-                    {% set sendClaimLink %}./support-worker/support-for-workplace{% endset %}
+                      {% if (data['additional-costs-journey'] == 2) %}
+                        {% set sendClaimLink %}./support-worker/choose-support-worker-claim{% endset %}
+                      {% else %}
+                        {% set sendClaimLink %}./support-worker/support-for-workplace{% endset %}
+                      {% endif %}
 
                     {% elseif (data['journey-type'] == "supportworkerpb") %}
                     {% set sendClaimLink %}./support-worker-pb/support-for-workplace{% endset %}

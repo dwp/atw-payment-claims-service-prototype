@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form action="#" method="post" class="form">
+
+            {{ govukCheckboxes({
+              name: "additional-cost-types",
+              fieldset: {
+                legend: {
+                  text: "What additional costs do you need to claim for?",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--l"
+                }
+              },
+              hint: {
+                text: "Select all additional costs that apply to this support worker claim"
+              },
+              items: [
+                {
+                  value: "travel",
+                  text: "Travel"
+                },
+                {
+                  value: "accommodation",
+                  text: "Accomodation"
+                },
+                {
+                  value: "food",
+                  text: "Food"
+                },
+                {
+                  divider: "or"
+                },
+                {
+                  value: "none",
+                  text: "I do not need to claim for any additional costs",
+                  behaviour: "exclusive"
+                }
+              ]
+            }) }}
+
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

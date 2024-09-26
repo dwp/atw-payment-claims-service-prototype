@@ -13,13 +13,12 @@ Claim money back from Access to Work
     <div class="govuk-grid-column-two-thirds">
         <form action="cost-of-support-answer" method="post" class="form">
 
+            {% if data['additional-costs-journey'] != 0 %}
+
             {{ govukInput({
             id: "cost-of-support",
             name: "cost-of-support",
             value: data['cost-of-support'],
-            hint: {
-                text: "Include any related costs like travel or accommodation for your support worker your grant covers."
-            },
             label: {
                 text: "How much did your support cost in total, in pounds?",
                 classes: "govuk-label--l",
@@ -31,6 +30,30 @@ Claim money back from Access to Work
             classes: "govuk-input--width-5",
             spellcheck: false
             }) }}
+
+            {% else %}
+
+            {{ govukInput({
+                id: "cost-of-support",
+                name: "cost-of-support",
+                value: data['cost-of-support'],
+                hint: {
+                    text: "Include any related costs like travel or accommodation for your support worker your grant covers."
+                },
+                label: {
+                    text: "How much did your support cost in total, in pounds?",
+                    classes: "govuk-label--l",
+                    isPageHeading: true
+                },
+                prefix: {
+                    text: "£"
+                },
+                classes: "govuk-input--width-5",
+                spellcheck: false
+                }) }}
+
+            {% endif %}
+
 
             <button type="submit" class="govuk-button" data-module="govuk-button">
                 Continue

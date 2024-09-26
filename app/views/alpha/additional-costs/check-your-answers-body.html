@@ -45,164 +45,6 @@
 
         <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
-                <h2 class="govuk-summary-card__title">Total monthly support</h2>
-            </div>
-            <div class="govuk-summary-card__content">
-
-                <table class="govuk-summary-list govuk-!-margin-bottom-0">
-                    <tbody class="govuk-summary-list">
-                        {% for month_data in data['month-list'] %}
-
-                        <tr class="govuk-summary-list__row">
-                            <th scope="row" class="govuk-summary-list__key">
-                                {{month_data.month | numberMonth}} {{month_data.year}}
-                            </th>
-                            <td class="govuk-summary-list__value">
-                                {{month_data['totalhours']}}
-                                {% if month_data['totalhours'] == 1 %} hour {% else %} hours {% endif %}
-                                and
-                                {{month_data['totalminutes']}}
-                                {% if month_data['totalminutes'] == 1 %} minute {% else %} minutes {% endif %}
-                            </td>
-                            {% if print != true %}
-
-                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
-                                {% if (data['view-claim']) %}
-                                {% else %}
-                                <a href="hours-for-day-summary">
-                                    Change
-                                    <span class="govuk-visually-hidden"> Hours of support received</span>
-                                </a>
-                                {% endif %}
-                            </td>
-                            {% endif %}
-
-                        </tr>
-
-                        {% endfor %}
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-
-
-        <div class="govuk-summary-card">
-            <div class="govuk-summary-card__title-wrapper">
-                <h2 class="govuk-summary-card__title">Total hours and costs</h2>
-            </div>
-            <div class="govuk-summary-card__content">
-
-                <table class="govuk-summary-list govuk-!-margin-bottom-0">
-                    <tbody class="govuk-summary-list">
-
-                        <tr class="govuk-summary-list__row">
-                            <th scope="row" class="govuk-summary-list__key">
-                                Support worker or agency name
-                            </th>
-                            <td class="govuk-summary-list__value">
-                                {{data['providor']}} 
-                            </td>
-                            {% if print != true %}
-
-                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
-                                {% if (data['view-claim']) %}
-                                {% else %}
-                                <a href="support-worker-agency-name">
-                                    Change
-                                    <span class="govuk-visually-hidden"> support worker or agency name</span>
-                                </a>
-                                {% endif %}
-                            </td>
-                            {% endif %}
-
-                        </tr>
-
-                        <tr class="govuk-summary-list__row">
-                            <th scope="row" class="govuk-summary-list__key">
-                                Total support
-                            </th>
-                            <td class="govuk-summary-list__value">
-                                {{data['hour-total']}} {% if data['hour-total'] == 1 %} hour {% else %} hours {% endif
-                                %}
-                                and {{data['minute-total']}}
-                                {% if data.minute-total == 1 %} minute {% else %} minutes {% endif %}
-                            </td>
-                            {% if print != true %}
-
-                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
-                                {% if (data['view-claim']) %}
-                                {% else %}
-                                <a href="hours-for-day-summary">
-                                    Change
-                                    <span class="govuk-visually-hidden"> Total claimed</span>
-                                </a>
-                                {% endif %}
-                            </td>
-                            {% endif %}
-
-                        </tr>
-
-                        <tr class="govuk-summary-list__row">
-                            <th scope="row" class="govuk-summary-list__key">
-                                Total cost of support worker
-                            </th>
-                            <td class="govuk-summary-list__value">
-                                £{{data['cost-of-support']}}
-                            </td>
-                            {% if print != true %}
-
-                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
-                                {% if (data['view-claim']) %}
-                                {% else %}
-                                <a href="cost-of-support">
-                                    Change
-                                    <span class="govuk-visually-hidden"> total cost of support received</span>
-                                </a>
-                                {% endif %}
-                            </td>
-                            {% endif %}
-
-                        </tr>
-
-                        <tr class="govuk-summary-list__row">
-                            <th scope="row" class="govuk-summary-list__key">
-                                {% if data['uploads'].length == 1 %}
-                                Receipt or invoice uploaded
-                                {% else %}
-                                Receipts or invoices uploaded
-                                {% endif %}
-                            </th>
-                            <td class="govuk-summary-list__value">
-                                {% for file in data['uploads'] %}
-
-                                {{file['file']}}<br>
-                                {% endfor %}
-                            </td>
-                            {% if print != true %}
-                            {% if (data['view-claim']) %}
-                            {% else %}
-                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
-                                <a href="upload-summary">
-                                    Change
-                                    <span class="govuk-visually-hidden"> Supporting evidence</span>
-                                </a>
-                            </td>
-                            {% endif %}
-                            {% endif %}
-
-                        </tr>
-
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-
-        {% if ((data['additional-cost-types'] != 'none') and (data['claim-additional-costs'] == 'yes') and (data['additional-costs-journey'] == 1)) %}
-
-        <div class="govuk-summary-card">
-            <div class="govuk-summary-card__title-wrapper">
                 <h2 class="govuk-summary-card__title">Additional costs</h2>
             </div>
             <div class="govuk-summary-card__content">
@@ -284,11 +126,8 @@
             </div>
         </div>
 
-        {% endif %}
 
-        {%if (data['journey-type'] == "traveltowork-ammendment") or (data['sw-declaration']) %}
-
-        {% elseif (data['existing-payee'] == "one") or (data['existing-payee'] == "two") or (data['existing-payee'] ==
+        {% if (data['existing-payee'] == "one") or (data['existing-payee'] == "two") or (data['existing-payee'] ==
         "three") %}
 
 
@@ -613,9 +452,6 @@
             </div>
         </div>
         {% endif %}
-
-
-
 
 
         <!-- {% if print != true %}
