@@ -376,7 +376,7 @@
                     <tbody class="govuk-summary-list">
                         <tr class="govuk-summary-list__row">
                             <th scope="row" class="govuk-summary-list__key">
-                                Test
+                                Name
                             </th>
                             <td class="govuk-summary-list__value">
                                     {{data["new-payee-full-name"]}}
@@ -390,23 +390,7 @@
                             </td>
                             {% endif %}
                         </tr>
-                        <tr class="govuk-summary-list__row">
-                            <th class="govuk-summary-list__key">
-                                Sort code
-                            </th>
-                            <td class="govuk-summary-list__value">
-                                {{data["sort-code"]}}
-                            </td>
-                            {% if print != true %}
-                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
-                                <a href="banking-details">
-                                    Change
-                                    <span class="govuk-visually-hidden"> Bank or building society account details</span>
-                                </a>
-                            </td>
-                            {% endif %}
-                        </tr>
-
+                        
                         <tr class="govuk-summary-list__row">
                             <th scope="row" class="govuk-summary-list__key">
                                 Email address
