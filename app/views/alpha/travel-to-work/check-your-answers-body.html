@@ -256,6 +256,30 @@
             </div>
         </div>
 
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Dates and amounts</caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Date</th>
+                <th scope="col" class="govuk-table__header">Amount</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">First 6 weeks</th>
+                <td class="govuk-table__cell">£109.80 per week</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">Next 33 weeks</th>
+                <td class="govuk-table__cell">£109.80 per week</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">Total estimated pay</th>
+                <td class="govuk-table__cell">£4,282.20</td>
+              </tr>
+            </tbody>
+          </table>
+
 
         <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
@@ -562,13 +586,13 @@
                 <h2 class="govuk-summary-card__title">Details of person or company being paid</h2>
             </div>
             <div class="govuk-summary-card__content">
-                <table class="govuk-table govuk-!-margin-bottom-0">
-                    <tbody class="govuk-table__body">
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
+                <table class="govuk-summary-list govuk-!-margin-bottom-0">
+                    <tbody class="govuk-summary-list">
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
                                 Name
                             </th>
-                            <td class="govuk-table__cell">
+                            <td class="govuk-summary-list__value">
                                     {{data["new-payee-full-name"]}}
                             </td>
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
@@ -578,11 +602,11 @@
                             </td>
                         </tr>
                         
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
                                 Email address
                             </th>
-                            <td class="govuk-table__cell">
+                            <td class="govuk-summary-list__value">
                                 {{data["payee-email"]}}
                             </td>
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
@@ -592,11 +616,11 @@
                             </td>
                         </tr>
 
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
                                 Address
                             </th>
-                            <td class="govuk-table__cell">
+                            <td class="govuk-summary-list__value">
                                 
                                 123 Hudsen House<br>
                                 Cresent Lane<br>
@@ -612,11 +636,11 @@
                             </td>
                         </tr>
 
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
+                        <tr class="govuk-summary-list__row">
+                            <th class="govuk-summary-list__key">
                                 Name on bank account
                             </th>
-                            <td class="govuk-table__cell">
+                            <td class="govuk-summary-list__value">
                                 {{data["name-on-the-account"]}}
     
                             </td>
@@ -626,11 +650,11 @@
                                 </a>
                             </td>
                         </tr>
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
+                        <tr class="govuk-summary-list__row">
+                            <th class="govuk-summary-list__key">
                                 Sort code
                             </th>
-                            <td class="govuk-table__cell">
+                            <td class="govuk-summary-list__value">
                                 {{data["sort-code"]}}
                             </td>
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
@@ -640,11 +664,11 @@
                             </td>
                         </tr>
     
-                        <tr class="govuk-table__row">
-                            <th scope="row" class="govuk-table__header">
+                        <tr class="govuk-summary-list__row">
+                            <th class="govuk-summary-list__key">
                                 Account number
                             </th>
-                            <td class="govuk-table__cell">
+                            <td class="govuk-summary-list__value">
                                 {{data["account-number"]}}
                             </td>
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
