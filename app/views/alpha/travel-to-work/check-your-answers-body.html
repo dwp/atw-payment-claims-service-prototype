@@ -556,6 +556,107 @@
         {% endif %}
         {% endif %}
 
+        <div class="govuk-summary-card">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">Details of person or company being paid</h2>
+            </div>
+            <div class="govuk-summary-card__content">
+                <table class="govuk-summary-list govuk-!-margin-bottom-0">
+                    <tbody class="govuk-summary-list">
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
+                                Name
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                    {{data["new-payee-full-name"]}}
+                            </td>
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                <a href="new-payee-name">
+                                    Change
+                                </a>
+                            </td>
+                        </tr>
+                        
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
+                                Email address
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                {{data["payee-email"]}}
+                            </td>
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                <a href="new-payee-name">
+                                    Change
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr class="govuk-summary-list__row">
+                            <th scope="row" class="govuk-summary-list__key">
+                                Address
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                
+                                123 Hudsen House<br>
+                                Cresent Lane<br>
+                                Leeds<br>
+                                West Yorkshire<br>
+                                {{data["new-payee-postcode"]}}
+
+                            </td>
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                <a href="taxi-cost">
+                                    Change
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr class="govuk-summary-list__row">
+                            <th class="govuk-summary-list__key">
+                                Name on bank account
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                {{data["name-on-the-account"]}}
+    
+                            </td>
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                <a href="banking-details">
+                                    Change
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="govuk-summary-list__row">
+                            <th class="govuk-summary-list__key">
+                                Sort code
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                {{data["sort-code"]}}
+                            </td>
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                <a href="banking-details">
+                                    Change
+                                </a>
+                            </td>
+                        </tr>
+    
+                        <tr class="govuk-summary-list__row">
+                            <th class="govuk-summary-list__key">
+                                Account number
+                            </th>
+                            <td class="govuk-summary-list__value">
+                                {{data["account-number"]}}
+                            </td>
+                            <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                                <a href="banking-details">
+                                    Change
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
 
         {% if print != true %}
 
