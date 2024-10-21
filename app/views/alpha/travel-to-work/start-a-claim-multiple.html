@@ -1,0 +1,123 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Claim money back from Access to Work
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "alpha"
+},
+html: 'This is a new service – your <a class="govuk-link" href="/alpha/feedback-page">feedback</a> will help us to improve it.'
+}) }}
+
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="../portal.html">Home</a>
+        </li>
+        {% if data['multiple-employers'] %}
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="../multiple-employers/start-a-claim.html">What job and employer do you want to claim against?</a>
+        </li>
+        {% endif %}
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="start-a-claim.html">What type of support are you claiming for?</a>
+        </li>
+    </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form action="#" method="post" class="form">
+
+            <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" aria-describedby="travel-to-work-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                        <h1 class="govuk-fieldset__heading">
+                            What type of support are you claiming for?
+                        </h1>
+                    </legend>
+
+
+                    <div class="govuk-radios">
+                        
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="traveltowork" name="support-grant"
+                                   type="radio"
+                                   value="traveltowork">
+                            <label class="govuk-label govuk-radios__label" for="traveltowork">
+                                Travel to or from work
+                            </label>
+                            <div id="traveltowork-hint" class="govuk-hint govuk-radios__hint">
+                                Kensington and Chelsea Council<br/>
+                                Support from 5 June 2023 to 5 June 2026<br/>
+                                £45 per journey
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="supportworker" name="support-grant"
+                                   type="radio"
+                                   value="supportworker">
+                            <label class="govuk-label govuk-radios__label" for="supportworker">
+                                Support worker
+                            </label>
+                            <div id="supportworker-hint" class="govuk-hint govuk-radios__hint">
+                                Kensington and Chelsea Council<br/>
+                                Support from 5 June 2023 to 5 June 2026<br/>
+                                £48 per hour
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="specialaidsandequipment" name="support-grant"
+                                   type="radio"
+                                   value="specialaidsandequipment">
+                            <label class="govuk-label govuk-radios__label" for="specialaidsandequipment">
+                                Specialist Equipment
+                            </label>
+                            <div id="specialaidsandequipment-hint" class="govuk-hint govuk-radios__hint">
+                                Kensington and Chelsea Council<br/>
+                                Support from 5 March 2023 to 5 March 2026<br/>
+                            </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="adaptations" name="support-grant"
+                                   type="radio"
+                                   value="adaptations">
+                            <label class="govuk-label govuk-radios__label" for="adaptations">
+                                Adaptation to Vehicle
+                            </label>
+                            <div id="adaptations-hint" class="govuk-hint govuk-radios__hint">
+                                Kensington and Chelsea Council<br/>
+                                Support from 1 January 2024 to 1 January 2027<br/>
+                            </div>
+                        </div>
+                        <div class="govuk-radios__divider">or</div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="wrong-award" name="journey-type"
+                                   type="radio"
+                                   value="wrong-award">
+                            <label class="govuk-label govuk-radios__label" for="wrong-award">
+                                Something else
+                            </label>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+
+            <input type="hidden" name="multiple-awards" value="true">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -17,7 +17,7 @@ Claim money back from Access to Work
                         <h1 class="govuk-fieldset__heading">
                             Select 
                             {% if (data['existing-payee'] == 'one') %}
-                            John Doe's
+                            London Taxis's
                             {% elseif (data['existing-payee'] == 'two') %}
                             Jane Green's
                             {% elseif (data['existing-payee'] == 'three') %}
@@ -38,10 +38,9 @@ Claim money back from Access to Work
                             <label class="govuk-label govuk-radios__label" for="existing-account-one">
                                 Lloyds Bank</br>
                                 Account number ending in 4567</br>
-                                Sort code ending in 34</br>
                             </label>
                             <div id="existing-account-one-hint" class="govuk-hint govuk-radios__hint">
-                                Added 3/10/23
+                                Last paid 3/9/24
                             </div>
                         </div>
                         <div class="govuk-radios__item">
@@ -51,11 +50,22 @@ Claim money back from Access to Work
                                 <label class="govuk-label govuk-radios__label" for="existing-account-two">
                                     Halifax</br>
                                     Account number ending in 1234</br>
-                                    Sort code ending in 21</br>
                                 </label>
                                 <div id="existing-account-two-hint" class="govuk-hint govuk-radios__hint">
-                                    Added 1/11/21
+                                    Last paid 1/7/23
                                 </div>
+                        </div>
+                        <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="existing-account-one" name="existing-account"
+                                   type="radio"
+                                   value="one">
+                            <label class="govuk-label govuk-radios__label" for="existing-account-one">
+                                Lloyds Bank</br>
+                                Account number ending in 4567</br>
+                            </label>
+                            <div id="existing-account-one-hint" class="govuk-hint govuk-radios__hint">
+                                Last paid 21/4/23
+                            </div>
                         </div>
                         {% elseif (data['existing-payee'] == 'two') %}
 
@@ -66,10 +76,9 @@ Claim money back from Access to Work
                             <label class="govuk-label govuk-radios__label" for="existing-account-three">
                                 Nat West</br>
                                 Account number ending in 1133</br>
-                                Sort code ending in 11</br>
                             </label>
                             <div id="existing-account-three-hint" class="govuk-hint govuk-radios__hint">
-                                Added 20/9/22
+                                Last paid 20/9/22
                             </div>
                         </div>
 
@@ -81,10 +90,9 @@ Claim money back from Access to Work
                             <label class="govuk-label govuk-radios__label" for="existing-account-four">
                                 Nationwide</br>
                                 Account number ending in 5054</br>
-                                Sort code ending in 21</br>
                             </label>
                             <div id="existing-account-four-hint" class="govuk-hint govuk-radios__hint">
-                                Added 2/3/20
+                                Last paid 2/3/20
                             </div>
                         </div>
                         {% endif %}
@@ -93,14 +101,14 @@ Claim money back from Access to Work
 
                         <div class="govuk-radios__divider">or</div>
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="existing-payee-new" name="existing-payee"
+                            <input class="govuk-radios__input" id="existing-payee-new" name="existing-account"
                                    type="radio"
                                    value="New">
                             <label class="govuk-label govuk-radios__label" for="existing-payee-new">
-                                Add a bank account
+                                Add a bank account and update details of the person or company to pay
                             </label>
                             <div id="existing-payee-one-hint" class="govuk-hint govuk-radios__hint">
-                              When you add a new bank account, it will take a few days for the details to be saved in your account.
+                                When you add a new bank account or update payment details, it will take a few days for the details to be saved in your account.
                             </div>
                         </div>
                         {% endif %}

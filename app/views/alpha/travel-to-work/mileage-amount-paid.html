@@ -62,17 +62,21 @@ Claim money back from Access to Work
 
       {% else %}
 
-      <h1 class="govuk-heading-l">Total miles: {{data['total-journeys']}} </h1>
+      <h1 class="govuk-heading-l">Total number of miles: {{data['total-journeys']}} </h1>
 
       {% endif %}
 
 
 
-        <p class="govuk-body">We’ll use the rate per mile quoted in your grant approval letter to work out how much we'll pay.
+        <p class="govuk-body">We’ll work out how much to pay for this claim. 
         </p>
+        <p class="govuk-body">To calculate the amount, we will:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>use the rate per mile shown in your grant approval letter</li>
+          <li>deduct any amounts you or your employer have agreed to contribute</li>
 
-        <p class="govuk-body">If you or your employer agreed to pay a contribution, the amount we’ll pay will be less than the total cost of the journeys. This is because we’ll deduct the amount you or your employer have agreed to pay.</p>
-
+        </ul>
+ 
 
 
 
