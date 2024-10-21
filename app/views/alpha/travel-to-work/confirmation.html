@@ -49,17 +49,20 @@ html: 'This is a new service – your <a class="govuk-link" href="/alpha/feedbac
 
           {% endif %}
 
+          <p><a href="/alpha/feedback-page">What did you
+            think of this service?</a></p>
 
-
-
-            <p><a href="../portal">Return to account home.</a></p>
+          <form action="../portal" method="post" class="form">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Return to account home
+            </button>
+        </form>
 
 
     </div>
 </div>
 
-      <p><a href="/alpha/feedback-page">What did you
-          think of this service?</a></p>
+      
 
 
 {% endblock %}

@@ -26,7 +26,20 @@ module.exports = function (folderForViews, urlPrefix, router) {
   })
 
   router.post('/travel-to-work/start-a-claim-multiple', function (req, res) {
-    const claim = req.session.data['journey-type']
+    const award = req.session.data['support-grant']
+    req.session.data['journey-type'] = award
+
+    if (award === 'traveltowork') {
+      res.redirect(`/${urlPrefix}/travel-to-work/grant-information`)
+    } else if (award === 'specialaidsandequipment') {
+      res.redirect(`/${urlPrefix}/equipment-and-adaptations/grant-information`)
+    } else if (award === 'supportworker') {
+      res.redirect(`/${urlPrefix}/support-worker/grant-information`)
+    } else if (award === 'adaptations') {
+      res.redirect(`/${urlPrefix}/adaptation-to-vehicle/grant-information`)
+    } else if (award === 'wrong-award') {
+      res.redirect(`/${urlPrefix}/multiple-award-elements/contact-dwp`)
+    }
 
     res.redirect(`/${urlPrefix}/travel-to-work/grant-information`)
   })
