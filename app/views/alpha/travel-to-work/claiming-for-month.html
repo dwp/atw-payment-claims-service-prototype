@@ -14,13 +14,13 @@ Claim money back from Access to Work
         {% if (data['transport-option'] == "taxi") or (data['transport-option'] == "taxi-during-work")%}
 
         <h1 class="govuk-heading-l">
-            Heading for taxi
+            Claim taxi costs by month
         </h1>
 
         {% else %}
 
         <h1 class="govuk-heading-l">
-            Heading for lifts
+            Claim travel costs by month
         </h1>
 
         {% endif %}
@@ -28,13 +28,13 @@ Claim money back from Access to Work
         {% if (data['transport-option'] == "taxi") or (data['transport-option'] == "taxi-during-work")%}
 
         <p class="govuk-body">
-            Some paragraph text for taxis
+            Give details for one month. You can add other months later.
         </p>
 
         {% else %}
 
         <p class="govuk-body">
-            Some paragraph text for lifts
+            Give details for one month. You can add other months later.
         </p>
 
         {% endif %}
@@ -46,13 +46,13 @@ Claim money back from Access to Work
                     {% if (data['transport-option'] == "taxi") or (data['transport-option'] == "taxi-during-work")%}
 
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                        Legend for taxi
+                        Which month are you claiming taxi costs for?
                     </legend>
             
                     {% else %}
             
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                        Legend for lifts
+                     Which month are you claiming travel costs for?   
                     </legend>
             
                     {% endif %}
