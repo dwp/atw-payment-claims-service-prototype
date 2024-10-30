@@ -32,7 +32,7 @@
                             {% else %}
                             <a href="equipment-summary">
                                 Change
-                                <span class="govuk-visually-hidden">equipment</span>
+                                <span class="govuk-visually-hidden"> specialist equipment details</span>
                             </a>
                             {% endif %}
                         </td>
@@ -52,7 +52,7 @@
                             {% else %}
                             <a href="equipement-cost">
                                 Change
-                                <span class="govuk-visually-hidden">cost of equipment</span>
+                                <span class="govuk-visually-hidden"> total cost of equipment</span>
                             </a>
                             {% endif %}
                         </td>
@@ -74,7 +74,7 @@
                             {% else %}
                             <a href="upload-summary">
                                 Change
-                                <span class="govuk-visually-hidden">supporting evidence</span>
+                                <span class="govuk-visually-hidden"> receipts or invoices uploaded</span>
                             </a>
                             {% endif %}
                         </td>
@@ -95,12 +95,17 @@
 
     <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
+            {% if data['existing-payee'] == "New" %}
             <h2 class="govuk-summary-card__title">Details of new person or company being paid</h2>
+            {% else %}
+            <h2 class="govuk-summary-card__title">Details of person or company being paid</h2>
+            {% endif %}
+
         </div>
         <div class="govuk-summary-card__content">
-
             <table class="govuk-summary-list govuk-!-margin-bottom-0">
                 <tbody class="govuk-summary-list">
+
                     <tr class="govuk-summary-list__row">
                         <th scope="row" class="govuk-summary-list__key">
                             Name
@@ -108,17 +113,20 @@
                         <td class="govuk-summary-list__value">
                             {{data["new-payee-full-name"]}}
                         </td>
-                        {% if (data['view-claim']) %}
-                        {% else %}
+                        {% if print != true %}
                         <td class="govuk-summary-list__actions govuk-!-display-none-print">
                             <a href="new-payee-name">
                                 Change
-                                <span class="govuk-visually-hidden"> payee name</span>
+                                {% if data['existing-payee'] == "New" %}
+                                <span class="govuk-visually-hidden"> name of new person or company being paid
+                                </span>
+                                {% else %}
+                                <span class="govuk-visually-hidden"> name of person or company being paid </span>
+                                {% endif %}
                             </a>
                         </td>
                         {% endif %}
                     </tr>
-                    {%if (data["payee-email"]) %}
 
                     <tr class="govuk-summary-list__row">
                         <th scope="row" class="govuk-summary-list__key">
@@ -127,17 +135,22 @@
                         <td class="govuk-summary-list__value">
                             {{data["payee-email"]}}
                         </td>
-                        {% if (data['view-claim']) %}
-                        {% else %}
+                        {% if print != true %}
                         <td class="govuk-summary-list__actions govuk-!-display-none-print">
-                            <a href="new-payee-address">
+                            <a href="new-payee-name">
                                 Change
-                                <span class="govuk-visually-hidden"> payee email address</span>
+                                {% if data['existing-payee'] == "New" %}
+                                <span class="govuk-visually-hidden"> email address for new person or company being
+                                    paid </span>
+                                {% else %}
+                                <span class="govuk-visually-hidden"> email address for person or company being
+                                    paid </span>
+                                {% endif %}
+
                             </a>
                         </td>
                         {% endif %}
                     </tr>
-                    {% endif %}
 
                     <tr class="govuk-summary-list__row">
                         <th scope="row" class="govuk-summary-list__key">
@@ -151,9 +164,9 @@
                             {{data["new-payee-address-town"]}}<br>
                             {{data["new-payee-address-county"]}}<br>
                             {{data["new-payee-address-postcode"]}}
+                            {% endif %}
 
-
-                            {% elif data["new-payee-address-select"] == "123" %}
+                            {% if data["new-payee-address-select"] == "123" %}
                             123 Hudsen House<br>
                             Cresent Lane<br>
                             Leeds<br>
@@ -190,81 +203,116 @@
 
                             {% endif %}
                         </td>
-                        {% if (data['view-claim']) %}
-                        {% else %}
+                        {% if print != true %}
                         <td class="govuk-summary-list__actions govuk-!-display-none-print">
+                            {% if print != true %}
                             <a href="new-payee-address">
                                 Change
-                                <span class="govuk-visually-hidden"> payee address</span>
+                                {% if data['existing-payee'] == "New" %}
+                                <span class="govuk-visually-hidden"> postcode and address for new person or company
+                                    being paid </span>
+                                {% else %}
+                                <span class="govuk-visually-hidden"> postcode and address for person or company
+                                    being paid </span>
+                                {% endif %}
                             </a>
+                            {% endif %}
                         </td>
                         {% endif %}
                     </tr>
+
                     <tr class="govuk-summary-list__row">
-                        <th scope="row" class="govuk-summary-list__key">
+                        <th class="govuk-summary-list__key">
                             Name on bank account
                         </th>
                         <td class="govuk-summary-list__value">
                             {{data["name-on-the-account"]}}
+
                         </td>
-                        {% if (data['view-claim']) %}
-                        {% else %}
+                        {% if print != true %}
                         <td class="govuk-summary-list__actions govuk-!-display-none-print">
                             <a href="banking-details">
                                 Change
-                                <span class="govuk-visually-hidden"> Bank or building society account details</span>
+                                {% if data['existing-payee'] == "New" %}
+                                <span class="govuk-visually-hidden"> account name and account details for new person
+                                    or company being paid </span>
+                                {% else %}
+                                <span class="govuk-visually-hidden"> account name and account details for person
+                                    or company being paid </span>
+                                {% endif %}
+                                
                             </a>
                         </td>
                         {% endif %}
                     </tr>
                     <tr class="govuk-summary-list__row">
-                        <th scope="row" class="govuk-summary-list__key">
+                        <th class="govuk-summary-list__key">
                             Sort code
                         </th>
                         <td class="govuk-summary-list__value">
                             {{data["sort-code"]}}
                         </td>
-                        {% if (data['view-claim']) %}
-                        {% else %}
+                        {% if print != true %}
                         <td class="govuk-summary-list__actions govuk-!-display-none-print">
                             <a href="banking-details">
                                 Change
-                                <span class="govuk-visually-hidden"> Bank or building society account details</span>
+                                {% if data['existing-payee'] == "New" %}
+                                <span class="govuk-visually-hidden"> sort code and account details for new person or
+                                    company being paid </span>
+                                {% else %}
+                                <span class="govuk-visually-hidden"> sort code and account details for person or
+                                    company being paid </span>
+                                {% endif %}
+                                
                             </a>
                         </td>
                         {% endif %}
                     </tr>
+
                     <tr class="govuk-summary-list__row">
-                        <th scope="row" class="govuk-summary-list__key">
+                        <th class="govuk-summary-list__key">
                             Account number
                         </th>
                         <td class="govuk-summary-list__value">
                             {{data["account-number"]}}
                         </td>
-                        {% if (data['view-claim']) %}
-                        {% else %}
+                        {% if print != true %}
                         <td class="govuk-summary-list__actions govuk-!-display-none-print">
                             <a href="banking-details">
                                 Change
-                                <span class="govuk-visually-hidden"> Bank or building society account details</span>
+                                {% if data['existing-payee'] == "New" %}
+                                <span class="govuk-visually-hidden"> account number and account details for new
+                                    person or company being paid </span>
+                                {% else %}
+                                <span class="govuk-visually-hidden"> account number and account details for
+                                    person or company being paid </span>
+                                {% endif %}
+                                
                             </a>
                         </td>
                         {% endif %}
                     </tr>
+
                     {%if (data['roll-number']) %}
                     <tr class="govuk-summary-list__row">
-                        <th scope="row" class="govuk-summary-list__key">
+                        <th class="govuk-summary-list__key">
                             Building society roll number
                         </th>
                         <td class="govuk-summary-list__value">
                             {{data["roll-number"]}}
                         </td>
-                        {% if (data['view-claim']) %}
-                        {% else %}
+                        {% if print != true %}
                         <td class="govuk-summary-list__actions govuk-!-display-none-print">
                             <a href="banking-details">
                                 Change
-                                <span class="govuk-visually-hidden"> Bank or building society account details</span>
+                                {% if data['existing-payee'] == "New" %}
+                                <span class="govuk-visually-hidden"> building society roll number and account
+                                    details for new person or company being paid</span>
+                                {% else %}
+                                <span class="govuk-visually-hidden"> building society roll number and account
+                                    details for person or company being paid</span>
+                                {% endif %}
+                                
                             </a>
                         </td>
                         {% endif %}
@@ -273,7 +321,6 @@
 
                 </tbody>
             </table>
-
         </div>
     </div>
 
