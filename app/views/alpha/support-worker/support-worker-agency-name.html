@@ -10,20 +10,29 @@ Claim money back from Access to Work
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+            Support worker or agency
+        </h1>
+        <p class="govuk-body">
+            You’ll need to send a claim for each type of support you get. For example, if you use a British Sign
+            Language interpreter and have a driver, you’ll need to send 2 claims.
+        </p>
+        <p class="govuk-body">
+            If different people or companies paid for your support, you'll also need to send separate claims for each.
+        </p>
 
         <form action="#" method="post" class="form">
 
-            {% from "govuk/components/input/macro.njk" import govukInput %}
-            {{ govukInput({
-            label: {
-            text: "What is the name of your support worker or agency?",
-            classes: "govuk-label--l",
-            isPageHeading: true
-            },
-            id: "providor",
-            name: "providor",
-            value: data.providor
-            }) }}
+            <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--m" for="providor">
+                    What is the name of your support worker or agency?
+                </label>
+                <div id="providor-hint" class="govuk-hint">
+                    Hint text
+                </div>
+                <input class="govuk-input" id="providor" name="providor" type="text" value="{{data['providor']}}"
+                    aria-describedby="providor-hint">
+            </div>
 
             <button type="submit" class="govuk-button" data-module="govuk-button">
                 Continue
