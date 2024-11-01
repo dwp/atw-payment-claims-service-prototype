@@ -7,7 +7,6 @@ Claim money back from Access to Work
 
 {% block content %}
 
-
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <form action="receipt-upload-add" method="post" class="form">
@@ -17,33 +16,30 @@ Claim money back from Access to Work
                     <h1 class="govuk-fieldset__heading">Upload your receipts or invoices</h1>
                 </legend>
 
-                    <p>Before you upload your receipts or invoices:</p>
-                    <ul class="govuk-list govuk-list--bullet">
-                        <li>check files are in the right format - either PNG, JPEG, PDF, DOC or DOCX</li>
-                        <li>make sure the file is not password protected</li>
-                    </ul>
+                <p>Before you upload your receipts or invoices:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>check files are in the right format - either PNG, JPEG, PDF, DOC or DOCX</li>
+                    <li>make sure the file is not password protected</li>
+                </ul>
 
-  
+
                 <h2 class="govuk-heading-m">Taking photos or scans of receipts or invoices</h2>
-                    <p>Make sure:</p>
-                    <ul class="govuk-list govuk-list--bullet">
-                        <li>you include the whole receipt or invoice</li>
-                        <li>the photo or scan is not blurry</li>
-                        <li>you take photos from above and not at an angle</li>
-                        <li>you take photos in a well-lit place</li>
-                    </ul>
-<p>You’ll have the option to upload more than one if you need to.</p> 
+                <p>Make sure:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>you include the whole receipt or invoice</li>
+                    <li>the photo or scan is not blurry</li>
+                    <li>you take photos from above and not at an angle</li>
+                    <li>you take photos in a well-lit place</li>
+                </ul>
+                <p>You’ll have the option to upload more than one if you need to.</p>
 
                 <div class="govuk-form-group">
                     <label class="govuk-label" for="file-upload">
-                        Upload a file
+                        Upload files
                     </label>
-                    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file">
+                    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" multiple="multiple">
                 </div>
-
-
             </fieldset>
-
 
             <button type="submit" class="govuk-button" data-module="govuk-button">
                 Continue
