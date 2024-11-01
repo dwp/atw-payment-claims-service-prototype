@@ -10,16 +10,27 @@ Claim money back from Access to Work
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            Claim support worker costs by month
+        </h1>
+        <p class="govuk-body">
+            Give details for one month. You can add other months later.
+        </p>
+
         <form action="month-claim-answer-repeat" method="post" class="form">
             <div class="govuk-form-group">
-                <fieldset class="govuk-fieldset" role="group" aria-describedby="month-of-travel-to-work-hint">
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-fieldset__heading">
-                            Which month are you claiming support worker costs for?
-                        </h1>
+                <fieldset class="govuk-fieldset" role="group" aria-describedby="support-hint">
+                    
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                        Which month are you claiming support worker costs for?
                     </legend>
 
-                    <div class="govuk-date-input" id="travel-to-work-date">
+                    <div id="support-hint" class="govuk-hint">
+                        For example, 4 2022
+                    </div>
+
+                    <div class="govuk-date-input" id="support-date">
                         <div class="govuk-date-input__item">
                             <div class="govuk-form-group">
                                 <label class="govuk-label govuk-date-input__label" for="repeatsupport-month">

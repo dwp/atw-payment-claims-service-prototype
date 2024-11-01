@@ -23,15 +23,15 @@ Claim money back from Access to Work
 
                 {% for file in data['uploads'] %}
                 <li class="hmrc-add-to-a-list__contents">
-      <span class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
-        {{ file['file'] }}
-      </span>
+                    <span class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
+                        {{ file['file'] }}
+                    </span>
                     <span class="hmrc-add-to-a-list__remove">
-        <a class="govuk-link" href="remove-receipt-upload?removeId={{loop.index0}}" >
-          <span aria-hidden="true">Remove</span>
-          <span class="govuk-visually-hidden">{{file['file']}}</span>
-        </a>
-      </span>
+                        <a class="govuk-link" href="remove-receipt-upload?removeId={{loop.index0}}">
+                            <span aria-hidden="true">Remove</span>
+                            <span class="govuk-visually-hidden"> {{file['file']}}</span>
+                        </a>
+                    </span>
                 </li>
 
                 {% endfor %}
@@ -49,15 +49,15 @@ Claim money back from Access to Work
                     </legend>
                     <div class="govuk-radios govuk-radios--inline">
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="add-another-receipt-yes" name="add-another-receipt" type="radio"
-                                   value="Yes">
+                            <input class="govuk-radios__input" id="add-another-receipt-yes" name="add-another-receipt"
+                                type="radio" value="Yes">
                             <label class="govuk-label govuk-radios__label" for="add-another-receipt-yes">
                                 Yes
                             </label>
                         </div>
                         <div class="govuk-radios__item">
-                            <input class="govuk-radios__input" id="add-another-receipt-no" name="add-another-receipt" type="radio"
-                                   value="No">
+                            <input class="govuk-radios__input" id="add-another-receipt-no" name="add-another-receipt"
+                                type="radio" value="No">
                             <label class="govuk-label govuk-radios__label" for="add-another-receipt-no">
                                 No
                             </label>
