@@ -937,9 +937,18 @@ module.exports = function (folderForViews, urlPrefix, router) {
       allUploads = []
     }
 
-    allUploads.push({
-      file: fileToUpload
-    })
+    if(Object.prototype.toString.call(fileToUpload) === '[object Array]') {
+      fileToUpload.forEach(element => {
+        allUploads.push({
+          file: element
+        })
+      });
+    }
+    else{
+      allUploads.push({
+        file: fileToUpload
+      })
+    }
 
     req.session.data.uploads = allUploads
     res.redirect(`/${urlPrefix}/support-worker/upload-summary`)
