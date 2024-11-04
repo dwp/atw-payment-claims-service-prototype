@@ -9,7 +9,7 @@ Claim money back from Access to Work
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <form action="receipt-upload-add" method="post" class="form">
+        <form id="receiptForm" action="receipt-upload-add" method="post" class="form" onsubmit="document.getElementById('submitButton').setAttribute('disabled', 'disabled'); document.getElementById('submitButton').textContent = 'Uploading...'; window.setTimeout(function () { document.getElementById('receiptForm').submit(); }, 5000); return false">
 
             <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -19,7 +19,8 @@ Claim money back from Access to Work
                 <p>Before you upload your receipts or invoices:</p>
                 <ul class="govuk-list govuk-list--bullet">
                     <li>check files are in the right format - either PNG, JPEG, PDF, DOC or DOCX</li>
-                    <li>make sure the file is not password protected</li>
+                    <li>make sure the files are not password protected</li>
+                    <li>make sure your claim does not exceed the upload limit of 90 files</li>
                 </ul>
 
 
@@ -31,18 +32,22 @@ Claim money back from Access to Work
                     <li>you take photos from above and not at an angle</li>
                     <li>you take photos in a well-lit place</li>
                 </ul>
-                <p>You’ll have the option to upload more than one if you need to.</p>
 
                 <div class="govuk-form-group">
-                    <label class="govuk-label" for="file-upload">
+                    <label class="govuk-label govuk-label--m" for="file-upload">
                         Upload files
                     </label>
-                    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" multiple="multiple">
+                    <div id="file-upload-hint" class="govuk-hint">
+                        Select up to 5 files at one time.
+                      </div>
+                    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" multiple="multiple" aria-describedby="file-upload-hint">
                 </div>
+
+  
             </fieldset>
 
-            <button type="submit" class="govuk-button" data-module="govuk-button">
-                Continue
+            <button id="submitButton" type="submit" class="govuk-button" data-module="govuk-button">
+                Upload
             </button>
         </form>
     </div>
