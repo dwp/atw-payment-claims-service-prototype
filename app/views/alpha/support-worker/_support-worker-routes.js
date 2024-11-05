@@ -937,6 +937,31 @@ module.exports = function (folderForViews, urlPrefix, router) {
       allUploads = []
     }
 
+
+    var errors = []
+    req.session.data["support-worker-errors"] = []
+
+    if(Object.prototype.toString.call(fileToUpload) === '[object Array]') {
+      if (fileToUpload.length > 5) {
+        errors.push({ text: "You can only select up to 5 files at the same time", message: "You can only select up to 5 files at the same time", href: "#file-upload" })
+      }
+      else {
+        req.session.data["support-worker-errors"] = []
+      }
+    }
+    else {
+      req.session.data["support-worker-errors"] = []
+    }
+
+    if (errors.length) {
+      req.session.data["support-worker-errors"] = errors
+      res.redirect(`/${urlPrefix}/support-worker/receipt-upload`)
+      return
+    }
+    else {
+      req.session.data["support-worker-errors"] = []
+    }
+
     if(Object.prototype.toString.call(fileToUpload) === '[object Array]') {
       fileToUpload.forEach(element => {
         allUploads.push({

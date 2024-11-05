@@ -9,7 +9,17 @@ Claim money back from Access to Work
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-        <form id="receiptForm" action="receipt-upload-add" method="post" class="form" onsubmit="document.getElementById('submitButton').setAttribute('disabled', 'disabled'); document.getElementById('submitButton').textContent = 'Uploading...'; window.setTimeout(function () { document.getElementById('receiptForm').submit(); }, 5000); return false">
+
+        {% if data["support-worker-errors"]|length %}
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+        {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: data["support-worker-errors"]
+        }) }}
+        {% endif %}
+
+        <form id="receiptForm" action="receipt-upload-add" method="post" class="form"
+            onsubmit="document.getElementById('submitButton').setAttribute('disabled', 'disabled'); document.getElementById('submitButton').textContent = 'Uploading...'; window.setTimeout(function () { document.getElementById('receiptForm').submit(); }, 5000); return false">
 
             <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -33,17 +43,38 @@ Claim money back from Access to Work
                     <li>you take photos in a well-lit place</li>
                 </ul>
 
+                {% if data["support-worker-errors"]|length %}
+
+                <div class="govuk-form-group govuk-form-group--error">
+                    <label class="govuk-label govuk-label--m" for="file-upload">
+                        Upload a file
+                    </label>
+                    <div id="file-upload-hint" class="govuk-hint">
+                        Select up to 5 files at one time.
+                    </div>
+                    <p id="file-upload-error" class="govuk-error-message">
+                        <span class="govuk-visually-hidden">Error:</span> You can only select up to 5 files at the same time
+                    </p>
+                    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" multiple="multiple"
+                        aria-describedby="file-upload-hint">
+                </div>
+
+                {% else %}
+
                 <div class="govuk-form-group">
                     <label class="govuk-label govuk-label--m" for="file-upload">
                         Upload files
                     </label>
                     <div id="file-upload-hint" class="govuk-hint">
                         Select up to 5 files at one time.
-                      </div>
-                    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" multiple="multiple" aria-describedby="file-upload-hint">
+                    </div>
+                    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" multiple="multiple"
+                        aria-describedby="file-upload-hint">
                 </div>
 
-  
+                {% endif %}
+                
+
             </fieldset>
 
             <button id="submitButton" type="submit" class="govuk-button" data-module="govuk-button">
