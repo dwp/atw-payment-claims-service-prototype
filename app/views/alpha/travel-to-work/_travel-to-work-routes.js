@@ -481,10 +481,6 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
     if (payee === 'New') {
       res.redirect(`/${urlPrefix}/travel-to-work/new-payee-name`)
-    } else if (journey === 'traveltowork-ammendment') {
-      res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
-    } else if (checked) {
-      res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)
     } else {
       res.redirect(`/${urlPrefix}/travel-to-work/existing-account-details`)
     }
