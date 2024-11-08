@@ -186,14 +186,14 @@ html: 'This is a new service – your <a class="govuk-link"
 
                         {% set openClaimsLink %}./portal-screens/open-claims{% endset %}
                     
-                        {% set claimHistoryTitle %}Submitted claims{% endset %}
+                        {% set claimHistoryTitle %}Recent claims{% endset %}
 
                     {{ card({
                     "href": openClaimsLink | safe,
                     "clickable": "true",
                     "heading": claimHistoryTitle | safe,
                     "headingClasses": "govuk-heading-m",
-                    "description": "View your submitted claims."
+                    "description": "Claims made in the past 3 months."
                     }) }}
                 </li>
 
@@ -210,14 +210,14 @@ html: 'This is a new service – your <a class="govuk-link"
                   {% set claimsHistoryLink %}./portal-screens/multiple-claims-history{% endset %}
                   {% endif %}
                   
-                      {% set claimHistoryTitle %}Payments summary{% endset %}
+                      {% set claimHistoryTitle %}Payments{% endset %}
 
                   {{ card({
                   "href": claimsHistoryLink | safe,
                   "clickable": "true",
                   "heading": claimHistoryTitle | safe,
                   "headingClasses": "govuk-heading-m",
-                  "description": "Your list of claims paid, due to be paid, or rejected for payment."
+                  "description": "Check the progress of payments, including any rejected payments."
                   }) }}
               </li>
 
