@@ -220,22 +220,22 @@ improve it.'
       <fieldset class="govuk-fieldset" aria-describedby="claims-history-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
           <h1 class="govuk-fieldset__heading">
-            Submitted claims
+            Recent claims
           </h1>
         </legend>
 
         <p>
-          Claims you've submitted.
+          Claims made in the past 3 months.
         </p>
         <p>
           When we’ve paid a claim, the payment will show in your
           {% if ((data['journey-type'] == "multipleawards") or (data['multiple-awards'] == "true") or (data['no-awards'] == true)) %}
           <a href="multiple-claims-history">
-            payment summary.
+            payments.
           </a>
           {% else %}
           <a href="claims-history">
-            payment history.
+            payments.
           </a>
           {% endif %}
           <br/>
