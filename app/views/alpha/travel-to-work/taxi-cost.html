@@ -46,37 +46,33 @@ Claim money back from Access to Work
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">
       Taxi costs</h1>
-<p>Tell us the total cost of taxi journeys for this claim.
-  <br />
-  <br />Do not deduct any amounts you or your employer have agreed to contribute.
+    <p>Tell us the total cost of taxi journeys for this claim.
+      <br />
+      <br />Do not deduct any amounts you or your employer have agreed to contribute.
     </p>
 
     <form action="taxi-cost-answer" method="post" class="form">
 
       {% if data['transport-option'] == "taxi" %}
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
 
-          {% if taxiTotal === 1 %}
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            How much did your taxi journey cost in total?
-          </legend>
-          </h1>
-          {% else %}
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            How much did your taxi journeys cost in total, in pounds?
-          </legend>
-          </h1>
-          {% endif %}
+        {% if taxiTotal === 1 %}
+        <label class="govuk-label govuk-label--m" for="cost-of-taxi">
+          How much did your taxi journey cost in total?
+        </label>
+        </h1>
+        {% else %}
+        <label class="govuk-label govuk-label--m" for="cost-of-taxi">
+          How much did your taxi journeys cost in total, in pounds?
+        </label>
+        </h1>
+        {% endif %}
 
-
-
-          <div class="govuk-input__wrapper">
-            <div class="govuk-input__prefix" aria-hidden="true">£</div>
-            <input class="govuk-input govuk-input--width-5" id="cost-of-taxi" name="cost-of-taxi" type="text"
-              spellcheck="false">
-          </div>
-        </fieldset>
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-5" id="cost-of-taxi" name="cost-of-taxi" type="text"
+            spellcheck="false">
+        </div>
       </div>
 
       {% elif taxiinworkTotal + repeattaxiinworkTotal === 100 %}
