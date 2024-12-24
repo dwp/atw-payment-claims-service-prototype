@@ -249,6 +249,66 @@ improve it.'
     (data['multiple-awards'] == "true") or (data['no-awards'] == true) or (data['journey-type'] == "noawards") %}
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Support worker claims returned for review</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+
+        <table class="govuk-table govuk-!-margin-bottom-0">
+          <tbody class="govuk-summary-list">
+            <tr class="govuk-summary-list__row">
+              <th scope="col" class="govuk-summary-list__key">
+                Date submitted
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Support type
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Person or company we need to pay
+              </th>
+              <th scope="col" class="govuk-summary-list__key" style="width: 20%;">
+                Cost
+              </th>
+              <th scope="col" class="govuk-summary-list__key" style="width: 40%;">
+
+              </th>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                20 November
+                <span class="govuk-visually-hidden">2024</span>
+              </th>
+              <td class="govuk-summary-list__value">
+                BSL Intepreter
+              </td>
+              <td class="govuk-summary-list__value">
+                John Doe
+              </td>
+              <td class="govuk-summary-list__value">
+                £1150
+              </td>
+              <td class="govuk-summary-list__actions">
+                <ul class="govuk-summary-list__actions-list">
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
+                      Edit claim<span class="govuk-visually-hidden"> for 20 November 2024</span>
+                    </a>
+                  </li>
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
+                      Change contact<span class="govuk-visually-hidden"> for 20 November 2024</span>
+                    </a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
         <h2 class="govuk-summary-card__title">Support worker claims waiting for countersign</h2>
       </div>
       <div class="govuk-summary-card__content">
