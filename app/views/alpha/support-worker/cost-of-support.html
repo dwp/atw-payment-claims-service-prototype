@@ -8,29 +8,65 @@ Claim money back from Access to Work
 
 {% block content %}
 
+{% if data["sw-cost-errors"]|length %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{{ govukErrorSummary({
+titleText: "There is a problem",
+errorList: data["sw-cost-errors"]
+}) }}
+{% endif %}
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <form action="cost-of-support-answer" method="post" class="form">
+
+            {% if data["sw-cost-errors"]|length %}
 
             {{ govukInput({
             id: "cost-of-support",
             name: "cost-of-support",
             value: data['cost-of-support'],
             hint: {
-                text: "Include any related costs your grant covers, like travel or accommodation for your support worker."
+            text: "Include any related costs your grant covers, like travel or accommodation for your support worker."
             },
+            errorMessage: {
+                text: data['sw-cost-errors'][0].message
+              },
             label: {
-                text: "How much did your support cost in total, in pounds?",
-                classes: "govuk-label--l",
-                isPageHeading: true
+            text: "How much did your support cost in total, in pounds?",
+            classes: "govuk-label--l",
+            isPageHeading: true
             },
             prefix: {
-                text: "£"
+            text: "£"
             },
             classes: "govuk-input--width-5",
             spellcheck: false
             }) }}
+
+            {% else %}
+
+            {{ govukInput({
+            id: "cost-of-support",
+            name: "cost-of-support",
+            value: data['cost-of-support'],
+            hint: {
+            text: "Include any related costs your grant covers, like travel or accommodation for your support worker."
+            },
+            label: {
+            text: "How much did your support cost in total, in pounds?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+            },
+            prefix: {
+            text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+            }) }}
+
+            {% endif %}
+
 
             <button type="submit" class="govuk-button" data-module="govuk-button">
                 Continue
