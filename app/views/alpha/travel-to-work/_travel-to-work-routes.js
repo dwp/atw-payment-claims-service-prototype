@@ -358,8 +358,25 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const alreadyupload = req.session.data['new-payee-full-name']
     const checked = req.session.data['contact-confirmed']
 
+    var errors = []
+    req.session.data["ttw-cost-errors"] = []
+    
+    if (!cost) {
+      errors.push({ text: "Enter total cost of travel", message: "Enter total cost of travel", href: "#cost-of-taxi" })
+    }
+    else if (/[^£,\.\d]/.test(cost)) {
+      errors.push({ text: "Enter a valid cost of travel", message: "Enter a valid cost of travel", href: "#cost-of-taxi" })
+    }
+    else if (parseFloat(cost) <= 0) {
+      errors.push({ text: "Enter a cost of travel greater than zero", message: "Enter a cost of travel greater than zero", href: "#cost-of-taxi" })
+    }
 
-    if (journeytype === 'traveltowork-ammendment') {
+    if (errors.length) {
+      req.session.data["ttw-cost-errors"] = errors
+      res.redirect(`/${urlPrefix}/travel-to-work/taxi-cost`)
+      return
+    }
+    else if (journeytype === 'traveltowork-ammendment') {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
     } else if (checked) {
       res.redirect(`/${urlPrefix}/travel-to-work/check-your-answers`)

@@ -1027,7 +1027,25 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const journeytype = req.session.data['journey-type']
     const checked = req.session.data['contact-confirmed']
 
-    if (cost === '100') {
+    var errors = []
+    req.session.data["sw-cost-errors"] = []
+    
+    if (!cost) {
+      errors.push({ text: "Enter total cost of support", message: "Enter total cost of support", href: "#cost-of-support" })
+    }
+    else if (/[^£,\.\d]/.test(cost)) {
+      errors.push({ text: "Enter a valid cost of support", message: "Enter a valid cost of support", href: "#cost-of-support" })
+    }
+    else if (parseFloat(cost) <= 0) {
+      errors.push({ text: "Enter a cost of support greater than zero", message: "Enter a cost of support greater than zero", href: "#cost-of-support" })
+    }
+
+    if (errors.length) {
+      req.session.data["sw-cost-errors"] = errors
+      res.redirect(`/${urlPrefix}/support-worker/cost-of-support`)
+      return
+    }
+    else if (cost === '100') {
       res.redirect(`/${urlPrefix}/support-worker/employer-contribution`)
     } else if (journeytype === 'traveltowork-ammendment') {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
