@@ -253,6 +253,10 @@ improve it.'
       </div>
       <div class="govuk-summary-card__content">
 
+        <p>
+          These remain here for 6 months
+        </p>
+
         <table class="govuk-table govuk-!-margin-bottom-0">
           <tbody class="govuk-summary-list">
             <tr class="govuk-summary-list__row">
@@ -458,6 +462,65 @@ improve it.'
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Travel to or from work claims returned for review</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+
+        <table class="govuk-table govuk-!-margin-bottom-0">
+          <tbody class="govuk-summary-list">
+            <tr class="govuk-summary-list__row">
+              <th scope="col" class="govuk-summary-list__key">
+                Date submitted
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Support type
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Person or company we need to pay
+              </th>
+              <th scope="col" class="govuk-summary-list__key" style="width: 20%;">
+                Cost
+              </th>
+              <th scope="col" class="govuk-summary-list__key" style="width: 40%;">
+
+              </th>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                24 August
+                <span class="govuk-visually-hidden">2024</span>
+              </th>
+              <td class="govuk-summary-list__value">
+                Taxi
+              </td>
+              <td class="govuk-summary-list__value">
+                John Doe
+              </td>
+              <td class="govuk-summary-list__value">
+                £140
+              </td>
+              <td class="govuk-summary-list__actions">
+                <ul class="govuk-summary-list__actions-list">
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
+                      Edit claim<span class="govuk-visually-hidden"> for 24 August 2024</span>
+                    </a>
+                  </li>
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
+                      Change contact<span class="govuk-visually-hidden"> for 24 August 2024</span>
+                    </a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
         <h2 class="govuk-summary-card__title">Travel to or from work claims waiting for countersign</h2>
       </div>
       <div class="govuk-summary-card__content">
@@ -512,10 +575,10 @@ improve it.'
             </tr>
           </tbody>
         </table>
-
-
       </div>
     </div>
+
+
     <div class="govuk-summary-card">
 
       <div class="govuk-summary-card__title-wrapper">
@@ -585,16 +648,17 @@ improve it.'
     {% endif %}
 
 
-    {% if (data['journey-type'] == "specialaidsandequipment") or (data['journey-type'] == "multipleawards") or
-    (data['multiple-awards'] == "true") %}
+
+    {% if (data['journey-type'] == "travelinwork") or (data['journey-type'] == "multipleawards") or
+    (data['multiple-awards'] == "true" or (data['no-awards'] == true) or (data['journey-type'] == "noawards")) %}
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Specialist equipment claims waiting for countersign</h2>
+        <h2 class="govuk-summary-card__title">Travel during work claims returned for review</h2>
       </div>
       <div class="govuk-summary-card__content">
 
-        <table class="govuk-summary-list govuk-!-margin-bottom-0">
+        <table class="govuk-table govuk-!-margin-bottom-0">
           <tbody class="govuk-summary-list">
             <tr class="govuk-summary-list__row">
               <th scope="col" class="govuk-summary-list__key">
@@ -615,57 +679,28 @@ improve it.'
             </tr>
             <tr class="govuk-summary-list__row">
               <th scope="row" class="govuk-summary-list__key">
-                3 July
+                24 August
                 <span class="govuk-visually-hidden">2024</span>
               </th>
               <td class="govuk-summary-list__value">
-                Large monitor
+                Taxi
               </td>
               <td class="govuk-summary-list__value">
-                Jane Smith
+                John Doe
               </td>
               <td class="govuk-summary-list__value">
-                £100
+                £140
               </td>
               <td class="govuk-summary-list__actions">
                 <ul class="govuk-summary-list__actions-list">
                   <li class="govuk-summary-list__actions-list-item">
-                    <a id="{{item.day}}-change" class="govuk-link" href="#">
-                      View claim<span class="govuk-visually-hidden"> for 5 August 2024</span>
+                    <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
+                      Edit claim<span class="govuk-visually-hidden"> for 24 August 2024</span>
                     </a>
                   </li>
                   <li class="govuk-summary-list__actions-list-item">
-                    <a id="{{item.day}}-change" class="govuk-link" href="#">
-                      Change contact<span class="govuk-visually-hidden"> for 5 August 2024</span>
-                    </a>
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr class="govuk-summary-list__row">
-              <th scope="row" class="govuk-summary-list__key">
-                2 July
-                <span class="govuk-visually-hidden">2024</span>
-              </th>
-              <td class="govuk-summary-list__value">
-                Specialist mouse
-              </td>
-              <td class="govuk-summary-list__value">
-                Jane Doe
-              </td>
-              <td class="govuk-summary-list__value">
-                £100
-              </td>
-              <td class="govuk-summary-list__actions">
-                <ul class="govuk-summary-list__actions-list">
-                  <li class="govuk-summary-list__actions-list-item">
-                    <a id="{{item.day}}-change" class="govuk-link" href="#">
-                      View claim<span class="govuk-visually-hidden"> for 5 August 2024</span>
-                    </a>
-                  </li>
-                  <li class="govuk-summary-list__actions-list-item">
-                    <a id="{{item.day}}-change" class="govuk-link" href="#">
-                      Change contact<span class="govuk-visually-hidden"> for 5 August 2024</span>
+                    <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
+                      Change contact<span class="govuk-visually-hidden"> for 24 August 2024</span>
                     </a>
                   </li>
                 </ul>
@@ -673,10 +708,140 @@ improve it.'
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Travel during work claims waiting for countersign</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+
+        <table class="govuk-table govuk-!-margin-bottom-0">
+          <tbody class="govuk-summary-list">
+            <tr class="govuk-summary-list__row">
+              <th scope="col" class="govuk-summary-list__key">
+                Date submitted
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Support type
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Person or company we need to pay
+              </th>
+              <th scope="col" class="govuk-summary-list__key" style="width: 20%;">
+                Cost
+              </th>
+              <th scope="col" class="govuk-summary-list__key" style="width: 40%;">
+
+              </th>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                24 August
+                <span class="govuk-visually-hidden">2024</span>
+              </th>
+              <td class="govuk-summary-list__value">
+                Taxi
+              </td>
+              <td class="govuk-summary-list__value">
+                John Doe
+              </td>
+              <td class="govuk-summary-list__value">
+                £140
+              </td>
+              <td class="govuk-summary-list__actions">
+                <ul class="govuk-summary-list__actions-list">
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
+                      View claim<span class="govuk-visually-hidden"> for 24 August 2024</span>
+                    </a>
+                  </li>
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
+                      Change contact<span class="govuk-visually-hidden"> for 24 August 2024</span>
+                    </a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="govuk-summary-card">
+
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Travel during work claims ready for payment</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+
+        <table class="govuk-summary-list govuk-!-margin-bottom-0">
+          <tbody class="govuk-summary-list">
+            <tr class="govuk-summary-list__row">
+              <th scope="col" class="govuk-summary-list__key">
+                Date submitted
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Expected payment date
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Support type
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Person or company we need to pay
+              </th>
+              <th scope="col" class="govuk-summary-list__key" style="width: 15%;">
+                Cost
+              </th>
+              <th scope="col" class="govuk-summary-list__key" style="width: 15%;">
+
+              </th>
+            </tr>
+            <tr class="govuk-summary-list__row">
+              <th scope="row" class="govuk-summary-list__key">
+                5 August
+                <span class="govuk-visually-hidden">2024</span>
+              </th>
+              <th scope="row" class="govuk-summary-list__key">
+                31 August
+                <span class="govuk-visually-hidden">2024</span>
+              </th>
+              <td class="govuk-summary-list__value">
+                Taxi
+              </td>
+              <td class="govuk-summary-list__value">
+                Jane Smith
+              </td>
+              <td class="govuk-summary-list__value">
+                £1450
+              </td>
+              <td class="govuk-summary-list__actions">
+                <ul class="govuk-summary-list__actions-list">
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a id="{{item.day}}-change" class="govuk-link" href="view-claim?type=supportworker&claim=1">
+                      View claim<span class="govuk-visually-hidden"> for 5 August 2024</span>
+                    </a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
 
 
       </div>
     </div>
+
+    
+    {% endif %}
+
+
+    {% if (data['journey-type'] == "specialaidsandequipment") or (data['journey-type'] == "multipleawards") or
+    (data['multiple-awards'] == "true") %}
 
     <div class="govuk-summary-card">
 
@@ -742,11 +907,12 @@ improve it.'
     {% endif %}
 
 
-    {% if (data['journey-type'] == "adaptations") %}
+    {% if (data['journey-type'] == "adaptations") or (data['journey-type'] == "multipleawards") or
+    (data['multiple-awards'] == "true") %}
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Adaptation to vehicle claims</h2>
+        <h2 class="govuk-summary-card__title">Adaptation to vehicle claims ready for payment</h2>
       </div>
       <div class="govuk-summary-card__content">
 
@@ -757,7 +923,10 @@ improve it.'
                 Date submitted
               </th>
               <th scope="col" class="govuk-summary-list__key">
-                Adaptations
+                Expected payment date
+              </th>
+              <th scope="col" class="govuk-summary-list__key">
+                Support type
               </th>
               <th scope="col" class="govuk-summary-list__key">
                 Person or company we need to pay
@@ -774,34 +943,17 @@ improve it.'
                 3 July
                 <span class="govuk-visually-hidden">2024</span>
               </th>
+              <th scope="row" class="govuk-summary-list__key">
+                1 September
+                <span class="govuk-visually-hidden">2024</span>
               <td class="govuk-summary-list__value">
-                3
+                Vehicle conversion
               </td>
               <td class="govuk-summary-list__value">
                 John Doe
               </td>
               <td class="govuk-summary-list__value">
                 £850
-              </td>
-              <td class="govuk-summary-list__actions">
-                <a id="{{item.day}}-change" class="govuk-link" href="#">
-                  View claim
-                </a>
-              </td>
-            </tr>
-            <tr class="govuk-summary-list__row">
-              <th scope="row" class="govuk-summary-list__key">
-                4 June
-                <span class="govuk-visually-hidden">2024</span>
-              </th>
-              <td class="govuk-summary-list__value">
-                1
-              </td>
-              <td class="govuk-summary-list__value">
-                John Doe
-              </td>
-              <td class="govuk-summary-list__value">
-                £1010
               </td>
               <td class="govuk-summary-list__actions">
                 <a id="{{item.day}}-change" class="govuk-link" href="#">

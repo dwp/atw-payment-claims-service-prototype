@@ -320,10 +320,7 @@ improve it.'
         <p>
           Payments made or waiting to be to paid.<br />
           <br />
-          This also includes rejected payments - 
-          <a href="">
-            find out what to do if your payment has been rejected
-          </a>.
+          This also includes rejected payments.
           <br /><br />
 
           You can also
@@ -336,12 +333,17 @@ improve it.'
       </fieldset>
     </div>
 
+    {% set 2025Html %}
+    <h2 class="govuk-heading-m">2025 payments</h2>
+    <p class="govuk-body">You have no payments for this year</p>
+    {% endset -%}
+
     {% set 2024Html %}
     <h2 class="govuk-heading-m">2024 payments</h2>
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Claim end</th>
+          <th scope="col" class="govuk-table__header">Claim date range</th>
           <th scope="col" class="govuk-table__header">Payee</th>
           <th scope="col" class="govuk-table__header">Amount</th>
           <th scope="col" class="govuk-table__header">Updated</th>
@@ -376,7 +378,7 @@ improve it.'
             {% endif %}
             {%if claim.status == 'Approved'%}
             <strong class="govuk-tag govuk-tag--blue">
-              Ready for payment
+              In progress
             </strong>
             {% endif %}
             {%if claim.status == 'Posted' %}
@@ -438,7 +440,7 @@ improve it.'
             {% endif %}
             {%if claim.status == 'Approved'%}
             <strong class="govuk-tag govuk-tag--blue">
-              Ready for payment
+              In progress
             </strong>
             {% endif %}
             {%if claim.status == 'Posted' %}
@@ -500,7 +502,7 @@ improve it.'
             {% endif %}
             {%if claim.status == 'Approved'%}
             <strong class="govuk-tag govuk-tag--blue">
-              Ready for payment
+              In progress
             </strong>
             {% endif %}
             {%if claim.status == 'Posted' %}
@@ -562,7 +564,7 @@ improve it.'
             {% endif %}
             {%if claim.status == 'Approved'%}
             <strong class="govuk-tag govuk-tag--blue">
-              Ready for payment
+              In progress
             </strong>
             {% endif %}
             {%if claim.status == 'Posted' %}
@@ -621,7 +623,7 @@ improve it.'
             {% endif %}
             {%if claim.status == 'Approved' or claim.status == 'Not approved' %}
             <strong class="govuk-tag govuk-tag--blue">
-              Ready for payment
+              In progress
             </strong>
             {% endif %}
             {%if claim.status == 'Posted' %}
@@ -647,6 +649,13 @@ improve it.'
     {{ govukTabs({
     items: [
     {
+    label: "2025 payments",
+    id: "tab2025",
+    panel: {
+    html: 2025Html
+    }
+    },
+    {
     label: "2024 payments",
     id: "tab2024",
     panel: {
@@ -665,13 +674,6 @@ improve it.'
     id: "tab2022",
     panel: {
     html: 2022Html
-    }
-    },
-    {
-    label: "2021 payments",
-    id: "tab2021",
-    panel: {
-    html: 2021Html
     }
     }
     ]
