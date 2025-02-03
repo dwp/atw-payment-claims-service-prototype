@@ -1092,10 +1092,10 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const journeytype = req.session.data['journey-type']
     const checked = req.session.data['sw-declaration']
 
-    if (journeytype === 'supportworker' && checked === 'true') {
-      res.redirect(`/${urlPrefix}/portal-screens/citizen-new-declaration-pre-confirm`)
-    } else if (journeytype === 'supportworker') {
+    if (journeytype === 'supportworker') {
       res.redirect(`/${urlPrefix}/support-worker/check-your-answers`)
+    } else if (checked === 'true') {
+      res.redirect(`/${urlPrefix}/portal-screens/citizen-new-declaration-pre-confirm`)
     } else if (journeytype === 'traveltowork-ammendment') {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
     }
