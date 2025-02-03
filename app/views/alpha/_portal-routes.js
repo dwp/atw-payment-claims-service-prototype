@@ -1126,6 +1126,32 @@ module.exports = function (folderForViews, urlPrefix, router) {
     res.redirect(`/${urlPrefix}/portal-screens/no`)
   })
 
+  router.get('/portal-screens/edit-claim', function (req, res) {
+    res.redirect(`/${urlPrefix}/portal-screens/edit-returned-claim`)
+  })
+
+  router.get('/portal-screens/change-contact', function (req, res) {
+    const type = req.query.type
+
+    if (type === 'supportworker') {
+      req.session.data['sw-declaration'] = 'true'
+      req.session.data['ttw-declaration'] = ''
+
+      req.session.data['counter-signatory-full-name'] = 'Test'
+      req.session.data['counter-signatory-email'] = 'Test@test.com'
+
+      res.redirect(`/${urlPrefix}/support-worker/counter-signatory-name`)
+    }
+    else if (type === 'traveltowork'){
+      req.session.data['ttw-declaration'] = 'true'
+      req.session.data['sw-declaration'] = ''
+      req.session.data["answers-checked-sw"] = ''
+
+      res.redirect(`/${urlPrefix}/travel-to-work/counter-signatory-name`)
+    }
+
+    res.redirect(`/${urlPrefix}/travel-to-work/counter-signatory-name`)
+  })
 
   router.get('/portal-screens/view-claim', function (req, res) {
     const type = req.query.type

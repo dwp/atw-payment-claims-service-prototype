@@ -22,7 +22,7 @@ html: 'This is a new service – your <a class="govuk-link" href="/alpha/feedbac
           <div class="govuk-panel govuk-panel--confirmation">
               <h1 class="govuk-panel__title">Claim updated</h1>
               <div class="govuk-panel__body">
-                {% if data ["answers-checked-sw"] %}
+                {% if ((data["answers-checked-sw"]) or (data["sw-declaration"] === 'true')) %}
                   The claim reference number is<br><strong>SW125421</strong>
                   {% elseif data ["tiw-declaration"] %}
                   The claim reference number is<br><strong>IW125421</strong>
