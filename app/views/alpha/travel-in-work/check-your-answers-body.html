@@ -279,7 +279,7 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="../travel-in-work/taxi-journeys-for-day-summary">
                                     Change
-                                    <span class="govuk-visually-hidden">Journey total</span>
+                                    <span class="govuk-visually-hidden"> number of journeys</span>
                                 </a>
                             </td>
                             {% endif %}
@@ -296,7 +296,7 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="../travel-in-work/total-mileage">
                                     Change
-                                    <span class="govuk-visually-hidden"> Total mileage</span>
+                                    <span class="govuk-visually-hidden"> total miles claimed</span>
                                 </a>
                             </td>
                             {% endif %}
@@ -313,17 +313,11 @@
                             </td>
                             {% if print != true %}
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
-                                {%if (data['journey-type'] == "traveltowork-ammendment") or (data['ttw-declaration']) %}
-                                <a href="../travel-in-work/taxi-journeys-for-day-summary">
-                                    Change
-                                    <span class="govuk-visually-hidden"> Total number of journeys</span>
-                                </a>
-                                {% else %}
+                                
                                 <a href="taxi-journeys-for-day-summary">
                                     Change
-                                    <span class="govuk-visually-hidden"> cost for travel to or from work received</span>
+                                    <span class="govuk-visually-hidden"> total cost and travel details</span>
                                 </a>
-                                {% endif %}
                             </td>
                             {% endif %}
                         </tr>
@@ -349,17 +343,11 @@
                             </td>
                             {% if print != true %}
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
-                                {%if (data['journey-type'] == "traveltowork-ammendment") or (data['ttw-declaration']) %}
-                                <a href="../travel-in-work/upload-summary">
-                                    Change
-                                    <span class="govuk-visually-hidden"> Supporting evidence</span>
-                                </a>
-                                {% else %}
+                                
                                 <a href="upload-summary">
                                     Change
-                                    <span class="govuk-visually-hidden"> Supporting evidence</span>
+                                    <span class="govuk-visually-hidden"> receipts or invoices uploaded</span>
                                 </a>
-                                {% endif %}
                             </td>
                             {% endif %}
                         </tr>
@@ -389,11 +377,17 @@
         {% if print != true %}
         <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
+                {% if data['existing-payee'] == "New" %}
                 <h2 class="govuk-summary-card__title">Details of new person or company being paid</h2>
+                {% else %}
+                <h2 class="govuk-summary-card__title">Details of person or company being paid</h2>
+                {% endif %}
+
             </div>
             <div class="govuk-summary-card__content">
                 <table class="govuk-summary-list govuk-!-margin-bottom-0">
                     <tbody class="govuk-summary-list">
+
                         <tr class="govuk-summary-list__row">
                             <th scope="row" class="govuk-summary-list__key">
                                 Name
@@ -405,7 +399,12 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="new-payee-name">
                                     Change
-                                    <span class="govuk-visually-hidden"> payee details</span>
+                                    {% if data['existing-payee'] == "New" %}
+                                    <span class="govuk-visually-hidden"> name of new person or company being paid
+                                    </span>
+                                    {% else %}
+                                    <span class="govuk-visually-hidden"> name of person or company being paid </span>
+                                    {% endif %}
                                 </a>
                             </td>
                             {% endif %}
@@ -422,7 +421,14 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="new-payee-name">
                                     Change
-                                    <span class="govuk-visually-hidden"> payee details</span>
+                                    {% if data['existing-payee'] == "New" %}
+                                    <span class="govuk-visually-hidden"> email address for new person or company being
+                                        paid </span>
+                                    {% else %}
+                                    <span class="govuk-visually-hidden"> email address for person or company being
+                                        paid </span>
+                                    {% endif %}
+
                                 </a>
                             </td>
                             {% endif %}
@@ -481,15 +487,16 @@
                             </td>
                             {% if print != true %}
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
-                                {%if (data['journey-type'] == "traveltowork-ammendment") or (data['ttw-declaration']) %}
-                                <a href="../travel-in-work/taxi-cost">
+                                {% if print != true %}
+                                <a href="new-payee-address">
                                     Change
-                                    <span class="govuk-visually-hidden"> Total number of journeys</span>
-                                </a>
-                                {% else %}
-                                <a href="taxi-cost">
-                                    Change
-                                    <span class="govuk-visually-hidden"> cost for travel to or from work received</span>
+                                    {% if data['existing-payee'] == "New" %}
+                                    <span class="govuk-visually-hidden"> postcode and address for new person or company
+                                        being paid </span>
+                                    {% else %}
+                                    <span class="govuk-visually-hidden"> postcode and address for person or company
+                                        being paid </span>
+                                    {% endif %}
                                 </a>
                                 {% endif %}
                             </td>
@@ -508,7 +515,14 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="banking-details">
                                     Change
-                                    <span class="govuk-visually-hidden"> Bank or building society account details</span>
+                                    {% if data['existing-payee'] == "New" %}
+                                    <span class="govuk-visually-hidden"> account name and account details for new person
+                                        or company being paid </span>
+                                    {% else %}
+                                    <span class="govuk-visually-hidden"> account name and account details for person
+                                        or company being paid </span>
+                                    {% endif %}
+                                    
                                 </a>
                             </td>
                             {% endif %}
@@ -524,7 +538,14 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="banking-details">
                                     Change
-                                    <span class="govuk-visually-hidden"> Bank or building society account details</span>
+                                    {% if data['existing-payee'] == "New" %}
+                                    <span class="govuk-visually-hidden"> sort code and account details for new person or
+                                        company being paid </span>
+                                    {% else %}
+                                    <span class="govuk-visually-hidden"> sort code and account details for person or
+                                        company being paid </span>
+                                    {% endif %}
+                                    
                                 </a>
                             </td>
                             {% endif %}
@@ -541,7 +562,14 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="banking-details">
                                     Change
-                                    <span class="govuk-visually-hidden"> Bank or building society account details</span>
+                                    {% if data['existing-payee'] == "New" %}
+                                    <span class="govuk-visually-hidden"> account number and account details for new
+                                        person or company being paid </span>
+                                    {% else %}
+                                    <span class="govuk-visually-hidden"> account number and account details for
+                                        person or company being paid </span>
+                                    {% endif %}
+                                    
                                 </a>
                             </td>
                             {% endif %}
@@ -559,7 +587,14 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="banking-details">
                                     Change
-                                    <span class="govuk-visually-hidden"> Bank or building society account details</span>
+                                    {% if data['existing-payee'] == "New" %}
+                                    <span class="govuk-visually-hidden"> building society roll number and account
+                                        details for new person or company being paid</span>
+                                    {% else %}
+                                    <span class="govuk-visually-hidden"> building society roll number and account
+                                        details for person or company being paid</span>
+                                    {% endif %}
+                                    
                                 </a>
                             </td>
                             {% endif %}
@@ -595,12 +630,12 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="../travel-in-work/employement-status">
                                     Change
-                                    <span class="govuk-visually-hidden">your employment status</span>
+                                    <span class="govuk-visually-hidden"> your employment status</span>
                                 </a>
                                 {% else %}
                                 <a href="employement-status">
                                     Change
-                                    <span class="govuk-visually-hidden">your employment status</span>
+                                    <span class="govuk-visually-hidden"> your employment status</span>
                                 </a>
                             </td>
                             {% endif %}
@@ -619,12 +654,14 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="../travel-in-work/counter-signatory-name">
                                     Change
-                                    <span class="govuk-visually-hidden"> counter signatory details</span>
+                                    <span class="govuk-visually-hidden"> details of workplace contact who can confirm
+                                        your claim</span>
                                 </a>
                                 {% else %}
                                 <a href="counter-signatory-name">
                                     Change
-                                    <span class="govuk-visually-hidden"> counter signatory details</span>
+                                    <span class="govuk-visually-hidden"> details of workplace contact who can confirm
+                                        your claim</span>
                                 </a>
                             </td>
                             {% endif %}
@@ -641,12 +678,14 @@
                             <td class="govuk-summary-list__actions govuk-!-display-none-print">
                                 <a href="../travel-in-work/counter-signatory-name">
                                     Change
-                                    <span class="govuk-visually-hidden"> counter signatory details</span>
+                                    <span class="govuk-visually-hidden"> details of workplace contact who can confirm
+                                        your claim</span>
                                 </a>
                                 {% else %}
                                 <a href="counter-signatory-name">
                                     Change
-                                    <span class="govuk-visually-hidden"> counter signatory details</span>
+                                    <span class="govuk-visually-hidden"> details of workplace contact who can confirm
+                                        your claim</span>
                                 </a>
                             </td>
                             {% endif %}

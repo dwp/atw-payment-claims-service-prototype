@@ -1,0 +1,73 @@
+{% extends "layout_no_contact.html" %}
+
+{% block pageTitle %}
+Get help – Claim money back from Access to Work – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+tag: {
+text: "alpha"
+},
+html: 'This is a new service – your <a class="govuk-link" href="/alpha/feedback-page">feedback</a> will help us to improve it.'
+}) }}
+
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="../portal.html">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="no-awards.html">No awards</a>
+        </li>
+    </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Your grant information is not available</h1>
+
+        <p class="govuk-body">
+            You cannot start a claim because your grant information is not available.
+        </p>
+        <p class="govuk-body">
+            This can be because:
+        </p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>you have registered for an online claims account within the past 24 hours</li>
+            <li>there was an issue creating your online account or we do not have all the correct details</li>
+        </ul>
+
+        <h2 class="govuk-heading-m">Next steps</h2>
+
+        <p class="govuk-body">
+            Wait at least 24 hours after you register for an online claims account, and check back again.
+        </p>
+        <p class="govuk-body">
+            If your grant information is still not available, 
+            <a class="govuk-link" href="contact-atw.html">
+                contact Access to Work
+            </a>
+            .
+        </p>
+
+        <form action="../portal" method="post" class="form">
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+              Return to account home
+          </button>
+
+        </form>
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}

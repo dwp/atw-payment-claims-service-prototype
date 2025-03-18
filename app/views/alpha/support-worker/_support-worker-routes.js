@@ -937,9 +937,43 @@ module.exports = function (folderForViews, urlPrefix, router) {
       allUploads = []
     }
 
-    allUploads.push({
-      file: fileToUpload
-    })
+
+    var errors = []
+    req.session.data["support-worker-errors"] = []
+
+    if(Object.prototype.toString.call(fileToUpload) === '[object Array]') {
+      if (fileToUpload.length > 5) {
+        errors.push({ text: "You can only select up to 5 files at the same time", message: "You can only select up to 5 files at the same time", href: "#file-upload" })
+      }
+      else {
+        req.session.data["support-worker-errors"] = []
+      }
+    }
+    else {
+      req.session.data["support-worker-errors"] = []
+    }
+
+    if (errors.length) {
+      req.session.data["support-worker-errors"] = errors
+      res.redirect(`/${urlPrefix}/support-worker/receipt-upload`)
+      return
+    }
+    else {
+      req.session.data["support-worker-errors"] = []
+    }
+
+    if(Object.prototype.toString.call(fileToUpload) === '[object Array]') {
+      fileToUpload.forEach(element => {
+        allUploads.push({
+          file: element
+        })
+      });
+    }
+    else{
+      allUploads.push({
+        file: fileToUpload
+      })
+    }
 
     req.session.data.uploads = allUploads
     res.redirect(`/${urlPrefix}/support-worker/upload-summary`)
@@ -993,7 +1027,25 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const journeytype = req.session.data['journey-type']
     const checked = req.session.data['contact-confirmed']
 
-    if (cost === '100') {
+    var errors = []
+    req.session.data["sw-cost-errors"] = []
+    
+    if (!cost) {
+      errors.push({ text: "Enter total cost of support", message: "Enter total cost of support", href: "#cost-of-support" })
+    }
+    else if (/[^£,\.\d]/.test(cost)) {
+      errors.push({ text: "Enter a valid cost of support", message: "Enter a valid cost of support", href: "#cost-of-support" })
+    }
+    else if (parseFloat(cost) <= 0) {
+      errors.push({ text: "Enter a cost of support greater than zero", message: "Enter a cost of support greater than zero", href: "#cost-of-support" })
+    }
+
+    if (errors.length) {
+      req.session.data["sw-cost-errors"] = errors
+      res.redirect(`/${urlPrefix}/support-worker/cost-of-support`)
+      return
+    }
+    else if (cost === '100') {
       res.redirect(`/${urlPrefix}/support-worker/employer-contribution`)
     } else if (journeytype === 'traveltowork-ammendment') {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
@@ -1040,10 +1092,10 @@ module.exports = function (folderForViews, urlPrefix, router) {
     const journeytype = req.session.data['journey-type']
     const checked = req.session.data['sw-declaration']
 
-    if (journeytype === 'supportworker' && checked === 'true') {
-      res.redirect(`/${urlPrefix}/portal-screens/citizen-new-declaration-pre-confirm`)
-    } else if (journeytype === 'supportworker') {
+    if (journeytype === 'supportworker') {
       res.redirect(`/${urlPrefix}/support-worker/check-your-answers`)
+    } else if (checked === 'true') {
+      res.redirect(`/${urlPrefix}/portal-screens/citizen-new-declaration-pre-confirm`)
     } else if (journeytype === 'traveltowork-ammendment') {
       res.redirect(`/${urlPrefix}/portal-screens/check-your-answers`)
     }

@@ -88,25 +88,87 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
   // add more equipment
 
-  // post - Add more hours
-  router.post('/equipment-and-adaptations/equipment-summary', function (req, res) {
-    console.log(req.session.data.equipment)
-    const checked = req.session.data['contact-confirmed']
-
-    if (req.session.data.equipment === undefined || req.session.data.equipment.length == 0) {
-      res.redirect(`/${urlPrefix}/equipment-and-adaptations/no-hours-entered`)
-    } else if (checked) {
-      res.redirect(`/${urlPrefix}/equipment-and-adaptations/check-your-answers`)
-    } else {
-      res.redirect(`/${urlPrefix}/equipment-and-adaptations/equipement-cost`)
-    }
-  })
 
   router.post('/equipment-and-adaptations/before-you-continue-answer', function (req, res) {
     res.redirect(`/${urlPrefix}/equipment-and-adaptations/description`)
   })
 
-  router.post('/equipment-and-adaptations/description', function (req, res) {
+  router.get('/equipment-and-adaptations/description', function (req, res) {
+
+    if (req.query['key']) {
+      req.session.data['next-equipment'] = 'change'
+
+      var match = req.session.data.equipment.filter(obj => {
+        return obj.key == req.query['key']
+      })
+      req.session.data.equipment_name = match[0].equipment_name
+      req.session.data.key = match[0].key
+      req.session.data.equipment_day = match[0].day
+      req.session.data.equipment_month = match[0].month
+      req.session.data.equipment_year = match[0].year
+    }
+    else {
+      req.session.data.equipment_name = ""
+      req.session.data.key = null
+      req.session.data.equipment_day = null
+      req.session.data.equipment_month = null
+      req.session.data.equipment_year = null
+    }
+
+    res.redirect(`/${urlPrefix}/equipment-and-adaptations/description2`)
+  })
+
+  router.get('/equipment-and-adaptations/description2', function (req, res) {
+    res.render(`./${folderForViews}/equipment-and-adaptations/description`)
+  })
+
+  router.post('/equipment-and-adaptations/description2', function (req, res) {
+
+    if (!req.session.data.equipment) {
+      req.session.data.equipment = []
+    }
+
+    if (req.session.data.key != null) {
+      var match = req.session.data.equipment.filter(obj => {
+        return obj.key == req.session.data.key
+      })
+
+      if (match[0]) {
+        var matchingIndex = req.session.data.equipment.indexOf(match[0])
+        req.session.data.equipment[matchingIndex] = {
+          key: req.session.data.key,
+          equipment_name: req.session.data.equipment_name,
+          day: req.session.data.equipment_day,
+          month: req.session.data.equipment_month,
+          year: req.session.data.equipment_year
+        }
+      }
+      else {
+        req.session.data.equipment.push({
+          key: req.session.data.equipment.length,
+          equipment_name: req.session.data.equipment_name,
+          day: req.session.data.equipment_day,
+          month: req.session.data.equipment_month,
+          year: req.session.data.equipment_year
+        })
+      }
+    }
+    else {
+      req.session.data.equipment.push({
+        key: req.session.data.equipment.length,
+        equipment_name: req.session.data.equipment_name,
+        day: req.session.data.equipment_day,
+        month: req.session.data.equipment_month,
+        year: req.session.data.equipment_year
+      })
+    }
+
+    req.session.data.equipment_name = ""
+    req.session.data.key = null
+    req.session.data.equipment_day = null
+    req.session.data.equipment_month = null
+    req.session.data.equipment_year = null
+
     if (req.session.data.remove !== undefined) {
       console.log('Remove')
       req.session.data.remove = undefined
@@ -128,6 +190,79 @@ module.exports = function (folderForViews, urlPrefix, router) {
         res.redirect(`/${urlPrefix}/equipment-and-adaptations/equipment-summary`)
       }
     }
+  })
+
+  router.get('/equipment-and-adaptations/equipment-remove', function (req, res) {
+
+    if (req.query['key']) {
+      var match = req.session.data.equipment.filter(obj => {
+        return obj.key == req.query['key']
+      })
+      req.session.data.equipment_name = match[0].equipment_name
+      req.session.data.key = match[0].key
+      req.session.data.equipment_day = match[0].day
+      req.session.data.equipment_month = match[0].month
+      req.session.data.equipment_year = match[0].year
+    }
+    else {
+      res.redirect(`/${urlPrefix}/equipment-and-adaptations/equipment-summary`)
+    }
+    res.redirect(`/${urlPrefix}/equipment-and-adaptations/equipment-confirm-remove`)
+  })
+
+  router.get('/equipment-and-adaptations/equipment-confirm-remove', function (req, res) {
+    res.render(`./${folderForViews}/equipment-and-adaptations/equipment-remove`)
+  })
+
+  router.post('/equipment-and-adaptations/equipment-confirm-remove', function (req, res) {
+    if (req.session.data.delete == "Yes"){
+      keyToDelete = req.session.data.key
+
+      var match = req.session.data.equipment.filter(obj => {
+        return obj.key == keyToDelete
+      })
+
+      if (match[0]){
+        matchingIndex = req.session.data.equipment.indexOf(match[0])
+
+        req.session.data.equipment.splice(matchingIndex, 1);
+
+        for (let i = 0; i < req.session.data.equipment.length; i++) {
+          req.session.data.equipment[i].key = i
+        }
+      }
+    }
+
+    res.redirect(`/${urlPrefix}/equipment-and-adaptations/equipment-summary`)
+  })
+
+  router.post('/equipment-and-adaptations/equipment-summary', function (req, res) {
+    console.log(req.session.data.equipment)
+    const checked = req.session.data['contact-confirmed']
+    const add_equipment = req.session.data['add-equipment']
+
+    if (req.session.data['equipment'].length < 1 && add_equipment == "No") {
+      res.redirect(`/${urlPrefix}/portal`)
+    }
+
+    if (add_equipment == "Yes") {
+      req.session.data['next-equipment'] = 'true'
+      res.redirect(`/${urlPrefix}/equipment-and-adaptations/description`)
+    }
+    else if (add_equipment == "No") {
+      if (req.session.data.equipment === undefined || req.session.data.equipment.length == 0) {
+        res.redirect(`/${urlPrefix}/equipment-and-adaptations/no-hours-entered`)
+      } else if (checked) {
+        req.session.data['view-claim'] = ''
+        res.redirect(`/${urlPrefix}/equipment-and-adaptations/check-your-answers`)
+      } else {
+        res.redirect(`/${urlPrefix}/equipment-and-adaptations/equipment-cost`)
+      }
+    }
+    else {
+      res.redirect(`/${urlPrefix}/equipment-and-adaptations/equipment-summary`)
+    }
+
   })
 
   // //remove a submission

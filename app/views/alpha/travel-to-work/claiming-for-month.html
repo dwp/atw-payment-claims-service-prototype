@@ -10,30 +10,56 @@ Claim money back from Access to Work
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+        {% if (data['transport-option'] == "taxi") or (data['transport-option'] == "taxi-during-work")%}
+
+        <h1 class="govuk-heading-l">
+            Claim taxi costs by month
+        </h1>
+
+        {% else %}
+
+        <h1 class="govuk-heading-l">
+            Claim travel costs by month
+        </h1>
+
+        {% endif %}
+
+        {% if (data['transport-option'] == "taxi") or (data['transport-option'] == "taxi-during-work")%}
+
+        <p class="govuk-body">
+            Give details for one month. You can add other months later.
+        </p>
+
+        {% else %}
+
+        <p class="govuk-body">
+            Give details for one month. You can add other months later.
+        </p>
+
+        {% endif %}
+
         <form action="#" method="post" class="form">
             <div class="govuk-form-group">
                 <fieldset class="govuk-fieldset" role="group" aria-describedby="month-of-travel-to-work-hint">
-                  {% if (data['transport-option'] == "taxi") or (data['transport-option'] == "taxi-during-work")%}
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-fieldset__heading">
-                            Which month are you claiming taxi costs for?
-                        </h1>
-                    </legend>
 
+                    {% if (data['transport-option'] == "taxi") or (data['transport-option'] == "taxi-during-work")%}
+
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                        Which month are you claiming taxi costs for?
+                    </legend>
+            
                     {% else %}
-
-                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                        <h1 class="govuk-fieldset__heading">
-                            Which month are you claiming travel costs for?
-                        </h1>
+            
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                     Which month are you claiming travel costs for?   
                     </legend>
-
-
+            
                     {% endif %}
+
                     <div id="month-of-travel-to-work-hint" class="govuk-hint">
                         For example, 4 2022
                     </div>
-
 
                     <div class="govuk-date-input" id="travel-to-work-date">
                         <div class="govuk-date-input__item">
@@ -42,8 +68,9 @@ Claim money back from Access to Work
                                     Month
                                 </label>
                                 <input class="govuk-input govuk-date-input__input govuk-input--width-2"
-                                       id="travel-to-work-date-month" name="travel-to-work-date-month" type="text" pattern="[0-9]*"
-                                       inputmode="numeric"></div>
+                                    id="travel-to-work-date-month" name="travel-to-work-date-month" type="text"
+                                    pattern="[0-9]*" inputmode="numeric">
+                            </div>
                         </div>
                         <div class="govuk-date-input__item">
                             <div class="govuk-form-group">
@@ -51,14 +78,13 @@ Claim money back from Access to Work
                                     Year
                                 </label>
                                 <input class="govuk-input govuk-date-input__input govuk-input--width-4"
-                                       id="travel-to-work-date-year" name="travel-to-work-date-year" type="text" pattern="[0-9]*"
-                                       inputmode="numeric"></div>
+                                    id="travel-to-work-date-year" name="travel-to-work-date-year" type="text"
+                                    pattern="[0-9]*" inputmode="numeric">
+                            </div>
                         </div>
                     </div>
-
                 </fieldset>
             </div>
-
 
             <button type="submit" class="govuk-button" data-module="govuk-button">
                 Continue
