@@ -3,7 +3,7 @@ module.exports = function (folderForViews, urlPrefix, router) {
 
     res.render(`./${folderForViews}/adaptation-to-vehicle/adaptation-to-vehicle`)
   })
-
+  // Test comment for access
   // post - Are you claiming for support in the workplace
   router.post('/adaptation-to-vehicle/adaptation-to-vehicle-answer', function (req, res) {
     const adaptation = req.session.data['adaptation-to-vehicle']
