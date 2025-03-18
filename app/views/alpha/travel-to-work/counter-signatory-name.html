@@ -14,14 +14,12 @@ Claim money back from Access to Work
         <form action="workplace-contact-confirmation" method="post" class="form">
 
           <h1 class="govuk-heading-l">Details of a workplace contact who can confirm your claim</h1>
+          <p class="govuk-body">This needs to be someone like your line manager or HR manager.</p>
 
           {{ govukInput({
             label: {
               text: "Full name",
               classes: "govuk-label--m"
-            },
-            hint: {
-              text: "This needs to be someone like your line manager or HR manager."
             },
             classes: "govuk-input",
             id: "counter-signatory-full-name",
