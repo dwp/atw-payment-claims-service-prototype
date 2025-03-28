@@ -39,7 +39,8 @@ improve it.'
     </fieldset>
     {% if data["new-email-address"] %}
     {% elseif (data['journey-type'] == "multipleemployers") or (data['multiple-employers'] == "true") %}
-    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
+      data-module="govuk-notification-banner">
       <div class="govuk-notification-banner__header">
         <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
           Important
@@ -155,12 +156,15 @@ improve it.'
 
     <!-- <p>You can <a href="personal-information-change"> request to change any of your personal information</a> if you want.</p> -->
 
-    <p>You must let us know if these details change. If you tell us about a change, your new details will take a few
-      days to show in your account.</p>
+    <p>You must let us know if these details change. </p>
+
+    <div class="govuk-inset-text">
+      If you tell us about a change, your new details will take a few days to show in your account.
+    </div>
 
     <form action="personal-information-change" method="post" class="form">
       <button class="govuk-button" data-module="govuk-button">
-        Change personal details
+        Request personal details change
       </button>
     </form>
 
